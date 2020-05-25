@@ -1,0 +1,41 @@
+/*------------------------------------*\
+	此檔案用於撰寫 reset 相關 css，於 main.js 全局引入。
+	內容參考 reset.css，並刪除個人習慣不會用到的內容，
+	並加入喜歡的設置:
+	box-sizing: border-box;
+	已經編譯好的直接給全局 main.js
+\*------------------------------------*/
+
+
+html, body, div, span,
+h1, h2, h3, h4, h5, h6, p, pre,
+a, abbr, address,
+img, ins, kbd,
+strong, sub, sup,
+ol, ul, li,
+form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside,
+figure, figcaption, footer, header,
+menu, nav, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	box-sizing: border-box;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+ol, ul {
+	list-style: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}

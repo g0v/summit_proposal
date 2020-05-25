@@ -1,0 +1,32 @@
+@import "../variables/_width.scss";
+
+//576
+@mixin mediaquery_phone {
+    @media all and (min-width: $width--phone) {
+        @content;
+    }
+}
+//768
+@mixin mediaquery_pad {
+    @media all and (min-width: $width--pad) {
+        @content;
+    }
+}
+//992
+@mixin mediaquery_medium_devices {
+    @media all and (min-width: $width--medium_devices) {
+        @content;
+    }
+}
+//1200
+@mixin mediaquery_large_devices{
+    @media all and (min-width: $width--large_devices){
+        @content;
+    }
+}
+//1200
+@mixin mediaquery_design_devices{
+    @media all and (min-width: $width--design_devices){
+        @content;
+    }
+}
