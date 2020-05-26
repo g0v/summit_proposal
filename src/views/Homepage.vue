@@ -6,6 +6,7 @@
     <FAQ />
     <Committee />
     <AboutUS />
+    <Agenda />
   </main>
 </template>
 
@@ -16,6 +17,7 @@ import Submit from "@/components/homepage/Submit.vue";
 import FAQ from "@/components/homepage/FAQ.vue";
 import Committee from "@/components/homepage/Committee.vue";
 import AboutUS from "@/components/homepage/AboutUS.vue";
+import Agenda from "@/components/homepage/Agenda.vue";
 
 export default {
   name: "Homepage",
@@ -25,7 +27,8 @@ export default {
     Submit,
     FAQ,
     Committee,
-    AboutUS
+    AboutUS,
+    Agenda
   }
 };
 </script>
