@@ -9,8 +9,12 @@
         <span class="time">招募日期：2020/06/04</span>
         <span class="time">活動日期：2020/12/03（四）~ 2020/12/06（日）</span>
         <div class="buttons">
-          <b-button variant="danger" size="lg">提案瀏覽</b-button>
-          <b-button variant="danger" size="lg">我要提案</b-button>
+          <router-link :to="{ name: 'PropasalList' }">
+            <b-button variant="danger" size="lg">提案瀏覽</b-button>
+          </router-link>
+          <router-link :to="{ name: 'ProposalEdit' }">
+            <b-button variant="danger" size="lg">我要提案</b-button>
+          </router-link>
         </div>
       </div>
       <div class="image">

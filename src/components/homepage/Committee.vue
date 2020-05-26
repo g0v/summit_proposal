@@ -1,5 +1,5 @@
 <template>
-  <section class="committee">
+  <section class="committee" id="committee">
     <div class="committee-container container">
       <h2 class="main-title light">議程委員會</h2>
       <b-card-group columns>

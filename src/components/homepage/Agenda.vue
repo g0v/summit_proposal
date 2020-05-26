@@ -1,22 +1,18 @@
 <template>
-  <section class="agenda">
+  <section class="agenda" id="agenda">
     <div class="agenda-container container">
       <h2 class="main-title light">歷年議程</h2>
       <div class="links">
         <div class="item">
           <h3>2018 開放了？然後咧！</h3>
-          <b-button variant="dark" size="lg"
-            ><a href="https://summit.g0v.tw/2018/agenda/" target="_blank"
-              >點我去看看</a
-            ></b-button
+          <a href="https://summit.g0v.tw/2018/agenda/" target="_blank"
+            ><b-button variant="dark" size="lg">點我去看看</b-button></a
           >
         </div>
         <div class="item">
           <h3>2016 拆後重建</h3>
-          <b-button variant="dark" size="lg"
-            ><a href="https://summit.g0v.tw/2016/schedules" target="_blank"
-              >點我去看看</a
-            ></b-button
+          <a href="https://summit.g0v.tw/2016/schedules" target="_blank"
+            ><b-button variant="dark" size="lg">點我去看看</b-button></a
           >
         </div>
       </div>
@@ -68,17 +64,11 @@ export default {
       left: -5%;
       top: 20%;
     }
-    ::v-deep button {
+    a {
       position: absolute;
       bottom: 20px;
       left: 50%;
       transform: translateX(-50%);
-      a {
-        display: block;
-        width: 100%;
-        height: 100%;
-        color: #fff;
-      }
     }
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <section class="about-us">
+  <section class="about-us" id="about-us">
     <div class="about-us-container container">
       <h2 class="main-title drark">g0v 介紹</h2>
       <div class="content">

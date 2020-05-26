@@ -1,5 +1,5 @@
 <template>
-  <section class="faq">
+  <section class="faq" id="faq">
     <div class="faq-container container">
       <h2 class="main-title drark">FAQ</h2>
     </div>
