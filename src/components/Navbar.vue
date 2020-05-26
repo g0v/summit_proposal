@@ -1,5 +1,5 @@
 <template>
-  <b-navbar toggleable="lg" type="dark" variant="dark">
+  <b-navbar toggleable="lg" type="dark">
     <b-navbar-brand href="#"
       ><h1><img src="@/assets/images/logo.png" alt="g0v" /></h1
     ></b-navbar-brand>
@@ -27,3 +27,8 @@ export default {
   name: "Navbar"
 };
 </script>
+<style lang="scss" scoped>
+nav {
+  background-color: $sub-color;
+}
+</style>
