@@ -157,9 +157,6 @@ export default {
     &:hover {
       box-shadow: 1px 1px 2px #00000085;
       transform: translate(-2px, -2px);
-      .card-header {
-        background-color: $main-color;
-      }
     }
     .card-header {
       background-color: $sub-color;
