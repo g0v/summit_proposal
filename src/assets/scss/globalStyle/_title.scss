@@ -1,0 +1,19 @@
+.main-title{
+  font-size: 30px;
+  font-weight: 900;
+  position: relative;
+  &.drark{
+    color:#fff;
+    &::after{
+      content:"";
+      display:block;
+      width: 150px;
+      height: 3px;
+      background-color: $main-color;
+      position: absolute;
+      bottom:-15px;
+      left:50%;
+      transform: translateX(-50%);
+    }
+  }
+}
