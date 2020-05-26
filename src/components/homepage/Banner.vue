@@ -41,6 +41,7 @@ export default {
       font-weight: 900;
       font-size: 45px;
       margin-bottom: 20px;
+      color: #000;
       span {
         color: $main-color;
       }
