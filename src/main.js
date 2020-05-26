@@ -15,9 +15,11 @@ import "bootstrap-vue/dist/bootstrap-vue.css";
 import { NavbarPlugin } from "bootstrap-vue";
 import { LayoutPlugin } from "bootstrap-vue";
 import { ButtonPlugin } from "bootstrap-vue";
+import { CardPlugin } from "bootstrap-vue";
 Vue.use(NavbarPlugin);
 Vue.use(LayoutPlugin);
 Vue.use(ButtonPlugin);
+Vue.use(CardPlugin);
 
 new Vue({
   router,
