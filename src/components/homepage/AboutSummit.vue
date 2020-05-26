@@ -1,6 +1,6 @@
 <template>
-  <section class="about">
-    <div class="about-container container">
+  <section class="about-summit">
+    <div class="about-summit-container container">
       <h2 class="main-title drark">關於 g0v Summit</h2>
       <article>
         <h3>
@@ -61,15 +61,15 @@
 
 <script>
 export default {
-  name: "About"
+  name: "AboutSummit"
 };
 </script>
 
 <style lang="scss" scoped>
-.about {
+.about-summit {
   background-color: $sub-color;
 }
-.about-container {
+.about-summit-container {
   padding: 45px 0;
   h2 {
     margin-bottom: 30px;
