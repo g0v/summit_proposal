@@ -86,14 +86,13 @@ export default {
     button {
       width: 100%;
       margin-bottom: 10px;
-      background-color: #fff;
-      color: #000;
+      background-color: $main-color;
+      color: #fff;
       border: 3px solid $main-color;
       transition: background-color 500ms;
       font-weight: 600;
       &:hover {
-        background-color: $main-color;
-        color: #fff;
+        opacity: 0.8;
       }
     }
   }
