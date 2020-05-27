@@ -23,15 +23,26 @@
           >
         </b-nav-item-dropdown>
         <b-nav-item href="#agenda">歷年議程</b-nav-item>
-        <b-nav-item href="#">登入</b-nav-item>
+        <b-nav-item @click="isLoginLightboxOpen = true">登入</b-nav-item>
       </b-navbar-nav>
     </b-collapse>
+    <LoginLightbox
+      v-if="isLoginLightboxOpen"
+      @close="isLoginLightboxOpen = false"
+    />
   </b-navbar>
 </template>
 
 <script>
+import LoginLightbox from "@/components/LoginLightbox.vue";
 export default {
-  name: "Navbar"
+  name: "Navbar",
+  components: { LoginLightbox },
+  data() {
+    return {
+      isLoginLightboxOpen: false
+    };
+  }
 };
 </script>
 <style lang="scss" scoped>

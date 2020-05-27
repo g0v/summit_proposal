@@ -1,0 +1,75 @@
+<template>
+  <section class="login">
+    <div class="login-container">
+      <div class="title">
+        <h2>登入</h2>
+        <b-icon icon="x-square" @click="$emit('close')"></b-icon>
+      </div>
+      <div class="content">
+        <b-button>Facebook</b-button>
+        <b-button>Google</b-button>
+        <b-button>Github</b-button>
+        <b-button>Slack</b-button>
+      </div>
+    </div>
+  </section>
+</template>
+
+<script>
+export default {
+  name: "LoginLightbox"
+};
+</script>
+
+<style lang="scss" scoped>
+.login {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #ffffff7d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login-container {
+  border-radius: 5px;
+  padding: 20px;
+  background-color: #292828;
+  width: 300px;
+  .title {
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    h2 {
+      font-size: 20px;
+      margin-bottom: 0;
+    }
+    svg {
+      cursor: pointer;
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+  .content {
+    display: flex;
+    flex-direction: column;
+    button {
+      margin-bottom: 10px;
+      background-color: #fff;
+      color: #000;
+      border: 3px solid $main-color;
+      transition: background-color 500ms;
+      font-weight: 600;
+      &:hover {
+        background-color: $main-color;
+        color: #fff;
+      }
+    }
+  }
+}
+</style>
