@@ -1,9 +1,16 @@
 <template>
-  <div>ProposalDetail</div>
+  <section class="proposal-detail">
+    <ProposalDetailHeader />
+    <ProposalDetailContent />
+  </section>
 </template>
 
 <script>
+import ProposalDetailHeader from "@/components/propodalDetail/ProposalDetailHeader.vue";
+import ProposalDetailContent from "@/components/propodalDetail/ProposalDetailContent.vue";
+
 export default {
-  name: "ProposalDetail"
+  name: "ProposalDetail",
+  components: { ProposalDetailHeader, ProposalDetailContent }
 };
 </script>

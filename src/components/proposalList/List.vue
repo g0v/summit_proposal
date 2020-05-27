@@ -1,7 +1,21 @@
 <template>
   <div class="list">
     <div class="list-container container">
-      <div class="item">
+      <router-link teg="div" class="item" :to="{ name: 'ProposalDetail' }">
+        <div class="cover">
+          <img src="@/assets/images/cover-2.png" alt="project cover" />
+          <div class="owner">
+            <img src="@/assets/images/pics/吳蕙如.jpg" alt="owner pic" />
+          </div>
+        </div>
+        <div class="content">
+          <h3>思考方塊 Thinking Cube</h3>
+          <p>
+            目前台灣大眾面對假新聞、公眾議題普遍欠缺獨立思考與懷疑的精神，常只以情緒反應代替有效溝通的狀況，在各年齡層都有這個狀況，希望透過這個專案能建立一個批判性思考學習工具、公眾討論工具平台，為社會帶來「促成社會大眾能夠理性和有效的溝通」的改變。
+          </p>
+        </div></router-link
+      >
+      <router-link teg="div" class="item" :to="{ name: 'ProposalDetail' }">
         <div class="cover">
           <img src="@/assets/images/cover.png" alt="project cover" />
           <div class="owner">
@@ -14,8 +28,8 @@
             目前台灣大眾面對假新聞、公眾議題普遍欠缺獨立思考與懷疑的精神，常只以情緒反應代替有效溝通的狀況，在各年齡層都有這個狀況，希望透過這個專案能建立一個批判性思考學習工具、公眾討論工具平台，為社會帶來「促成社會大眾能夠理性和有效的溝通」的改變。
           </p>
         </div>
-      </div>
-      <div class="item">
+      </router-link>
+      <router-link teg="div" class="item" :to="{ name: 'ProposalDetail' }">
         <div class="cover">
           <img src="@/assets/images/cover-2.png" alt="project cover" />
           <div class="owner">
@@ -28,8 +42,8 @@
             目前台灣大眾面對假新聞、公眾議題普遍欠缺獨立思考與懷疑的精神，常只以情緒反應代替有效溝通的狀況，在各年齡層都有這個狀況，希望透過這個專案能建立一個批判性思考學習工具、公眾討論工具平台，為社會帶來「促成社會大眾能夠理性和有效的溝通」的改變。
           </p>
         </div>
-      </div>
-      <div class="item">
+      </router-link>
+      <router-link teg="div" class="item" :to="{ name: 'ProposalDetail' }">
         <div class="cover">
           <img src="@/assets/images/cover.png" alt="project cover" />
           <div class="owner">
@@ -42,8 +56,8 @@
             目前台灣大眾面對假新聞、公眾議題普遍欠缺獨立思考與懷疑的精神，常只以情緒反應代替有效溝通的狀況，在各年齡層都有這個狀況，希望透過這個專案能建立一個批判性思考學習工具、公眾討論工具平台，為社會帶來「促成社會大眾能夠理性和有效的溝通」的改變。
           </p>
         </div>
-      </div>
-      <div class="item">
+      </router-link>
+      <router-link teg="div" class="item" :to="{ name: 'ProposalDetail' }">
         <div class="cover">
           <img src="@/assets/images/cover.png" alt="project cover" />
           <div class="owner">
@@ -56,7 +70,7 @@
             目前台灣大眾面對假新聞、公眾議題普遍欠缺獨立思考與懷疑的精神，常只以情緒反應代替有效溝通的狀況，在各年齡層都有這個狀況，希望透過這個專案能建立一個批判性思考學習工具、公眾討論工具平台，為社會帶來「促成社會大眾能夠理性和有效的溝通」的改變。
           </p>
         </div>
-      </div>
+      </router-link>
     </div>
   </div>
 </template>
@@ -70,20 +84,21 @@ export default {
 <style lang="scss" scoped>
 .list-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
   .item {
-    width: 32%;
+    width: 31%;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: left;
-    margin-bottom: 2%;
+    margin: 0 1% 2%;
     padding: 40px 20px;
     box-shadow: 0px 0px 1px 0px #00000052, 0px 12px 8px -12px #000;
     border-radius: 5px;
     background-color: #ffffff94;
+    text-decoration: none;
     &:hover {
       background-color: #ffffffbf;
       position: relative;
@@ -117,6 +132,7 @@ export default {
       }
     }
     .content {
+      color: #000;
       h3 {
         font-size: 18px;
         font-weight: 600;
