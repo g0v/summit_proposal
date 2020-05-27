@@ -13,7 +13,11 @@ export default {
       provider: ""
     }
   },
-  mutations: {},
+  mutations: {
+    updateToken(state, token) {
+      state.token = token;
+    }
+  },
   getters: {
     token({ token }) {
       return token;
