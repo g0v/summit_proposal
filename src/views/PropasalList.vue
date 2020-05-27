@@ -1,9 +1,16 @@
 <template>
-  <div>PropasalList</div>
+  <section>
+    <ListHeader />
+    <List />
+  </section>
 </template>
 
 <script>
+import ListHeader from "@/components/proposalList/ListHeader.vue";
+import List from "@/components/proposalList/List.vue";
+
 export default {
-  name: "PropasalList"
+  name: "PropasalList",
+  components: { ListHeader, List }
 };
 </script>
