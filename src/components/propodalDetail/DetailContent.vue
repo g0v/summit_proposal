@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: "ProposalDetailContent"
+  name: "DetailContent"
 };
 </script>
 

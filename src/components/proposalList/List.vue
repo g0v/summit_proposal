@@ -1,7 +1,11 @@
 <template>
   <div class="list">
     <div class="list-container container">
-      <router-link teg="div" class="item" :to="{ name: 'ProposalDetail' }">
+      <router-link
+        teg="div"
+        class="item"
+        :to="{ name: 'ProposalDetail', params: { id: 1 } }"
+      >
         <div class="cover">
           <img src="@/assets/images/cover-2.png" alt="project cover" />
           <div class="owner">

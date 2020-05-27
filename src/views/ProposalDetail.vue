@@ -1,16 +1,21 @@
 <template>
   <section class="proposal-detail">
-    <ProposalDetailHeader />
-    <ProposalDetailContent />
+    <DetailHeader />
+    <DetailContent />
   </section>
 </template>
 
 <script>
-import ProposalDetailHeader from "@/components/propodalDetail/ProposalDetailHeader.vue";
-import ProposalDetailContent from "@/components/propodalDetail/ProposalDetailContent.vue";
+import DetailHeader from "@/components/propodalDetail/DetailHeader.vue";
+import DetailContent from "@/components/propodalDetail/DetailContent.vue";
 
 export default {
   name: "ProposalDetail",
-  components: { ProposalDetailHeader, ProposalDetailContent }
+  components: { DetailHeader, DetailContent }
 };
 </script>
+<style lang="scss" scoped>
+.proposal-detail {
+  padding: 45px 0;
+}
+</style>
