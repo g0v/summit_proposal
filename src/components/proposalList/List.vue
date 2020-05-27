@@ -84,6 +84,13 @@ export default {
     box-shadow: 0px 0px 1px 0px #00000052, 0px 12px 8px -12px #000;
     border-radius: 5px;
     background-color: #ffffff94;
+    &:hover {
+      background-color: #ffffffbf;
+      position: relative;
+      top: -1px;
+      left: -1px;
+      box-shadow: 1px 2px 2px #333131;
+    }
     .cover {
       width: 80%;
       height: 150px;
