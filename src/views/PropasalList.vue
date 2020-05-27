@@ -17,5 +17,9 @@ export default {
 <style lang="scss" scoped>
 .propasal-list {
   padding: 45px 0;
+  background-image: url("../assets/images/bg.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
 }
 </style>
