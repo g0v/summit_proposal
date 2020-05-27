@@ -17,13 +17,17 @@ import {
   LayoutPlugin,
   ButtonPlugin,
   CardPlugin,
-  IconsPlugin
+  IconsPlugin,
+  FormInputPlugin,
+  FormGroupPlugin
 } from "bootstrap-vue";
 Vue.use(NavbarPlugin);
 Vue.use(LayoutPlugin);
 Vue.use(ButtonPlugin);
 Vue.use(CardPlugin);
 Vue.use(IconsPlugin);
+Vue.use(FormInputPlugin);
+Vue.use(FormGroupPlugin);
 
 import VBodyScrollLock from "v-body-scroll-lock";
 Vue.use(VBodyScrollLock);

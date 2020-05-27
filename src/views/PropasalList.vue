@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="propasal-list">
     <ListHeader />
     <List />
   </section>
@@ -14,3 +14,8 @@ export default {
   components: { ListHeader, List }
 };
 </script>
+<style lang="scss" scoped>
+.propasal-list {
+  padding: 45px 0;
+}
+</style>
