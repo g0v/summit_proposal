@@ -6,10 +6,30 @@
         <b-icon icon="x-square" @click="$emit('close')"></b-icon>
       </div>
       <div class="content">
-        <b-button>Facebook</b-button>
-        <b-button>Google</b-button>
-        <b-button>Github</b-button>
-        <b-button>Slack</b-button>
+        <a
+          :href="
+            `https://api.summit2020.pre-stage.cc/auth/facebook?authCallback=${domain}/redirect`
+          "
+          ><b-button>Facebook</b-button></a
+        >
+        <a
+          :href="
+            `https://api.summit2020.pre-stage.cc/auth/google?authCallback=${domain}/redirect`
+          "
+          ><b-button>Google</b-button></a
+        >
+        <a
+          :href="
+            `https://api.summit2020.pre-stage.cc/auth/github?authCallback=${domain}/redirect`
+          "
+          ><b-button>Github</b-button></a
+        >
+        <a
+          :href="
+            `https://api.summit2020.pre-stage.cc/auth/slack?authCallback=${domain}/redirect`
+          "
+          ><b-button>Slack</b-button></a
+        >
       </div>
     </div>
   </section>
@@ -17,7 +37,12 @@
 
 <script>
 export default {
-  name: "LoginLightbox"
+  name: "LoginLightbox",
+  data() {
+    return {
+      domain: window.location.origin
+    };
+  }
 };
 </script>
 
@@ -59,6 +84,7 @@ export default {
     display: flex;
     flex-direction: column;
     button {
+      width: 100%;
       margin-bottom: 10px;
       background-color: #fff;
       color: #000;
