@@ -23,7 +23,11 @@
           >
         </b-nav-item-dropdown>
         <b-nav-item href="#agenda">歷年議程</b-nav-item>
-        <b-nav-item @click="isLoginLightboxOpen = true">登入</b-nav-item>
+        <b-nav-item
+          v-if="$store.getters.token === ''"
+          @click="isLoginLightboxOpen = true"
+          >登入</b-nav-item
+        >
       </b-navbar-nav>
     </b-collapse>
     <LoginLightbox
@@ -36,6 +40,7 @@
 
 <script>
 import LoginLightbox from "@/components/LoginLightbox.vue";
+import Cookies from "js-cookie";
 export default {
   name: "Navbar",
   components: { LoginLightbox },
@@ -43,6 +48,12 @@ export default {
     return {
       isLoginLightboxOpen: false
     };
+  },
+  created() {
+    if (Cookies.get("shareToken")) {
+      this.$store.dispatch("updateToken", Cookies.get("shareToken"));
+      this.$store.dispatch("fetchUserInfo");
+    }
   }
 };
 </script>

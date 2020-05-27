@@ -2,14 +2,14 @@ import axios from "axios";
 import store from "../store/index";
 
 const apiClient = axios.create({
-  baseURL: "api.summit2020.pre-stage.cc",
+  baseURL: "https://api.summit2020.pre-stage.cc",
   headers: {
     "Content-Type": "application/json"
   }
 });
 
 apiClient.interceptors.request.use(function(config) {
-  config.headers["Authorization"] = store.getters.token;
+  config.headers["Authorization"] = `Bearer ${store.getters.token}`;
   return config;
 });
 

@@ -8,7 +8,6 @@ export default {
       _id: "",
       email: "",
       picture: "",
-      sub: "",
       name: "",
       provider: ""
     }
@@ -16,6 +15,9 @@ export default {
   mutations: {
     updateToken(state, token) {
       state.token = token;
+    },
+    updateUserInfo(state, info) {
+      state.userInfo = info;
     }
   },
   getters: {
