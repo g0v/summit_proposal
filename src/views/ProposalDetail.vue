@@ -16,6 +16,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 .proposal-detail {
-  padding: 45px 0;
+  padding: 60px 0 45px;
 }
 </style>

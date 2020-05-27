@@ -24,15 +24,16 @@ export default {
 .detail-header-container {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 45px;
+  align-items: center;
+  margin-bottom: 80px;
   .cover {
     width: 45%;
   }
-  .owner {
+  .title {
     width: 50%;
   }
   .cover {
-    height: 150px;
+    height: 200px;
     position: relative;
     img {
       width: 100%;
@@ -44,7 +45,7 @@ export default {
     &::after {
       content: "";
       display: block;
-      height: 200px;
+      height: 250px;
       width: 50%;
       position: absolute;
       top: -25px;
