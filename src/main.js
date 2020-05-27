@@ -25,6 +25,9 @@ Vue.use(ButtonPlugin);
 Vue.use(CardPlugin);
 Vue.use(IconsPlugin);
 
+import VBodyScrollLock from "v-body-scroll-lock";
+Vue.use(VBodyScrollLock);
+
 new Vue({
   router,
   store,
