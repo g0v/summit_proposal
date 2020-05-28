@@ -12,21 +12,43 @@
           <router-link :to="{ name: 'PropasalList' }">
             <b-button variant="danger" size="lg">提案瀏覽</b-button>
           </router-link>
-          <router-link :to="{ name: 'ProposalCreate' }">
-            <b-button variant="danger" size="lg">我要提案</b-button>
-          </router-link>
+          <b-button variant="danger" size="lg" @click="goSummit"
+            >我要提案</b-button
+          >
         </div>
       </div>
       <div class="image">
         <img src="@/assets/images/banner.svg" alt="banner image" />
       </div>
     </div>
+    <LoginLightbox
+      v-body-scroll-lock="isLoginLightboxOpen"
+      v-if="isLoginLightboxOpen"
+      @close="isLoginLightboxOpen = false"
+    />
   </section>
 </template>
 
 <script>
+import LoginLightbox from "@/components/LoginLightbox.vue";
+
 export default {
-  name: "Banner"
+  name: "Banner",
+  components: { LoginLightbox },
+  data() {
+    return {
+      isLoginLightboxOpen: false
+    };
+  },
+  methods: {
+    goSummit() {
+      if (this.$store.getters.token) {
+        this.$router.push({ name: "ProposalCreate" });
+      } else {
+        this.isLoginLightboxOpen = true;
+      }
+    }
+  }
 };
 </script>
 
