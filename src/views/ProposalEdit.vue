@@ -1,39 +1,23 @@
 <template>
   <section class="proposal-edit">
     <div class="proposal-edit-container container">
-      <div class="title">
-        <h2>編輯提案</h2>
-        <span>2020 g0v summit proposal</span>
-      </div>
+      <ProposalFormHeader title="編輯提案" />
       <ProposalForm />
     </div>
   </section>
 </template>
 
 <script>
-import ProposalForm from "@/components/ProposalForm.vue";
+import ProposalForm from "@/components/proposalForm/ProposalForm.vue";
+import ProposalFormHeader from "@/components/proposalForm/ProposalFormHeader.vue";
+
 export default {
   name: "ProposalEdit",
-  components: { ProposalForm }
+  components: { ProposalForm, ProposalFormHeader }
 };
 </script>
 <style lang="scss" scoped>
 .proposal-edit-container {
   padding: 45px 0;
-  .title {
-    position: relative;
-    top: 20px;
-    background-color: $sub-color;
-    padding: 50px 0;
-    z-index: 1;
-    border-radius: 10px;
-    h2 {
-      color: #fff;
-      margin-bottom: 5px;
-    }
-    span {
-      color: #ffffff7d;
-    }
-  }
 }
 </style>

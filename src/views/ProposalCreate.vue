@@ -1,20 +1,19 @@
 <template>
   <section class="proposal-create">
     <div class="proposal-create-container container">
-      <div class="title">
-        <h2>創建提案</h2>
-        <span>2020 g0v summit proposal</span>
-      </div>
+      <ProposalFormHeader title="創建提案" />
       <ProposalForm />
     </div>
   </section>
 </template>
 
 <script>
-import ProposalForm from "@/components/ProposalForm.vue";
+import ProposalForm from "@/components/proposalForm/ProposalForm.vue";
+import ProposalFormHeader from "@/components/proposalForm/ProposalFormHeader.vue";
+
 export default {
   name: "ProposalCreate",
-  components: { ProposalForm }
+  components: { ProposalForm, ProposalFormHeader }
 };
 </script>
 <style lang="scss" scoped>
