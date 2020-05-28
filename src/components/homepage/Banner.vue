@@ -12,7 +12,7 @@
           <router-link :to="{ name: 'PropasalList' }">
             <b-button variant="danger" size="lg">提案瀏覽</b-button>
           </router-link>
-          <router-link :to="{ name: 'ProposalEdit' }">
+          <router-link :to="{ name: 'ProposalCreate' }">
             <b-button variant="danger" size="lg">我要提案</b-button>
           </router-link>
         </div>

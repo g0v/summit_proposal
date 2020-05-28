@@ -19,7 +19,9 @@ import {
   CardPlugin,
   IconsPlugin,
   FormInputPlugin,
-  FormGroupPlugin
+  FormGroupPlugin,
+  FormPlugin,
+  FormSelectPlugin
 } from "bootstrap-vue";
 Vue.use(NavbarPlugin);
 Vue.use(LayoutPlugin);
@@ -28,6 +30,8 @@ Vue.use(CardPlugin);
 Vue.use(IconsPlugin);
 Vue.use(FormInputPlugin);
 Vue.use(FormGroupPlugin);
+Vue.use(FormPlugin);
+Vue.use(FormSelectPlugin);
 
 import VBodyScrollLock from "v-body-scroll-lock";
 Vue.use(VBodyScrollLock);

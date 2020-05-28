@@ -1,8 +1,8 @@
 <template>
-  <section class="proposal-edit">
-    <div class="proposal-edit-container container">
+  <section class="proposal-create">
+    <div class="proposal-create-container container">
       <div class="title">
-        <h2>編輯提案</h2>
+        <h2>創建提案</h2>
         <span>2020 g0v summit proposal</span>
       </div>
       <ProposalForm />
@@ -13,12 +13,12 @@
 <script>
 import ProposalForm from "@/components/ProposalForm.vue";
 export default {
-  name: "ProposalEdit",
+  name: "ProposalCreate",
   components: { ProposalForm }
 };
 </script>
 <style lang="scss" scoped>
-.proposal-edit-container {
+.proposal-create-container {
   padding: 45px 0;
   .title {
     position: relative;

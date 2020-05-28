@@ -25,6 +25,11 @@ const routes = [
     component: () => import("@/views/ProposalEdit.vue")
   },
   {
+    path: "/proposal-create",
+    name: "ProposalCreate",
+    component: () => import("@/views/ProposalCreate.vue")
+  },
+  {
     path: "/redirect",
     name: "Redirect",
     component: () => import("@/views/Redirect.vue")
