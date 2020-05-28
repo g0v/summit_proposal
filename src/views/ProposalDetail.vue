@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import DetailHeader from "@/components/propodalDetail/DetailHeader.vue";
-import DetailContent from "@/components/propodalDetail/DetailContent.vue";
+import DetailHeader from "@/components/proposalDetail/DetailHeader.vue";
+import DetailContent from "@/components/proposalDetail/DetailContent.vue";
 
 export default {
   name: "ProposalDetail",
