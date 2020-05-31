@@ -1,15 +1,19 @@
 import actions from "./actions";
 
+const defaultUserInfo = {
+  _id: "",
+  email: "",
+  picture: "",
+  name: "",
+  provider: ""
+};
+
 export default {
   actions,
   state: {
     token: "",
     userInfo: {
-      _id: "",
-      email: "",
-      picture: "",
-      name: "",
-      provider: ""
+      ...defaultUserInfo
     }
   },
   mutations: {
@@ -18,6 +22,12 @@ export default {
     },
     updateUserInfo(state, info) {
       state.userInfo = info;
+    },
+    logout(state) {
+      state.token = "";
+      state.userInfo = {
+        ...defaultUserInfo
+      };
     }
   },
   getters: {
@@ -26,6 +36,9 @@ export default {
     },
     userInfo({ userInfo }) {
       return userInfo;
+    },
+    isLoggedIn({ userInfo }) {
+      return !!userInfo._id;
     }
   }
 };

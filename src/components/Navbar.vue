@@ -24,10 +24,11 @@
         </b-nav-item-dropdown>
         <b-nav-item href="#agenda">歷年議程</b-nav-item>
         <b-nav-item
-          v-if="$store.getters.token === ''"
+          v-if="!$store.getters.isLoggedIn"
           @click="isLoginLightboxOpen = true"
           >登入</b-nav-item
         >
+        <b-nav-item v-else @click="logout">登出</b-nav-item>
       </b-navbar-nav>
     </b-collapse>
     <LoginLightbox
@@ -53,6 +54,15 @@ export default {
     if (Cookies.get("shareToken")) {
       this.$store.dispatch("updateToken", Cookies.get("shareToken"));
       this.$store.dispatch("fetchUserInfo");
+    }
+  },
+  methods: {
+    logout() {
+      // TODO: better user notification
+      this.$store.dispatch("logout");
+      if (this.$route.path !== "/") {
+        this.$router.push("/");
+      }
     }
   }
 };

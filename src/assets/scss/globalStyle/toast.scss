@@ -1,0 +1,11 @@
+.b-toast .toast.err-toast {
+  background-color: #b33;
+  color: white;
+
+  p {
+    margin: 0;
+    &:not(:last-child) {
+      margin-bottom: 0.25rem;
+    }
+  }
+}
