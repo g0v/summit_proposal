@@ -2,8 +2,9 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+import API from "@/utils/API.js";
 
-Vue.config.productionTip = false;
+Vue.config.productionTip = process.env.NODE_ENV !== "production";
 
 //引入已編譯完成，且全局可使用的 scss 檔案
 import "./assets/scss/base/reset.scss";
@@ -21,7 +22,8 @@ import {
   FormInputPlugin,
   FormGroupPlugin,
   FormPlugin,
-  FormSelectPlugin
+  FormSelectPlugin,
+  ToastPlugin
 } from "bootstrap-vue";
 Vue.use(NavbarPlugin);
 Vue.use(LayoutPlugin);
@@ -32,9 +34,16 @@ Vue.use(FormInputPlugin);
 Vue.use(FormGroupPlugin);
 Vue.use(FormPlugin);
 Vue.use(FormSelectPlugin);
+Vue.use(ToastPlugin);
 
 import VBodyScrollLock from "v-body-scroll-lock";
 Vue.use(VBodyScrollLock);
+
+const existingAuthToken = API.GET_EXISTING_AUTH_TOKEN();
+if (existingAuthToken) {
+  store.dispatch("updateToken", existingAuthToken);
+  store.dispatch("fetchUserInfo");
+}
 
 new Vue({
   router,

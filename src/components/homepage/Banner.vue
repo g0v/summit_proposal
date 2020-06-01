@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     goSummit() {
-      if (this.$store.getters.token) {
+      if (this.$store.getters.isLoggedIn) {
         this.$router.push({ name: "ProposalCreate" });
       } else {
         this.isLoginLightboxOpen = true;
