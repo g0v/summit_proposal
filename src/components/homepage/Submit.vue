@@ -6,34 +6,77 @@
         <h3><b-icon icon="heart-fill" variant="danger"></b-icon>投稿主題</h3>
         <div class="categories">
           <div class="category">
-            <div class="icon">
-              <img src="@/assets/images/category/school.svg" alt="教育科技" />
-            </div>
-            <h4>教育科技</h4>
+            <h4>「沒有人」的島<br />Nobody’s island</h4>
+            <ul>
+              <li>g0v 社群 The g0v community</li>
+              <li>社群組織 Community organization</li>
+              <li>社群治理 Community governance</li>
+              <li>地方治理 Local governance</li>
+              <li>開放治理 Open governance</li>
+              <li>社會創新 Social innovation</li>
+              <li>地方創生 Placemaking</li>
+            </ul>
           </div>
           <div class="category">
-            <div class="icon">
-              <img src="@/assets/images/category/school.svg" alt="教育科技" />
-            </div>
-            <h4>教育科技</h4>
+            <h4>島嶼大聯盟<br />Federation of islands</h4>
+            <ul>
+              <li>國際交流 International exchange</li>
+              <li>國際運動串連 Activist networking</li>
+              <li>區域合作 Regional cooperation</li>
+              <li>區域聯防 Regional defense</li>
+              <li>跨領域合作串連 Multidisciplinary collaboration</li>
+            </ul>
           </div>
           <div class="category">
-            <div class="icon">
-              <img src="@/assets/images/category/school.svg" alt="教育科技" />
-            </div>
-            <h4>教育科技</h4>
+            <h4>大島開放<br />Open island</h4>
+            <ul>
+              <li>開放政府 Open government</li>
+              <li>開放資料 Open data</li>
+              <li>開放政治 Open politics</li>
+              <li>公私協力 Public-private collaboration</li>
+              <li>開源軟體 Open-source software</li>
+              <li>開源硬體 Open-source hardware</li>
+              <li>自造者運動 Makers’ movemen</li>
+            </ul>
           </div>
           <div class="category">
-            <div class="icon">
-              <img src="@/assets/images/category/school.svg" alt="教育科技" />
-            </div>
-            <h4>教育科技</h4>
+            <h4>第四個島<br />The fourth island</h4>
+            <ul>
+              <li>新聞媒體 News media</li>
+              <li>新媒體 New media</li>
+              <li>事實查核 Fact-checking</li>
+              <li>媒體識讀 Media literacy</li>
+              <li>數位素養 Digital literacy</li>
+            </ul>
           </div>
           <div class="category">
-            <div class="icon">
-              <img src="@/assets/images/category/school.svg" alt="教育科技" />
-            </div>
-            <h4>教育科技</h4>
+            <h4>賢者之島<br />Academia Formosa</h4>
+            <ul>
+              <li>教育科技 EduTech</li>
+              <li>教育社群 Education communities</li>
+              <li>創作社群 Creative communities</li>
+              <li>文化政策 Cultural policies</li>
+            </ul>
+          </div>
+          <div class="category">
+            <h4>沒有島是局外島<br />No island is outside island</h4>
+            <ul>
+              <li>數位人權 Digital rights</li>
+              <li>隱私政策 Privacy protection</li>
+              <li>性別平權 Gender equality</li>
+              <li>酷兒人權 Queer rights</li>
+              <li>社會運動 Social activism</li>
+              <li>反極權 Anti-authoritarianism</li>
+            </ul>
+          </div>
+          <div class="category">
+            <h4>海海人聲<br />Voices of the islanders</h4>
+            <ul>
+              <li>防疫 Epidemic prevention</li>
+              <li>醫療 Healthcare</li>
+              <li>環境 Environment</li>
+              <li>科學 Science</li>
+            </ul>
           </div>
         </div>
       </section>
@@ -98,29 +141,39 @@ export default {
     }
     .categories {
       display: flex;
-      justify-content: flex-start;
       flex-wrap: wrap;
       .category {
-        width: 23%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin: 1%;
-        .icon {
-          width: 100px;
-          height: 100px;
-          border: 5px solid #717071fa;
-          border-radius: 50%;
-          overflow: hidden;
-          margin-bottom: 10px;
-          img {
-            width: 100%;
-            height: 100%;
-          }
+        box-shadow: 0px 0px 2px #888585;
+        padding: 20px;
+        width: 100%;
+        margin-bottom: 25px;
+        transition: all 400ms;
+        @include mediaquery_pad {
+          width: 46%;
+          margin: 2%;
+        }
+        &:hover {
+          transform: scale(1.02);
+          box-shadow: 0px 0px 5px #0a0a0a;
         }
         h4 {
-          font-size: 20px;
+          font-size: 18px;
+          font-weight: 600;
+          text-align: center;
+          padding: 10px 0;
+          background: #c60100;
+          color: #fff;
+          border-radius: 5px;
+          margin-bottom: 20px;
+        }
+        ul {
+          list-style: disc;
+          padding-left: 30px;
+          li {
+            line-height: 2;
+            font-weight: 500;
+            font-size: 17px;
+          }
         }
       }
     }
