@@ -10,10 +10,10 @@
         <span class="time">活動日期：2020/12/03（四）~ 2020/12/06（日）</span>
         <div class="buttons">
           <router-link :to="{ name: 'PropasalList' }">
-            <b-button variant="danger" size="lg">提案瀏覽</b-button>
+            <b-button variant="danger" size="lg">投稿瀏覽</b-button>
           </router-link>
           <b-button variant="danger" size="lg" @click="goSummit"
-            >我要提案</b-button
+            >我要投稿</b-button
           >
         </div>
       </div>
