@@ -63,5 +63,10 @@ export default {
 <style lang="scss" scoped>
 nav {
   background-color: $sub-color;
+  h1 {
+    img {
+      width: 200px;
+    }
+  }
 }
 </style>
