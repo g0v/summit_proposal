@@ -80,8 +80,18 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+import { handleApiError } from "@/utils/mixins";
+
 export default {
-  name: "List"
+  name: "List",
+  mixins: [handleApiError],
+  computed: {
+    ...mapGetters(["allProjectList"])
+  },
+  async mounted() {
+    await this.handleApiError(this.$store.dispatch("listProjects"));
+  }
 };
 </script>
 

@@ -2,18 +2,31 @@
   <section class="proposal-create">
     <div class="proposal-create-container container">
       <ProposalFormHeader title="創建提案" />
-      <ProposalForm />
+      <ProposalForm v-if="projectId" :id="projectId" />
     </div>
   </section>
 </template>
 
 <script>
+import { handleApiError } from "@/utils/mixins";
+
 import ProposalForm from "@/components/proposalForm/ProposalForm.vue";
 import ProposalFormHeader from "@/components/proposalForm/ProposalFormHeader.vue";
 
 export default {
   name: "ProposalCreate",
-  components: { ProposalForm, ProposalFormHeader }
+  components: { ProposalForm, ProposalFormHeader },
+  mixins: [handleApiError],
+  data() {
+    return {
+      projectId: null
+    };
+  },
+  async created() {
+    this.projectId = await this.handleApiError(
+      this.$store.dispatch("createEmptyProject")
+    );
+  }
 };
 </script>
 <style lang="scss" scoped>

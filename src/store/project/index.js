@@ -13,8 +13,15 @@ export default {
     }
   },
   getters: {
+    allProjectList(state) {
+      return state.projectList;
+    },
     myProjectList(state) {
-      return state.projectList.filter(project => "version" in project);
+      const userId = state.user.userInfo._id;
+      if (!userId) {
+        return [];
+      }
+      return state.projectList.filter(project => project.user._id === userId);
     }
   }
 };

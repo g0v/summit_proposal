@@ -1,5 +1,6 @@
 <template>
   <div class="form-container">
+    <div>{{ id }}</div>
     <b-form @submit="onSubmit">
       <b-form-group
         label="姓名："
@@ -32,6 +33,12 @@
 <script>
 export default {
   name: "ProposalForm",
+  props: {
+    id: {
+      type: String,
+      required: true
+    }
+  },
   data() {
     return {
       form: {
