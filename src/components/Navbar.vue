@@ -14,14 +14,20 @@
           >投稿辦法</b-nav-item
         >
         <b-nav-item :to="{ name: 'Homepage', hash: '#faq' }">FAQ</b-nav-item>
-        <b-nav-item-dropdown text="關於我們" right>
+        <b-nav-item :to="{ name: 'Homepage', hash: '#committee' }"
+          >議程委員會</b-nav-item
+        >
+        <b-nav-item :to="{ name: 'Homepage', hash: '#about-us' }"
+          >g0v 介紹</b-nav-item
+        >
+        <!-- <b-nav-item-dropdown text="關於我們" right>
           <b-dropdown-item :to="{ name: 'Homepage', hash: '#committee' }"
             >議程委員會</b-dropdown-item
           >
           <b-dropdown-item :to="{ name: 'Homepage', hash: '#about-us' }"
             >g0v 介紹</b-dropdown-item
           >
-        </b-nav-item-dropdown>
+        </b-nav-item-dropdown> -->
         <b-nav-item href="#agenda">歷年議程</b-nav-item>
         <b-nav-item
           v-if="!$store.getters.isLoggedIn"
