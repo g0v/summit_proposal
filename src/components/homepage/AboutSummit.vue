@@ -4,11 +4,7 @@
       <h2 class="main-title drark">關於 g0v Summit</h2>
       <article>
         <h3>
-          <img
-            class="idea-icon"
-            src="@/assets/images/idea.svg"
-            alt="idea icon"
-          />簡介
+          <b-icon icon="brightness-high-fill" variant="warning"></b-icon>簡介
         </h3>
         <p>
           g0v Summit
@@ -19,11 +15,8 @@
       </article>
       <article>
         <h3>
-          <img
-            class="idea-icon"
-            src="@/assets/images/idea.svg"
-            alt="idea icon"
-          />g0v summit 2020 特色
+          <b-icon icon="brightness-high-fill" variant="warning"></b-icon>g0v
+          summit 2020 特色
         </h3>
         <h4>特色一／全球公民科技盛會</h4>
         <p>
@@ -46,11 +39,8 @@
       </article>
       <article>
         <h3>
-          <img
-            class="idea-icon"
-            src="@/assets/images/idea.svg"
-            alt="idea icon"
-          />g0v Summit 2020 內容
+          <b-icon icon="brightness-high-fill" variant="warning"></b-icon>g0v
+          Summit 2020 內容
         </h3>
         <p>
           相較於過去的 g0v Summit，為期 2-3 天，在單一會場集中舉行，g0v Summit
@@ -86,9 +76,7 @@ export default {
     h3 {
       font-size: 25px;
       margin-bottom: 30px;
-      .idea-icon {
-        width: 30px;
-        height: 30px;
+      svg {
         margin-right: 5px;
       }
     }
