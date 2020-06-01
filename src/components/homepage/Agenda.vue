@@ -35,8 +35,9 @@ export default {
   .links {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     .item {
-      width: 47%;
+      width: 100%;
       height: 300px;
       background-repeat: no-repeat;
       background-size: cover;
@@ -48,9 +49,16 @@ export default {
       &:hover {
         transform: scale(1.05);
       }
+      @include mediaquery_pad {
+        width: 47%;
+      }
     }
     .item:nth-child(1) {
       background-image: url("../../assets/images/2018banner.png");
+      margin-bottom: 20px;
+      @include mediaquery_pad {
+        margin-bottom: 0;
+      }
     }
     .item:nth-child(2) {
       background-image: url("../../assets/images/2016banner.png");
