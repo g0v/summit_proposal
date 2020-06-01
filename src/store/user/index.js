@@ -37,8 +37,8 @@ export default {
     userInfo({ userInfo }) {
       return userInfo;
     },
-    isLoggedIn({ userInfo }) {
-      return !!userInfo._id;
+    isLoggedIn({ token }) {
+      return !!token;
     }
   }
 };
