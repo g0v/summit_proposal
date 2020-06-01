@@ -41,7 +41,6 @@
 
 <script>
 import LoginLightbox from "@/components/LoginLightbox.vue";
-import Cookies from "js-cookie";
 export default {
   name: "Navbar",
   components: { LoginLightbox },
@@ -49,12 +48,6 @@ export default {
     return {
       isLoginLightboxOpen: false
     };
-  },
-  created() {
-    if (Cookies.get("shareToken")) {
-      this.$store.dispatch("updateToken", Cookies.get("shareToken"));
-      this.$store.dispatch("fetchUserInfo");
-    }
   },
   methods: {
     logout() {

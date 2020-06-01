@@ -10,12 +10,6 @@ const apiClient = axios.create({
   }
 });
 
-const currentToken = localStorage.getItem(TOKEN_STORAGE_KEY);
-
-if (currentToken) {
-  setAuthToken(currentToken);
-}
-
 apiClient.interceptors.response.use(
   function(response) {
     return response;
@@ -25,8 +19,9 @@ apiClient.interceptors.response.use(
   }
 );
 
-function hasAuthToken() {
-  return !!apiClient.defaults.headers.common.Authorization;
+
+function getExistingAuthToken() {
+  return localStorage.getItem(TOKEN_STORAGE_KEY);
 }
 
 function setAuthToken(authToken) {
@@ -49,7 +44,7 @@ const responseHandler = {
 };
 
 export default {
-  HAS_AUTH_TOKEN: hasAuthToken,
+  GET_EXISTING_AUTH_TOKEN: getExistingAuthToken,
   SET_AUTH_TOKEN: setAuthToken,
   RESET_AUTH_TOKEN: resetAuthToken,
   async GET(path, data) {

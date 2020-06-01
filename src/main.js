@@ -39,7 +39,9 @@ Vue.use(ToastPlugin);
 import VBodyScrollLock from "v-body-scroll-lock";
 Vue.use(VBodyScrollLock);
 
-if (API.HAS_AUTH_TOKEN()) {
+const existingAuthToken = API.GET_EXISTING_AUTH_TOKEN();
+if (existingAuthToken) {
+  store.dispatch("updateToken", existingAuthToken);
   store.dispatch("fetchUserInfo");
 }
 
