@@ -154,6 +154,14 @@ export default {
   h2 {
     margin-bottom: 50px;
   }
+  .card-columns {
+    @include mediaquery_phone {
+      column-count: 2;
+    }
+    @include mediaquery_medium_devices {
+      column-count: 3;
+    }
+  }
   ::v-deep .card {
     &:hover {
       box-shadow: 1px 1px 2px #00000085;
