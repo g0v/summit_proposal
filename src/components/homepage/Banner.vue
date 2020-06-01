@@ -18,7 +18,7 @@
         </div>
       </div>
       <div class="image">
-        <img src="@/assets/images/banner.svg" alt="banner image" />
+        <img src="@/assets/images/banner2020.png" alt="banner image" />
       </div>
     </div>
     <LoginLightbox
@@ -86,7 +86,8 @@ export default {
   .image {
     img {
       width: 100%;
-      height: 300px;
+      border-radius: 50%;
+      border: 2px solid #c60100;
     }
   }
 }
