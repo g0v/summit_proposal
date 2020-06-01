@@ -54,22 +54,46 @@ export default {
 
 <style lang="scss" scoped>
 .banner-container {
-  text-align: left;
   display: flex;
-  align-items: center;
-  height: calc(100vh - 90px);
+  flex-direction: column;
+  justify-content: center;
+  min-height: calc(100vh - 90px);
+  padding: 45px 0;
+  @include mediaquery_medium_devices {
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+  }
   .info,
   .image {
-    width: 50%;
+    width: 100%;
+    @include mediaquery_medium_devices {
+      width: 50%;
+    }
+  }
+  .info {
+    order: 2;
+    @include mediaquery_medium_devices {
+      order: 1;
+    }
+  }
+  .image {
+    order: 1;
+    @include mediaquery_medium_devices {
+      order: 2;
+    }
   }
   .info {
     h2 {
       font-weight: 900;
-      font-size: 45px;
+      font-size: 35px;
       margin-bottom: 20px;
       color: #000;
       span {
         color: $main-color;
+      }
+      @include mediaquery_medium_devices {
+        font-size: 45px;
       }
     }
     .time {
@@ -84,6 +108,10 @@ export default {
     }
   }
   .image {
+    margin-bottom: 20px;
+    @include mediaquery_medium_devices {
+      margin-bottom: 0;
+    }
     img {
       width: 100%;
       border-radius: 50%;
