@@ -58,7 +58,8 @@ export default {
   flex-direction: column;
   justify-content: center;
   min-height: calc(100vh - 90px);
-  padding: 45px 0;
+  padding-top: 45px;
+  padding-bottom: 45px;
   @include mediaquery_medium_devices {
     flex-direction: row;
     align-items: center;

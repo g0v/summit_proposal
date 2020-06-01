@@ -74,7 +74,8 @@ export default {
   background-color: $sub-color;
 }
 .about-summit-container {
-  padding: 45px 0;
+  padding-top: 45px;
+  padding-bottom: 45px;
   h2 {
     margin-bottom: 30px;
   }
