@@ -1,7 +1,7 @@
 <template>
   <footer>
     <div class="footer-container container">
-      <span>© 2020 g0v ALL RIGHTS RESERVED.</span>
+      <span>© 2020 g0v ALL RIGHT RESERVED.</span>
     </div>
   </footer>
 </template>
