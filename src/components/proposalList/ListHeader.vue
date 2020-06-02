@@ -3,13 +3,15 @@
     <div class="list-header-container container">
       <h2>提案列表</h2>
       <div class="search">
-        <b-form-input id="search" v-model="keyword" trim></b-form-input>
-        <b-icon
-          icon="search"
-          variant="secondary"
-          font-scale="2"
-          @click="$emit('updateKeyword', keyword)"
-        ></b-icon>
+        <b-form-group label="搜尋提案" label-for="search">
+          <b-form-input
+            id="search"
+            :value="keyword"
+            @input="$emit('updateKeyword', $event)"
+            trim
+            placeholder="請輸入標題關鍵字"
+          ></b-form-input>
+        </b-form-group>
       </div>
     </div>
   </div>
@@ -18,10 +20,10 @@
 <script>
 export default {
   name: "ListHeader",
-  data() {
-    return {
-      keyword: ""
-    };
+  props: {
+    keyword: {
+      type: String
+    }
   }
 };
 </script>

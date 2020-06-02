@@ -1,6 +1,9 @@
 <template>
   <div class="list">
-    <div class="list-container container">
+    <div class="list-container container" v-if="list.length === 0">
+      <span class="no-info">抱歉，目前尚無提案供閱讀</span>
+    </div>
+    <div class="list-container container" v-else>
       <router-link
         v-for="item in list"
         :key="item._id"
@@ -57,6 +60,10 @@ export default {
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
+  .no-info {
+    color: #000;
+    font-size: 20px;
+  }
   .item {
     width: 100%;
     display: flex;
