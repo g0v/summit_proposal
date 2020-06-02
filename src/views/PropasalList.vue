@@ -1,19 +1,31 @@
 <template>
   <section class="propasal-list">
-    <ListHeader :keyword="keyword" @updateKeyword="keyword = $event" />
-    <List :list="listByKeywordFilter" routerName="ProposalDetail" />
+    <ListHeader
+      :keyword="keyword"
+      @updateKeyword="keyword = $event"
+      @updateCurrentPage="paginationData.currentPage = $event"
+    />
+    <List :list="listByPage" routerName="ProposalDetail" />
+    <ListPagination
+      :perPage="paginationData.perPage"
+      :currentPage="paginationData.currentPage"
+      :allDataLength="listByKeywordFilter.length"
+      @updateCurrentPage="paginationData.currentPage = $event"
+    />
   </section>
 </template>
 
 <script>
 import ListHeader from "@/components/proposalList/ListHeader.vue";
 import List from "@/components/proposalList/List.vue";
+import ListPagination from "@/components/proposalList/ListPagination.vue";
+
 import { handleApiError } from "@/utils/mixins";
 
 export default {
   name: "PropasalList",
   mixins: [handleApiError],
-  components: { ListHeader, List },
+  components: { ListHeader, List, ListPagination },
   beforeRouteEnter(to, from, next) {
     next(async vm => {
       await vm.handleApiError(vm.$store.dispatch("listProjects"));
@@ -21,7 +33,11 @@ export default {
   },
   data() {
     return {
-      keyword: ""
+      keyword: "",
+      paginationData: {
+        currentPage: 1,
+        perPage: 4
+      }
     };
   },
   computed: {
@@ -36,6 +52,12 @@ export default {
         }
       );
       return listByKeywordFilter;
+    },
+    listByPage() {
+      return this.listByKeywordFilter.slice(
+        (this.paginationData.currentPage - 1) * this.paginationData.perPage,
+        this.paginationData.currentPage * this.paginationData.perPage
+      );
     }
   }
 };

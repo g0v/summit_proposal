@@ -7,7 +7,7 @@
           <b-form-input
             id="search"
             :value="keyword"
-            @input="$emit('updateKeyword', $event)"
+            @input="updateKeyword($event)"
             trim
             placeholder="請輸入標題關鍵字"
           ></b-form-input>
@@ -23,6 +23,12 @@ export default {
   props: {
     keyword: {
       type: String
+    }
+  },
+  methods: {
+    updateKeyword(value) {
+      this.$emit("updateKeyword", value);
+      this.$emit("updateCurrentPage", 1);
     }
   }
 };
