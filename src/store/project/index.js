@@ -16,6 +16,10 @@ export default {
     allProjectList(state) {
       return state.projectList;
     },
+    displayProjectList(state) {
+      console.log(state.projectList.filter(item => item.enable));
+      return state.projectList.filter(item => item.enable);
+    },
     myProjectList(state) {
       const userId = state.user.userInfo._id;
       if (!userId) {

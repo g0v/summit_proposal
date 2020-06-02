@@ -1,17 +1,27 @@
 <template>
   <section class="propasal-list">
     <ListHeader />
-    <List />
+    <List
+      :list="$store.getters.displayProjectList"
+      routerName="ProposalDetail"
+    />
   </section>
 </template>
 
 <script>
 import ListHeader from "@/components/proposalList/ListHeader.vue";
 import List from "@/components/proposalList/List.vue";
+import { handleApiError } from "@/utils/mixins";
 
 export default {
   name: "PropasalList",
-  components: { ListHeader, List }
+  mixins: [handleApiError],
+  components: { ListHeader, List },
+  beforeRouteEnter(to, from, next) {
+    next(async vm => {
+      await vm.handleApiError(vm.$store.dispatch("listProjects"));
+    });
+  }
 };
 </script>
 <style lang="scss" scoped>
@@ -21,5 +31,6 @@ export default {
   background-size: cover;
   background-attachment: fixed;
   background-repeat: no-repeat;
+  min-height: calc(100vh - 80px);
 }
 </style>

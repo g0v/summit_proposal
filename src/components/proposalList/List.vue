@@ -2,76 +2,34 @@
   <div class="list">
     <div class="list-container container">
       <router-link
-        teg="div"
+        v-for="item in list"
+        :key="item._id"
+        tag="div"
         class="item"
-        :to="{ name: 'ProposalDetail', params: { id: 1 } }"
+        :to="{ name: routerName, params: { id: item._id } }"
       >
         <div class="cover">
-          <img src="@/assets/images/cover-2.png" alt="project cover" />
+          <img
+            :src="item.versions[item.versions.length - 1].cover_image"
+            alt="project cover"
+          />
           <div class="owner">
-            <img src="@/assets/images/pics/吳蕙如.jpg" alt="owner pic" />
+            <img
+              v-for="(speaker, index) in item.versions[item.versions.length - 1]
+                .speakers"
+              :key="index"
+              :src="speaker.avatar_url"
+              alt="owner pic"
+            />
           </div>
         </div>
         <div class="content">
-          <h3>思考方塊 Thinking Cube</h3>
+          <h3>
+            <span>{{ item.versions[item.versions.length - 1].title }}</span>
+            <span>{{ item.versions[item.versions.length - 1].title_en }}</span>
+          </h3>
           <p>
-            目前台灣大眾面對假新聞、公眾議題普遍欠缺獨立思考與懷疑的精神，常只以情緒反應代替有效溝通的狀況，在各年齡層都有這個狀況，希望透過這個專案能建立一個批判性思考學習工具、公眾討論工具平台，為社會帶來「促成社會大眾能夠理性和有效的溝通」的改變。
-          </p>
-        </div></router-link
-      >
-      <router-link teg="div" class="item" :to="{ name: 'ProposalDetail' }">
-        <div class="cover">
-          <img src="@/assets/images/cover.png" alt="project cover" />
-          <div class="owner">
-            <img src="@/assets/images/pics/ky.png" alt="owner pic" />
-          </div>
-        </div>
-        <div class="content">
-          <h3>思考方塊 Thinking Cube</h3>
-          <p>
-            目前台灣大眾面對假新聞、公眾議題普遍欠缺獨立思考與懷疑的精神，常只以情緒反應代替有效溝通的狀況，在各年齡層都有這個狀況，希望透過這個專案能建立一個批判性思考學習工具、公眾討論工具平台，為社會帶來「促成社會大眾能夠理性和有效的溝通」的改變。
-          </p>
-        </div>
-      </router-link>
-      <router-link teg="div" class="item" :to="{ name: 'ProposalDetail' }">
-        <div class="cover">
-          <img src="@/assets/images/cover-2.png" alt="project cover" />
-          <div class="owner">
-            <img src="@/assets/images/pics/吳蕙如.jpg" alt="owner pic" />
-          </div>
-        </div>
-        <div class="content">
-          <h3>思考方塊 Thinking Cube</h3>
-          <p>
-            目前台灣大眾面對假新聞、公眾議題普遍欠缺獨立思考與懷疑的精神，常只以情緒反應代替有效溝通的狀況，在各年齡層都有這個狀況，希望透過這個專案能建立一個批判性思考學習工具、公眾討論工具平台，為社會帶來「促成社會大眾能夠理性和有效的溝通」的改變。
-          </p>
-        </div>
-      </router-link>
-      <router-link teg="div" class="item" :to="{ name: 'ProposalDetail' }">
-        <div class="cover">
-          <img src="@/assets/images/cover.png" alt="project cover" />
-          <div class="owner">
-            <img src="@/assets/images/pics/ky.png" alt="owner pic" />
-          </div>
-        </div>
-        <div class="content">
-          <h3>思考方塊 Thinking Cube</h3>
-          <p>
-            目前台灣大眾面對假新聞、公眾議題普遍欠缺獨立思考與懷疑的精神，常只以情緒反應代替有效溝通的狀況，在各年齡層都有這個狀況，希望透過這個專案能建立一個批判性思考學習工具、公眾討論工具平台，為社會帶來「促成社會大眾能夠理性和有效的溝通」的改變。
-          </p>
-        </div>
-      </router-link>
-      <router-link teg="div" class="item" :to="{ name: 'ProposalDetail' }">
-        <div class="cover">
-          <img src="@/assets/images/cover.png" alt="project cover" />
-          <div class="owner">
-            <img src="@/assets/images/pics/ky.png" alt="owner pic" />
-          </div>
-        </div>
-        <div class="content">
-          <h3>思考方塊 Thinking Cube</h3>
-          <p>
-            目前台灣大眾面對假新聞、公眾議題普遍欠缺獨立思考與懷疑的精神，常只以情緒反應代替有效溝通的狀況，在各年齡層都有這個狀況，希望透過這個專案能建立一個批判性思考學習工具、公眾討論工具平台，為社會帶來「促成社會大眾能夠理性和有效的溝通」的改變。
+            {{ item.versions[item.versions.length - 1].summary }}
           </p>
         </div>
       </router-link>
@@ -80,17 +38,16 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-import { handleApiError } from "@/utils/mixins";
-
 export default {
   name: "List",
-  mixins: [handleApiError],
-  computed: {
-    ...mapGetters(["allProjectList"])
-  },
-  async mounted() {
-    await this.handleApiError(this.$store.dispatch("listProjects"));
+  props: {
+    list: {
+      type: Array,
+      default: () => []
+    },
+    routerName: {
+      type: String
+    }
   }
 };
 </script>
@@ -99,20 +56,27 @@ export default {
 .list-container {
   display: flex;
   justify-content: flex-start;
-  align-items: center;
   flex-wrap: wrap;
   .item {
-    width: 31%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: left;
-    margin: 0 1% 2%;
+    margin-bottom: 15px;
     padding: 40px 20px;
     box-shadow: 0px 0px 1px 0px #00000052, 0px 12px 8px -12px #000;
     border-radius: 5px;
     background-color: #ffffff94;
     text-decoration: none;
+    @include mediaquery_phone {
+      width: 46%;
+      margin: 2%;
+    }
+    @include mediaquery_medium_devices {
+      width: 31%;
+      margin: 0 1% 2%;
+    }
     &:hover {
       background-color: #ffffffbf;
       position: relative;
@@ -136,7 +100,8 @@ export default {
         height: 50px;
         position: absolute;
         bottom: 0;
-        right: -10%;
+        left: -20px;
+        display: flex;
         img {
           width: 100%;
           height: 100%;
@@ -150,7 +115,11 @@ export default {
       h3 {
         font-size: 18px;
         font-weight: 600;
-        margin-bottom: 15px;
+        margin-bottom: 5px;
+        height: 70px;
+        span {
+          display: block;
+        }
       }
       p {
         overflow: hidden;
