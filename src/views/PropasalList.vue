@@ -1,10 +1,7 @@
 <template>
   <section class="propasal-list">
-    <ListHeader />
-    <List
-      :list="$store.getters.displayProjectList"
-      routerName="ProposalDetail"
-    />
+    <ListHeader @updateKeyword="keyword = $event" />
+    <List :list="listByKeywordFilter" routerName="ProposalDetail" />
   </section>
 </template>
 
@@ -21,6 +18,22 @@ export default {
     next(async vm => {
       await vm.handleApiError(vm.$store.dispatch("listProjects"));
     });
+  },
+  data() {
+    return {
+      keyword: ""
+    };
+  },
+  computed: {
+    listByKeywordFilter() {
+      let listByKeywordFilter = this.$store.getters.displayProjectList.filter(
+        project => {
+          let lastVersion = project.versions[project.versions.length - 1];
+          return lastVersion.title.search(this.keyword) != -1;
+        }
+      );
+      return listByKeywordFilter;
+    }
   }
 };
 </script>

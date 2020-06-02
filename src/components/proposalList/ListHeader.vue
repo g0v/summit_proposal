@@ -3,9 +3,13 @@
     <div class="list-header-container container">
       <h2>提案列表</h2>
       <div class="search">
-        <b-form-group label="搜尋提案" label-for="search">
-          <b-form-input id="search" v-model="search" trim></b-form-input>
-        </b-form-group>
+        <b-form-input id="search" v-model="keyword" trim></b-form-input>
+        <b-icon
+          icon="search"
+          variant="secondary"
+          font-scale="2"
+          @click="$emit('updateKeyword', keyword)"
+        ></b-icon>
       </div>
     </div>
   </div>
@@ -16,7 +20,7 @@ export default {
   name: "ListHeader",
   data() {
     return {
-      search: ""
+      keyword: ""
     };
   }
 };
@@ -35,6 +39,14 @@ export default {
   h2 {
     color: #fff;
     font-size: 25px;
+  }
+  .search {
+    display: flex;
+    align-items: center;
+    svg {
+      margin-left: 10px;
+      cursor: pointer;
+    }
   }
   ::v-deep .form-group {
     margin-bottom: 0;
