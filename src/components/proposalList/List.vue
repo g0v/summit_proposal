@@ -34,6 +34,9 @@
           <p>
             {{ item.versions[item.versions.length - 1].summary }}
           </p>
+          <p>
+            {{ item.versions[item.versions.length - 1].summary_en }}
+          </p>
         </div>
       </router-link>
     </div>
