@@ -107,6 +107,14 @@ const FIELD_DEFINITIONS = [
     required: true
   },
   {
+    label: "主圖 Cover image",
+    id: "cover_image",
+    type: "image",
+    uploadLabel: "上傳圖片 Upload image",
+    changeLabel: "更改圖片 Change image",
+    height: "12rem"
+  },
+  {
     label:
       "你的議程是否可以接受錄影、錄音、拍照、共筆、直播等形式的記錄，且以開放授權釋出？",
     labelEn:
@@ -187,7 +195,7 @@ export default {
         id: this.id,
         data
       });
-      alert("done!");
+      this.$emit("done");
     },
     updateSpeakers(speakers) {
       this.speakers = speakers;

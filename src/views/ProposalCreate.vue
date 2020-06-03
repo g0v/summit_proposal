@@ -2,7 +2,7 @@
   <section class="proposal-create">
     <div class="proposal-create-container container">
       <ProposalFormHeader :is-creation="true" />
-      <ProposalForm v-if="projectId" :id="projectId" />
+      <ProposalForm v-if="projectId" :id="projectId" @done="finishCreate" />
     </div>
   </section>
 </template>
@@ -28,7 +28,6 @@ export default {
     };
   },
   async created() {
-    // TODO: handle project saved
     const existingId = localStorage.getItem(CUR_PROJECT_ID_KEY);
     if (existingId) {
       this.projectId = existingId;
@@ -37,6 +36,11 @@ export default {
         this.$store.dispatch("createEmptyProject")
       );
       localStorage.setItem(CUR_PROJECT_ID_KEY, this.projectId);
+    }
+  },
+  methods: {
+    finishCreate() {
+      localStorage.setItem(CUR_PROJECT_ID_KEY, "");
     }
   }
 };

@@ -40,9 +40,23 @@
       :options="binaryOptions"
       :name="definition.id"
     ></b-form-radio-group>
+    <div class="" v-if="definition.type === 'image'">
+      <img
+        class="formfield__img mr3"
+        v-if="value"
+        :src="value"
+        :alt="definition.label"
+      />
+      <b-button variant="danger" @click.prevent="openFileSelector">
+        {{ imageCtaLabel }}
+      </b-button>
+      <input type="file" ref="fileSelector" @change="handleFileUpload" hidden />
+    </div>
   </b-form-group>
 </template>
 <script>
+import axios from "axios";
+
 const BINARY_OPTIONS = [
   { text: "是 Yes", value: true },
   { text: "否 No", value: false }
@@ -73,20 +87,45 @@ export default {
     },
     labelEn() {
       if (!this.definition.labelEn) {
-        return ""
+        return "";
       }
       if (this.definition.required) {
         return this.definition.labelEn + "*";
       }
       return this.definition.labelEn;
+    },
+    imageCtaLabel() {
+      if (this.value) {
+        return this.definition.changeLabel;
+      }
+      return this.definition.uploadLabel;
     }
   },
   methods: {
     handleInput(value) {
       this.$emit("input", value);
+    },
+    openFileSelector() {
+      if (this.$refs.fileSelector) {
+        this.$refs.fileSelector.click();
+      } else {
+        alert("ker");
+      }
+    },
+    async handleFileUpload() {
+      let formData = new FormData();
+      formData.append("image", this.$refs.fileSelector.files[0]);
+      let imgur = await axios.post("https://api.imgur.com/3/image", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: "Client-ID c5dc0de7bf21467"
+        }
+      });
+      const imgId = imgur.data.data.id;
+      this.$emit("input", `https://i.imgur.com/${imgId}h.jpg`);
     }
   }
-}
+};
 </script>
 <style lang="scss" scoped>
 .formfield {
@@ -95,6 +134,9 @@ export default {
     ::v-deep > label {
       margin-bottom: 0;
     }
+  }
+  &__img {
+    max-height: 12rem;
   }
 }
 </style>

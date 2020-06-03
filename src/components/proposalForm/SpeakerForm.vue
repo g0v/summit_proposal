@@ -92,6 +92,9 @@ const FIELD_DEFINITIONS = [
     label: "講者頭像 Speaker’s avatar",
     id: "avatar_url",
     type: "image",
+    uploadLabel: "上傳照片 Upload photo",
+    changeLabel: "更改照片 Change photo",
+    height: "8rem",
     required: true
   },
   {
@@ -117,7 +120,7 @@ const FIELD_DEFINITIONS = [
     label: "講者英語簡介 Speaker’s bio in English",
     id: "bio_en",
     description: "最多 100 字 Max 100 words",
-    type: "text"
+    type: "textarea"
   },
   {
     label: "姓名 Name",
