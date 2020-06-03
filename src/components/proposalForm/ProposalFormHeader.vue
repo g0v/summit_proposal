@@ -1,7 +1,11 @@
 <template>
   <div class="porposal-form-header">
-    <h2>創建提案</h2>
-    <span>2020 g0v summit proposal</span>
+    <template v-if="isCreation">
+      <h2>投稿 Submit a proposal</h2>
+    </template>
+    <template v-else>
+      <h2>編輯投稿 Edit your proposal</h2>
+    </template>
   </div>
 </template>
 
@@ -9,9 +13,9 @@
 export default {
   name: "ProposalFormHeader",
   props: {
-    title: {
-      type: String,
-      require: true
+    isCreation: {
+      type: Boolean,
+      default: false
     }
   }
 };

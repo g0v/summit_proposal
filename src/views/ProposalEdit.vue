@@ -1,7 +1,7 @@
 <template>
   <section class="proposal-edit">
     <div class="proposal-edit-container container">
-      <ProposalFormHeader title="編輯提案" />
+      <ProposalFormHeader />
       <ProposalForm />
     </div>
   </section>

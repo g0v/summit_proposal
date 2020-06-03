@@ -1,7 +1,7 @@
 <template>
   <section class="proposal-create">
     <div class="proposal-create-container container">
-      <ProposalFormHeader title="創建提案" />
+      <ProposalFormHeader :is-creation="true" />
       <ProposalForm v-if="projectId" :id="projectId" />
     </div>
   </section>
