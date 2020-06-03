@@ -3,33 +3,33 @@
     <div class="detail-content-container container">
       <div class="side">
         <div class="item">
-          <h4>關注中</h4>
-          <div class="content">
-            <img src="@/assets/images/pics/劉哲瑋.png" alt="follower" />
-            <img src="@/assets/images/pics/劉哲瑋.png" alt="follower" />
-            <img src="@/assets/images/pics/劉哲瑋.png" alt="follower" />
-          </div>
-        </div>
-        <div class="item">
           <h4>修訂紀錄</h4>
           <div class="content record">
-            <span>a year ago</span>
-            <span>a year ago</span>
+            <span
+              v-for="(version, index) in projectDetail.versions"
+              :key="index"
+              >version {{ index }}</span
+            >
           </div>
         </div>
       </div>
       <main>
         <div class="item">
-          <h3>你需要多少錢？（30 ~ 50 萬之間）</h3>
-          <p>500000</p>
+          <h3>摘要 Summary</h3>
+          <p>{{ latestVersion.summary }}</p>
+          <p>{{ latestVersion.summary_en }}</p>
         </div>
         <div class="item">
-          <h3>
-            請以簡短且非專業人士也能理解的方式介紹此專案。
-          </h3>
-          <p>
-            目前台灣大眾面對假新聞、公眾議題普遍欠缺獨立思考與懷疑的精神，常只以情緒反應代替有效溝通的狀況，在各年齡層都有這個狀況，希望透過這個專案能建立一個批判性思考學習工具、公眾討論工具平台，為社會帶來「促成社會大眾能夠理性和有效的溝通」的改變。
-          </p>
+          <h3>形式 Format</h3>
+          <p>{{ latestVersion.format }}</p>
+        </div>
+        <div class="item">
+          <h3>主題分類 Topic</h3>
+          <p>{{ latestVersion.topic }}</p>
+        </div>
+        <div class="item">
+          <h3>三個關鍵字 3 keywords</h3>
+          <p>{{ latestVersion.keywords.join(" , ") }}</p>
         </div>
       </main>
     </div>
@@ -43,6 +43,13 @@ export default {
     projectDetail: {
       type: Object,
       required: true
+    }
+  },
+  computed: {
+    latestVersion() {
+      return this.projectDetail.versions[
+        this.projectDetail.versions.length - 1
+      ];
     }
   }
 };
