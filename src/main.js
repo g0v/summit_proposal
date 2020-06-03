@@ -3,6 +3,7 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import API from "@/utils/API.js";
+import "@/utils/veeValidate";
 
 Vue.config.productionTip = process.env.NODE_ENV !== "production";
 
@@ -20,7 +21,9 @@ import {
   CardPlugin,
   IconsPlugin,
   FormInputPlugin,
+  FormTextareaPlugin,
   FormGroupPlugin,
+  FormRadioPlugin,
   FormPlugin,
   FormSelectPlugin,
   ToastPlugin,
@@ -32,7 +35,9 @@ Vue.use(ButtonPlugin);
 Vue.use(CardPlugin);
 Vue.use(IconsPlugin);
 Vue.use(FormInputPlugin);
+Vue.use(FormTextareaPlugin);
 Vue.use(FormGroupPlugin);
+Vue.use(FormRadioPlugin);
 Vue.use(FormPlugin);
 Vue.use(FormSelectPlugin);
 Vue.use(ToastPlugin);

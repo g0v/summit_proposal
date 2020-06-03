@@ -1,38 +1,148 @@
 <template>
-  <div class="form-container">
-    <div>{{ id }}</div>
+  <div class="proposal form-container">
     <b-form @submit="onSubmit">
-      <b-form-group
-        label="姓名："
-        label-for="name"
-        description="此欄位為不公開姓名"
-      >
-        <b-form-input
-          id="name"
-          v-model="form.email"
-          type="email"
-          required
-          placeholder="Enter email"
-        ></b-form-input>
-      </b-form-group>
-
-      <b-form-group label="投稿形式" label-for="proposal_type">
-        <b-form-select
-          id="proposal_type"
-          v-model="form.proposal_type"
-          :options="proposalTypeOption"
-          required
-        ></b-form-select>
-      </b-form-group>
-
+      <h2>稿件資訊 Proposal Information</h2>
+      <form-field
+        v-for="field in fieldDefinitions"
+        :key="field.id"
+        :definition="field"
+        v-model="proposalContent[field.id]"
+      ></form-field>
+      <div class="proposal__speakers-wrapper">
+        <speaker-form
+          :max-speakers="maxSpeakers"
+          @change="updateSpeakers"
+        ></speaker-form>
+      </div>
       <b-button type="submit" variant="danger">確定</b-button>
     </b-form>
   </div>
 </template>
-
 <script>
+// import { ValidationProvider } from "vee-validate";
+import SpeakerForm from "./SpeakerForm";
+import FormField from "./FormField";
+
+const TOPIC_OPTIONS = [
+  "「沒有人」的島 Nobody’s island",
+  "島嶼大聯盟 Island’s federation",
+  "大島開放 Open island",
+  "沒有島是局外島 No island is outside island",
+  "第四個島 The fourth island",
+  "賢者之島 Academia Formosa",
+  "海海人聲 Voice of the islanders"
+];
+
+const FORMAT_OPTIONS = [
+  { name: "演講 （20 分鐘）Talk (20 min)", maxSpeakers: 2 },
+  {
+    name: "主題論壇 （60/90/120 分鐘）Panel discussion (60/90/120 min)",
+    maxSpeakers: 4
+  },
+  { name: "工作坊 （60/90/120 分鐘）Workshop (60/90/120 min)", maxSpeakers: 3 }
+];
+
+const ORAL_LANGUAGE_OPTIONS = ["華語", "English", "其他 Others"];
+
+const TIPS_WE_WILL_TRANSLATE =
+  "若無提供，主辦單位將代為翻譯 Organizer would do translatation if this field not presented";
+
+const FIELD_DEFINITIONS = [
+  {
+    label: "稿件標題 Proposal Title",
+    id: "title",
+    placeholder: "請填寫稿件標題 Please enter proposal title",
+    type: "text",
+    required: true
+  },
+  {
+    label: "英語標題 Title in English",
+    id: "title_en",
+    placeholder: "請填寫英語標題 Please enter proposal title",
+    type: "text"
+  },
+  {
+    label: "摘要 Summary",
+    id: "summary",
+    description: "最多 350 字 Max 350 Words",
+    placeholder: "請填寫摘要 Please enter summary",
+    type: "textarea",
+    required: true
+  },
+  {
+    label: "英語摘要 Summary in English",
+    id: "summary_en",
+    description: `最多 250 字 Max 250 Words ${TIPS_WE_WILL_TRANSLATE}`,
+    type: "textarea"
+  },
+  // TODO: other language
+  {
+    label: "使用語言 Language",
+    placeholder: "請填寫語言 Please enter language",
+    id: "oral_language",
+    description: "",
+    type: "select",
+    options: ORAL_LANGUAGE_OPTIONS,
+    required: true
+  },
+  {
+    label: "形式 Format",
+    id: "format",
+    type: "select",
+    options: FORMAT_OPTIONS.map(format => format.name),
+    required: true
+  },
+  {
+    label: "主題分類 Topic",
+    id: "topic",
+    type: "select",
+    options: TOPIC_OPTIONS,
+    required: true
+  },
+  {
+    label: "三個關鍵字 3 keywords",
+    id: "three_keywords",
+    description: "",
+    type: "text",
+    required: true
+  },
+  {
+    label: "主圖 Cover image",
+    id: "cover_image",
+    type: "image",
+    uploadLabel: "上傳圖片 Upload image",
+    changeLabel: "更改圖片 Change image",
+    height: "12rem"
+  },
+  {
+    label:
+      "你的議程是否可以接受錄影、錄音、拍照、共筆、直播等形式的記錄，且以開放授權釋出？",
+    labelEn:
+      "Do you agree that your presentation will be live-streamed and recorded in the forms of text, photo, audio, and video, and released publicly with an CC BY 4.0 International license?",
+    id: "is_presentation_cc40",
+    type: "boolean",
+    required: true
+  },
+  {
+    label: "你的投影片是否可以以開放授權釋出？",
+    labelEn:
+      "Do you agree that your slides will be released publicly with an CC BY 4.0 International license",
+    id: "is_slide_cc40",
+    type: "boolean",
+    required: true
+  }
+];
+
+// TODO: imgur
+// TODO: 3 keywords
+
 export default {
   name: "ProposalForm",
+  components: {
+    // ValidationProvider,
+    SpeakerForm,
+    FormField
+  },
   props: {
     id: {
       type: String,
@@ -41,24 +151,61 @@ export default {
   },
   data() {
     return {
-      form: {
-        name: "",
-        proposal_type: ""
+      proposalContent: {
+        title: "",
+        title_en: "",
+        summary: "",
+        summary_en: "",
+        oral_language: "",
+        oral_languate_others: "",
+        format: "",
+        topic: "",
+        three_keywords: "",
+        cover_image: "",
+        is_presentation_cc40: null,
+        is_slide_cc40: null
       },
-      proposalTypeOption: ["演講", "主題論壇", "工作坊"]
+      speakers: [],
+      fieldDefinitions: FIELD_DEFINITIONS
     };
   },
+  computed: {
+    isOtherLanguageSelected() {
+      return (
+        this.proposalContent.oral_language ===
+        ORAL_LANGUAGE_OPTIONS[ORAL_LANGUAGE_OPTIONS.length - 1]
+      );
+    },
+    maxSpeakers() {
+      const format =
+        FORMAT_OPTIONS.find(opt => opt.name === this.proposalContent.format) ||
+        FORMAT_OPTIONS[0];
+
+      return format.maxSpeakers;
+    }
+  },
   methods: {
-    onSubmit(evt) {
+    async onSubmit(evt) {
       evt.preventDefault();
-      console.log("onSubmit");
+      const data = {
+        ...this.proposalContent,
+        speakers: this.speakers
+      }
+      await this.$store.dispatch("createProjectVersion", {
+        id: this.id,
+        data
+      });
+      this.$emit("done");
+    },
+    updateSpeakers(speakers) {
+      this.speakers = speakers;
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-.form-container {
+.proposal {
   padding: 50px 40px;
   box-shadow: 0 0 11px #6f3f3f;
   border-radius: 10px;
@@ -74,6 +221,42 @@ export default {
       bottom: -13px;
       left: 50%;
       transform: translateX(-50%);
+    }
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  $horizontal-padding: 40px;
+  &__speakers-wrapper {
+    position: relative;
+    left: -$horizontal-padding;
+    width: calc(100% + #{$horizontal-padding} * 2);
+    padding: $horizontal-padding;
+    background: rgba(0, 0, 0, 0.05);
+  }
+
+  &__long-en {
+    ::v-deep > label {
+      margin-bottom: 0;
+    }
+  }
+
+  &__lang {
+    $selector-width: 11rem;
+    input {
+      display: none;
+      width: calc(100% - #{$selector-width});
+    }
+
+    &--other {
+      select {
+        width: calc(#{$selector-width} - 1rem);
+        margin-right: 1rem;
+      }
+      input {
+        display: inline-block;
+      }
     }
   }
 }

@@ -19,7 +19,6 @@ apiClient.interceptors.response.use(
   }
 );
 
-
 function getExistingAuthToken() {
   return localStorage.getItem(TOKEN_STORAGE_KEY);
 }
