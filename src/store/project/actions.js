@@ -16,5 +16,10 @@ export default {
     } else {
       throw new Error("Failed to load project list");
     }
+  },
+  async detailProject({ commit }, id) {
+    const data = await API.GET(`/project/${id}`);
+    console.log(data);
+    return commit("updateProjectDetail", data);
   }
 };

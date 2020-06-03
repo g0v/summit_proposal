@@ -4,12 +4,18 @@ export default {
   actions,
   state() {
     return {
-      projectList: []
+      projectList: [],
+      projectDetail: {
+        versions: []
+      }
     };
   },
   mutations: {
     updateProjectList(state, rows) {
       state.projectList = rows;
+    },
+    updateProjectDetail(state, detail) {
+      state.projectDetail = detail;
     }
   },
   getters: {
@@ -26,6 +32,9 @@ export default {
         return [];
       }
       return state.projectList.filter(project => project.user._id === userId);
+    },
+    projectDetail({ projectDetail }) {
+      return projectDetail;
     }
   }
 };

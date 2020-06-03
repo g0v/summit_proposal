@@ -2,12 +2,20 @@
   <div class="detail-header">
     <div class="detail-header-container container">
       <div class="cover">
-        <img src="@/assets/images/cover.png" alt="cover" />
+        <img :src="latestVersion.cover_image" alt="cover" />
       </div>
       <div class="title">
-        <h2>思考方塊 <br />Thinking Cube 2019A</h2>
+        <h2>
+          <span>{{ latestVersion.title }}</span>
+          <span>{{ latestVersion.title_en }}</span>
+        </h2>
         <div class="owner">
-          <img src="@/assets/images/pics/張家豪.png" alt="owner" />
+          <img
+            v-for="(speaker, index) in latestVersion.speakers"
+            :key="index"
+            :src="speaker.avatar_url"
+            alt="owner"
+          />
         </div>
       </div>
     </div>
@@ -16,7 +24,20 @@
 
 <script>
 export default {
-  name: "DetailHeader"
+  name: "DetailHeader",
+  props: {
+    projectDetail: {
+      type: Object,
+      required: true
+    }
+  },
+  computed: {
+    latestVersion() {
+      return this.projectDetail.versions[
+        this.projectDetail.versions.length - 1
+      ];
+    }
+  }
 };
 </script>
 
@@ -55,20 +76,19 @@ export default {
     }
   }
   .title {
-    position: relative;
     text-align: left;
     h2 {
       font-size: 40px;
       font-weight: 600;
+      span {
+        display: block;
+      }
     }
     .owner {
-      width: 50px;
+      width: 100%;
       height: 50px;
-      position: absolute;
-      bottom: 0;
-      right: 0;
       img {
-        width: 100%;
+        width: 50px;
         height: 100%;
         object-fit: cover;
         border-radius: 50%;

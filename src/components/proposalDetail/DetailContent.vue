@@ -38,7 +38,13 @@
 
 <script>
 export default {
-  name: "DetailContent"
+  name: "DetailContent",
+  props: {
+    projectDetail: {
+      type: Object,
+      required: true
+    }
+  }
 };
 </script>
 
