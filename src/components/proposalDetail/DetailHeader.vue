@@ -92,11 +92,14 @@ export default {
   .title {
     text-align: left;
     h2 {
-      font-size: 40px;
+      font-size: 30px;
       font-weight: 600;
       text-align: left;
       @include mediaquery_pad {
         text-align: center;
+      }
+      @include mediaquery_large_devices {
+        font-size: 40px;
       }
       span {
         display: block;

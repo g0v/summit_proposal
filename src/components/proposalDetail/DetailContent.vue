@@ -5,10 +5,11 @@
         <div class="side">
           <div class="item">
             <h4>修訂紀錄</h4>
-            <div class="content record">
+            <div class="content">
               <span
                 v-for="(version, index) in projectDetail.versions"
                 :key="index"
+                @click="$emit('openVersionDetailLightboxOpen', index)"
                 >version {{ index }}</span
               >
             </div>
@@ -166,15 +167,12 @@ export default {
           font-weight: 600;
         }
         .content {
-          img {
-            width: 50px;
-            height: 50px;
-            object-fit: cover;
-            border-radius: 50%;
-            margin: 8px;
-          }
           span {
             display: block;
+            cursor: pointer;
+            &:hover {
+              color: $main-color;
+            }
           }
         }
       }
@@ -198,7 +196,7 @@ export default {
         }
       }
       h3 {
-        font-size: 20px;
+        font-size: 18px;
       }
       p {
         margin-bottom: 0;
