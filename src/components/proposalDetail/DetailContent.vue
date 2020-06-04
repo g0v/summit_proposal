@@ -30,7 +30,13 @@
           </div>
           <div class="item">
             <h3>三個關鍵字 3 keywords</h3>
-            <p>{{ latestVersion.keywords.join(" , ") }}</p>
+            <p>
+              {{
+                latestVersion.keywords
+                  ? latestVersion.keywords.join(" , ")
+                  : latestVersion.three_keywords
+              }}
+            </p>
           </div>
         </main>
       </div>
@@ -90,14 +96,28 @@ export default {
     padding: 50px 20px;
     box-shadow: 0 0 8px #ccc5c5;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     margin-bottom: 30px;
     border-radius: 5px;
+    @include mediaquery_pad {
+      flex-direction: row;
+      justify-content: space-between;
+    }
     .side {
-      width: 20%;
+      width: 100%;
+      order: 2;
+      @include mediaquery_pad {
+        width: 20%;
+        order: 1;
+      }
     }
     main {
-      width: 75%;
+      width: 100%;
+      order: 1;
+      @include mediaquery_pad {
+        width: 75%;
+        order: 2;
+      }
     }
     .side {
       text-align: left;
@@ -204,11 +224,11 @@ export default {
     .open-info {
       width: 90%;
       h4 {
-        font-size: 18px;
+        font-size: 15px;
         color: #ef4645;
       }
       p {
-        font-size: 15px;
+        font-size: 13px;
         &:last-child {
           margin-bottom: 0;
         }

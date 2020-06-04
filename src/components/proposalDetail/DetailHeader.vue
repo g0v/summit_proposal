@@ -44,17 +44,31 @@ export default {
 <style lang="scss" scoped>
 .detail-header-container {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-  margin-bottom: 80px;
+  @include mediaquery_pad {
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 50px;
+  }
   .cover {
-    width: 45%;
+    width: 100%;
+    margin-bottom: 30px;
+    @include mediaquery_pad {
+      width: 45%;
+      margin-bottom: 0px;
+    }
   }
   .title {
-    width: 50%;
+    width: 100%;
+    margin-bottom: 30px;
+    @include mediaquery_pad {
+      width: 50%;
+      margin-bottom: 0px;
+    }
   }
   .cover {
-    height: 200px;
+    height: 250px;
     position: relative;
     img {
       width: 100%;
@@ -80,6 +94,10 @@ export default {
     h2 {
       font-size: 40px;
       font-weight: 600;
+      text-align: left;
+      @include mediaquery_pad {
+        text-align: center;
+      }
       span {
         display: block;
       }
