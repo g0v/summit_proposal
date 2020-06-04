@@ -28,7 +28,7 @@
         class="speaker__item w-50-l mt3 pv4 flex items-center justify-center"
       >
         <b-button
-          class="speaker__add"
+          class="speaker__add o-70"
           variant="danger"
           @click="addSpeakers"
           v-show="canAddSpeader"

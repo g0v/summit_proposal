@@ -54,7 +54,7 @@
     <b-form-radio-group
       v-if="definition.type === 'boolean'"
       :id="definition.id"
-      v-model="value"
+      v-model="binaryValue"
       :options="binaryOptions"
       :name="definition.id"
     ></b-form-radio-group>
@@ -65,7 +65,7 @@
         :src="value"
         :alt="definition.label"
       />
-      <b-button variant="danger" @click.prevent="openFileSelector">
+      <b-button class="o-70" variant="danger" @click.prevent="openFileSelector">
         {{ imageCtaLabel }}
       </b-button>
       <input type="file" ref="fileSelector" @change="handleFileUpload" hidden />
@@ -97,6 +97,7 @@ export default {
   },
   data() {
     return {
+      binaryValue: this.value,
       binaryOptions: BINARY_OPTIONS
     };
   },
@@ -127,6 +128,11 @@ export default {
       return def.type === "select-with-other" && this.value === def.otherOption;
     }
   },
+  watch: {
+    binaryValue() {
+      this.$emit("input", this.binaryValue);
+    }
+  },
   methods: {
     handleInput(value) {
       this.$emit("input", value);
@@ -140,8 +146,6 @@ export default {
     openFileSelector() {
       if (this.$refs.fileSelector) {
         this.$refs.fileSelector.click();
-      } else {
-        alert("ker");
       }
     },
     async handleFileUpload() {

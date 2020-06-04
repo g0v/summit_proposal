@@ -17,7 +17,9 @@
           @change="updateSpeakers"
         ></speaker-form>
       </div>
-      <b-button type="submit" variant="danger">確定</b-button>
+      <b-button type="submit" variant="danger" size="lg">
+        提交投稿 Submit Proposal
+      </b-button>
     </b-form>
   </div>
 </template>
@@ -213,6 +215,10 @@ export default {
         // or use last version
         formPointer = _.last(data.versions);
       }
+      if (!formPointer) {
+        this.isOnInit = false;
+        return;
+      }
       const content = { ...formPointer };
       delete content.speakers;
 
@@ -231,6 +237,12 @@ export default {
         data
       });
       this.$emit("done");
+      this.$router.push({
+        name: "ProposalDetail",
+        params: {
+          id: this.id
+        }
+      });
     },
     updateSpeakers(speakers) {
       this.speakers = speakers;
