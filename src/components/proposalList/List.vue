@@ -44,7 +44,8 @@
             </p>
           </div>
         </template>
-        <div v-else>資料尚未填寫完整的暫存版本，請點選進入查看詳細資訊</div>
+        <!-- draft 暫存版本的 -->
+        <div v-else>此為暫存版本，請點選進入，查看詳細資訊</div>
       </router-link>
     </div>
   </div>
