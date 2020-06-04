@@ -29,7 +29,11 @@
           >
         </b-nav-item-dropdown> -->
         <b-nav-item href="#agenda">歷年議程</b-nav-item>
-        <b-nav-item :to="{ name: 'PropasalManageList' }">管理投稿</b-nav-item>
+        <b-nav-item
+          v-if="!$store.getters.isLoggedIn"
+          :to="{ name: 'PropasalManageList' }"
+          >管理投稿</b-nav-item
+        >
         <b-nav-item
           v-if="!$store.getters.isLoggedIn"
           @click="isLoginLightboxOpen = true"
