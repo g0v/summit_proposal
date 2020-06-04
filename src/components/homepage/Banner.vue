@@ -116,7 +116,7 @@ export default {
     img {
       width: 100%;
       border-radius: 50%;
-      border: 2px solid #c60100;
+      box-shadow: 0 0 5px #c37171;
     }
   }
 }
