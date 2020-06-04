@@ -67,6 +67,7 @@
           </div>
         </div>
       </div>
+      <a id="nodebb-comments"></a>
     </div>
   </div>
 </template>
@@ -86,6 +87,39 @@ export default {
         this.projectDetail.versions.length - 1
       ];
     }
+  },
+  mounted() {
+    const config = {
+      discussURL: "https://discuss.summit2020.pre-stage.cc",
+      projectID: this.$route.params.id,
+      projectTitle: "測試標題",
+      categoryID: 3
+    };
+
+    window.nbb = {};
+    window.nodeBBURL = config.discussURL;
+    window.articleID = config.projectID;
+
+    window.articleData = {
+      title_plain: config.projectTitle,
+      url: location.href,
+      tags: [],
+      markDownContent: "",
+      cid: config.categoryID
+    };
+
+    (function() {
+      window.nbb.script = document.createElement("script");
+      window.nbb.script.type = "text/javascript";
+      window.nbb.script.async = true;
+      window.nbb.script.src =
+        window.nodeBBURL +
+        "/plugins/nodebb-plugin-blog-comments/lib/general.js";
+      (
+        document.getElementsByTagName("head")[0] ||
+        document.getElementsByTagName("body")[0]
+      ).appendChild(window.nbb.script);
+    })();
   }
 };
 </script>
