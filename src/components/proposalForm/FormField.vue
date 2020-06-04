@@ -32,11 +32,29 @@
       :value="value"
       @input="handleInput"
     ></b-form-select>
+    <div
+      class="selectother"
+      :class="{ 'selectother--other': isOtherOptionSelected }"
+    >
+      <b-form-select
+        v-if="definition.type === 'select-with-other'"
+        :id="definition.id"
+        :options="definition.options"
+        :value="value"
+        @input="handleInput"
+      ></b-form-select>
+      <b-form-input
+        v-show="isOtherOptionSelected"
+        class="mt2"
+        type="text"
+        :value="otherValue"
+        @input="handleOtherInput"
+      ></b-form-input>
+    </div>
     <b-form-radio-group
       v-if="definition.type === 'boolean'"
       :id="definition.id"
-      :value="value"
-      @input="handleInput"
+      v-model="binaryValue"
       :options="binaryOptions"
       :name="definition.id"
     ></b-form-radio-group>
@@ -47,7 +65,7 @@
         :src="value"
         :alt="definition.label"
       />
-      <b-button variant="danger" @click.prevent="openFileSelector">
+      <b-button class="o-70" variant="danger" @click.prevent="openFileSelector">
         {{ imageCtaLabel }}
       </b-button>
       <input type="file" ref="fileSelector" @change="handleFileUpload" hidden />
@@ -71,10 +89,15 @@ export default {
     value: {
       type: [String, Boolean, Number],
       default: ""
+    },
+    otherValue: {
+      type: String,
+      default: ""
     }
   },
   data() {
     return {
+      binaryValue: this.value,
       binaryOptions: BINARY_OPTIONS
     };
   },
@@ -99,17 +122,30 @@ export default {
         return this.definition.changeLabel;
       }
       return this.definition.uploadLabel;
+    },
+    isOtherOptionSelected() {
+      const def = this.definition;
+      return def.type === "select-with-other" && this.value === def.otherOption;
+    }
+  },
+  watch: {
+    binaryValue() {
+      this.$emit("input", this.binaryValue);
     }
   },
   methods: {
     handleInput(value) {
       this.$emit("input", value);
     },
+    handleOtherInput(value) {
+      this.$emit("other-input", {
+        definition: this.definition,
+        value
+      });
+    },
     openFileSelector() {
       if (this.$refs.fileSelector) {
         this.$refs.fileSelector.click();
-      } else {
-        alert("ker");
       }
     },
     async handleFileUpload() {

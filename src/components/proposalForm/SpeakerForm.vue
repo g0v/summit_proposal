@@ -13,7 +13,9 @@
             :key="field.id"
             :definition="makeDefinition(speaker, field)"
             v-model="speaker[field.id]"
+            :other-value="speaker[field.otherId] || ''"
             @input="handleInput"
+            @other-input="handleOtherInput(speaker, $event)"
           ></form-field>
           <div class="tr mt3">
             <b-button variant="outline-dark" @click="removeSpeakers(speaker)">
@@ -26,7 +28,7 @@
         class="speaker__item w-50-l mt3 pv4 flex items-center justify-center"
       >
         <b-button
-          class="speaker__add"
+          class="speaker__add o-70"
           variant="danger"
           @click="addSpeakers"
           v-show="canAddSpeader"
@@ -42,8 +44,8 @@
   </div>
 </template>
 <script>
+import _ from "lodash";
 import FormField from "./FormField";
-// TODO: imgur
 let lastId = 0;
 const PRIVATE_DESP =
   "此欄位不會公開顯示 This field is only visible to organizer";
@@ -64,6 +66,7 @@ const DEFAULT_SPAKER = {
   private_phone_number: "",
   private_accept_travel: null,
   private_channel: "",
+  private_channel_other: "",
   private_misc: "",
   display_name: "",
   organization: "",
@@ -164,8 +167,10 @@ const FIELD_DEFINITIONS = [
     labelEn: "How did you learn about the g0v Summit 2020?",
     id: "private_channel",
     description: PRIVATE_DESP,
-    type: "select",
+    type: "select-with-other",
     required: true,
+    otherOption: "其它（請描述）Other (please specify)",
+    otherId: "private_channel_other",
     options: [
       "社交媒體 Social media (Facebook, Twitter, Istagram)",
       "g0v 黑客松 g0v hackathon",
@@ -183,7 +188,7 @@ const FIELD_DEFINITIONS = [
     description: PRIVATE_DESP,
     type: "textarea"
   }
-]
+];
 
 export default {
   components: {
@@ -193,11 +198,27 @@ export default {
     maxSpeakers: {
       type: Number,
       default: 1
+    },
+    initSpeakers: {
+      type: Array,
+      default() {
+        return [];
+      }
     }
   },
   data() {
+    let speakers = [this.createSpeaker()];
+    if (this.initSpeakers.length > 0) {
+      speakers = _.cloneDeep(this.initSpeakers).map(speaker => {
+        lastId += 1;
+        return {
+          id: lastId,
+          ...speaker
+        };
+      });
+    }
     return {
-      speakers: [this.createSpeaker()],
+      speakers,
       private_channel: "",
       private_misc: "",
 
@@ -215,6 +236,10 @@ export default {
     }
   },
   methods: {
+    handleOtherInput(speaker, { definition, value }) {
+      speaker[definition.otherId] = value;
+      this.handleInput();
+    },
     handleInput() {
       const cleanSpeakers = this.speakers.map(speaker => {
         const cleanSpeaker = { ...speaker };

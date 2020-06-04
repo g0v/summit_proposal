@@ -1,25 +1,32 @@
 <template>
-  <div class="proposal form-container">
+  <div class="proposal form-container" v-if="!isOnInit">
     <b-form @submit="onSubmit">
       <h2>稿件資訊 Proposal Information</h2>
       <form-field
         v-for="field in fieldDefinitions"
         :key="field.id"
         :definition="field"
+        :other-value="proposalContent[field.otherId] || ''"
+        @other-input="handleOther"
         v-model="proposalContent[field.id]"
       ></form-field>
       <div class="proposal__speakers-wrapper">
         <speaker-form
           :max-speakers="maxSpeakers"
+          :init-speakers="speakers"
           @change="updateSpeakers"
         ></speaker-form>
       </div>
-      <b-button type="submit" variant="danger">確定</b-button>
+      <b-button type="submit" variant="danger" size="lg">
+        提交投稿 Submit Proposal
+      </b-button>
     </b-form>
   </div>
 </template>
 <script>
 // import { ValidationProvider } from "vee-validate";
+import _ from "lodash";
+import { handleApiError } from "@/utils/mixins";
 import SpeakerForm from "./SpeakerForm";
 import FormField from "./FormField";
 
@@ -81,7 +88,9 @@ const FIELD_DEFINITIONS = [
     placeholder: "請填寫語言 Please enter language",
     id: "oral_language",
     description: "",
-    type: "select",
+    type: "select-with-other",
+    otherOption: _.last(ORAL_LANGUAGE_OPTIONS),
+    otherId: "oral_language_other",
     options: ORAL_LANGUAGE_OPTIONS,
     required: true
   },
@@ -133,7 +142,6 @@ const FIELD_DEFINITIONS = [
   }
 ];
 
-// TODO: imgur
 // TODO: 3 keywords
 
 export default {
@@ -143,6 +151,7 @@ export default {
     SpeakerForm,
     FormField
   },
+  mixins: [handleApiError],
   props: {
     id: {
       type: String,
@@ -157,7 +166,7 @@ export default {
         summary: "",
         summary_en: "",
         oral_language: "",
-        oral_languate_others: "",
+        oral_languate_other: "",
         format: "",
         topic: "",
         three_keywords: "",
@@ -166,7 +175,8 @@ export default {
         is_slide_cc40: null
       },
       speakers: [],
-      fieldDefinitions: FIELD_DEFINITIONS
+      fieldDefinitions: FIELD_DEFINITIONS,
+      isOnInit: true
     };
   },
   computed: {
@@ -184,18 +194,55 @@ export default {
       return format.maxSpeakers;
     }
   },
+  created() {
+    this.initProposal();
+  },
   methods: {
+    handleOther({ definition, value }) {
+      this.proposalContent[definition.otherId] = value;
+    },
+    async initProposal() {
+      this.isOnInit = true;
+      const data = await this.handleApiError(
+        this.$store.dispatch("getDetailProject", this.id)
+      );
+
+      let formPointer = null;
+      if (data.draft && data.draft.title) {
+        // use draft first
+        formPointer = data.draft;
+      } else if (data.versions.length > 0) {
+        // or use last version
+        formPointer = _.last(data.versions);
+      }
+      if (!formPointer) {
+        this.isOnInit = false;
+        return;
+      }
+      const content = { ...formPointer };
+      delete content.speakers;
+
+      this.proposalContent = content;
+      this.speakers = _.cloneDeep(formPointer.speakers);
+      this.isOnInit = false;
+    },
     async onSubmit(evt) {
       evt.preventDefault();
       const data = {
         ...this.proposalContent,
         speakers: this.speakers
-      }
+      };
       await this.$store.dispatch("createProjectVersion", {
         id: this.id,
         data
       });
       this.$emit("done");
+      this.$router.push({
+        name: "ProposalDetail",
+        params: {
+          id: this.id
+        }
+      });
     },
     updateSpeakers(speakers) {
       this.speakers = speakers;
