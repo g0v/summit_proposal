@@ -40,7 +40,7 @@ export default {
   beforeRouteEnter(to, from, next) {
     next(async vm => {
       await vm.handleApiError(
-        vm.$store.dispatch("detailProject", to.params.id)
+        vm.$store.dispatch("getDetailProject", to.params.id)
       );
     });
   },

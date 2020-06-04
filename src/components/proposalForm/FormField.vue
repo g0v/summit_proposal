@@ -32,11 +32,29 @@
       :value="value"
       @input="handleInput"
     ></b-form-select>
+    <div
+      class="selectother"
+      :class="{ 'selectother--other': isOtherOptionSelected }"
+    >
+      <b-form-select
+        v-if="definition.type === 'select-with-other'"
+        :id="definition.id"
+        :options="definition.options"
+        :value="value"
+        @input="handleInput"
+      ></b-form-select>
+      <b-form-input
+        v-show="isOtherOptionSelected"
+        class="mt2"
+        type="text"
+        :value="otherValue"
+        @input="handleOtherInput"
+      ></b-form-input>
+    </div>
     <b-form-radio-group
       v-if="definition.type === 'boolean'"
       :id="definition.id"
-      :value="value"
-      @input="handleInput"
+      v-model="value"
       :options="binaryOptions"
       :name="definition.id"
     ></b-form-radio-group>
@@ -71,6 +89,10 @@ export default {
     value: {
       type: [String, Boolean, Number],
       default: ""
+    },
+    otherValue: {
+      type: String,
+      default: ""
     }
   },
   data() {
@@ -99,11 +121,21 @@ export default {
         return this.definition.changeLabel;
       }
       return this.definition.uploadLabel;
+    },
+    isOtherOptionSelected() {
+      const def = this.definition;
+      return def.type === "select-with-other" && this.value === def.otherOption;
     }
   },
   methods: {
     handleInput(value) {
       this.$emit("input", value);
+    },
+    handleOtherInput(value) {
+      this.$emit("other-input", {
+        definition: this.definition,
+        value
+      });
     },
     openFileSelector() {
       if (this.$refs.fileSelector) {
