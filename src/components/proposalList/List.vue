@@ -11,33 +11,40 @@
         class="item"
         :to="{ name: routerName, params: { id: item._id } }"
       >
-        <div class="cover">
-          <img
-            :src="item.versions[item.versions.length - 1].cover_image"
-            alt="project cover"
-          />
-          <div class="owner">
+        <!-- 正常有版本的 -->
+        <template v-if="item.versions[item.versions.length - 1]">
+          <div class="cover">
             <img
-              v-for="(speaker, index) in item.versions[item.versions.length - 1]
-                .speakers"
-              :key="index"
-              :src="speaker.avatar_url"
-              alt="owner pic"
+              :src="item.versions[item.versions.length - 1].cover_image"
+              alt="project cover"
             />
+            <div class="owner">
+              <img
+                v-for="(speaker, index) in item.versions[
+                  item.versions.length - 1
+                ].speakers"
+                :key="index"
+                :src="speaker.avatar_url"
+                alt="owner pic"
+              />
+            </div>
           </div>
-        </div>
-        <div class="content">
-          <h3>
-            <span>{{ item.versions[item.versions.length - 1].title }}</span>
-            <span>{{ item.versions[item.versions.length - 1].title_en }}</span>
-          </h3>
-          <p>
-            {{ item.versions[item.versions.length - 1].summary }}
-          </p>
-          <p>
-            {{ item.versions[item.versions.length - 1].summary_en }}
-          </p>
-        </div>
+          <div class="content">
+            <h3>
+              <span>{{ item.versions[item.versions.length - 1].title }}</span>
+              <span>{{
+                item.versions[item.versions.length - 1].title_en
+              }}</span>
+            </h3>
+            <p>
+              {{ item.versions[item.versions.length - 1].summary }}
+            </p>
+            <p>
+              {{ item.versions[item.versions.length - 1].summary_en }}
+            </p>
+          </div>
+        </template>
+        <div v-else>資料尚未填寫完整的暫存版本，請點選進入查看詳細資訊</div>
       </router-link>
     </div>
   </div>

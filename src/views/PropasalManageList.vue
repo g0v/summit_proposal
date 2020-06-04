@@ -5,7 +5,7 @@
       @updateKeyword="keyword = $event"
       @updateCurrentPage="paginationData.currentPage = $event"
     />
-    <List :list="listByPage" routerName="ProposalDetail" />
+    <List :list="listByPage" routerName="ProposalEdit" />
     <ListPagination
       :perPage="paginationData.perPage"
       :currentPage="paginationData.currentPage"
@@ -23,7 +23,7 @@ import ListPagination from "@/components/proposalList/ListPagination.vue";
 import { handleApiError } from "@/utils/mixins";
 
 export default {
-  name: "PropasalList",
+  name: "PropasalManageList",
   mixins: [handleApiError],
   components: { ListHeader, List, ListPagination },
   beforeRouteEnter(to, from, next) {
@@ -42,16 +42,21 @@ export default {
   },
   computed: {
     listByKeywordFilter() {
-      let listByKeywordFilter = this.$store.getters.displayProjectList.filter(
-        project => {
-          let lastVersion = project.versions[project.versions.length - 1];
-          return (
-            lastVersion.title.search(this.keyword) != -1 ||
-            lastVersion.title_en.search(this.keyword) != -1
-          );
-        }
-      );
-      return listByKeywordFilter;
+      if (this.keyword) {
+        let listByKeywordFilter = this.$store.getters.myProjectList.filter(
+          project => {
+            let lastVersion = project.versions[project.versions.length - 1];
+            if (!lastVersion) return false;
+            return (
+              lastVersion.title.search(this.keyword) != -1 ||
+              lastVersion.title_en.search(this.keyword) != -1
+            );
+          }
+        );
+        return listByKeywordFilter;
+      } else {
+        return this.$store.getters.myProjectList;
+      }
     },
     listByPage() {
       return this.listByKeywordFilter.slice(

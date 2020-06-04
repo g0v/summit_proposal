@@ -2,7 +2,7 @@
   <section class="proposal-edit">
     <div class="proposal-edit-container container">
       <ProposalFormHeader />
-      <ProposalForm />
+      <ProposalForm :id="$route.params.id" />
     </div>
   </section>
 </template>

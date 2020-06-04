@@ -23,15 +23,16 @@ export default {
       return state.projectList;
     },
     displayProjectList(state) {
-      console.log(state.projectList.filter(item => item.enable));
       return state.projectList.filter(item => item.enable);
     },
     myProjectList(state) {
-      const userId = state.user.userInfo._id;
-      if (!userId) {
-        return [];
-      }
-      return state.projectList.filter(project => project.user._id === userId);
+      // const userId = getters.userInfo._id;
+      // console.log("userId", userId, state.projectList);
+      // if (!userId) {
+      //   return [];
+      // }
+      console.log(state.projectList.filter(project => project.owner));
+      return state.projectList.filter(project => project.owner);
     },
     projectDetail({ projectDetail }) {
       return projectDetail;

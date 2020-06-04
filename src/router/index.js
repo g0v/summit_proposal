@@ -16,12 +16,17 @@ const routes = [
     component: () => import("@/views/PropasalList.vue")
   },
   {
+    path: "/proposal-manage-list",
+    name: "PropasalManageList",
+    component: () => import("@/views/PropasalManageList.vue")
+  },
+  {
     path: "/proposal-detail/:id",
     name: "ProposalDetail",
     component: () => import("@/views/ProposalDetail.vue")
   },
   {
-    path: "/proposal-edit",
+    path: "/proposal-edit/:id",
     name: "ProposalEdit",
     component: () => import("@/views/ProposalEdit.vue")
   },
