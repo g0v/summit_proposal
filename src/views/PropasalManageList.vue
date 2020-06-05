@@ -48,8 +48,12 @@ export default {
             let lastVersion = project.versions[project.versions.length - 1];
             if (!lastVersion) return false;
             return (
-              lastVersion.title.search(this.keyword) != -1 ||
-              lastVersion.title_en.search(this.keyword) != -1
+              lastVersion.title
+                .toLowerCase()
+                .search(this.keyword.toLowerCase()) != -1 ||
+              lastVersion.title_en
+                .toLowerCase()
+                .search(this.keyword.toLowerCase()) != -1
             );
           }
         );
