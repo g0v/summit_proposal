@@ -157,15 +157,17 @@ button {
   padding: 20px;
   background-color: #292828;
   color: #fff;
-  text-align: left;
+  text-align: center;
   max-height: 85vh;
   overflow: scroll;
   .title {
     h2 {
       color: $main-color;
+      text-align: left;
     }
   }
   .content {
+    text-align: left;
     .list {
       list-style: decimal;
       padding-left: 20px;
@@ -177,9 +179,9 @@ button {
     li {
       margin-bottom: 10px;
     }
-    button {
-      width: 200px;
-    }
+  }
+  button {
+    width: 200px;
   }
 }
 </style>
