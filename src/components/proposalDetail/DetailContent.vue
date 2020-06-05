@@ -10,7 +10,7 @@
                 v-for="(version, index) in projectDetail.versions"
                 :key="index"
                 @click="$emit('openVersionDetailLightboxOpen', index)"
-                >version {{ index }}</span
+                >version {{ index + 1 }}</span
               >
             </div>
           </div>
