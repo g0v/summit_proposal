@@ -32,6 +32,11 @@
             </div>
           </div>
           <div class="content">
+            <span
+              class="notice"
+              v-if="displayDraftNotice && Object.keys(item.draft).length !== 0"
+              >提醒：您有尚未編輯完成的暫存內容唷</span
+            >
             <h3>
               <span>{{ item.versions[item.versions.length - 1].title }}</span>
               <span>{{
@@ -63,6 +68,10 @@ export default {
     },
     routerName: {
       type: String
+    },
+    displayDraftNotice: {
+      type: Boolean,
+      default: false
     }
   }
 };
@@ -147,6 +156,12 @@ export default {
         span {
           display: block;
         }
+      }
+      .notice {
+        display: block;
+        color: $main-color;
+        margin-bottom: 10px;
+        font-size: 14px;
       }
       p {
         overflow: hidden;

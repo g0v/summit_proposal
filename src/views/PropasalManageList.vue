@@ -5,7 +5,11 @@
       @updateKeyword="keyword = $event"
       @updateCurrentPage="paginationData.currentPage = $event"
     />
-    <List :list="listByPage" routerName="ProposalEdit" />
+    <List
+      :list="listByPage"
+      routerName="ProposalEdit"
+      :displayDraftNotice="true"
+    />
     <ListPagination
       :perPage="paginationData.perPage"
       :currentPage="paginationData.currentPage"
