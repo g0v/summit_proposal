@@ -27,6 +27,13 @@ export default {
       projectId: null
     };
   },
+  beforeRouteEnter(to, from, next) {
+    next(vm => {
+      if (!vm.$store.getters.isLoggedIn) {
+        vm.$router.push({ name: "Homepage" });
+      }
+    });
+  },
   async created() {
     const existingId = localStorage.getItem(CUR_PROJECT_ID_KEY);
     if (existingId) {

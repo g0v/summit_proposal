@@ -13,7 +13,14 @@ import ProposalFormHeader from "@/components/proposalForm/ProposalFormHeader.vue
 
 export default {
   name: "ProposalEdit",
-  components: { ProposalForm, ProposalFormHeader }
+  components: { ProposalForm, ProposalFormHeader },
+  beforeRouteEnter(to, from, next) {
+    next(vm => {
+      if (!vm.$store.getters.isLoggedIn) {
+        vm.$router.push({ name: "Homepage" });
+      }
+    });
+  }
 };
 </script>
 <style lang="scss" scoped>

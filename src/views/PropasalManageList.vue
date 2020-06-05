@@ -32,6 +32,9 @@ export default {
   components: { ListHeader, List, ListPagination },
   beforeRouteEnter(to, from, next) {
     next(async vm => {
+      if (!vm.$store.getters.isLoggedIn) {
+        vm.$router.push({ name: "Homepage" });
+      }
       await vm.handleApiError(vm.$store.dispatch("listProjects"));
     });
   },
