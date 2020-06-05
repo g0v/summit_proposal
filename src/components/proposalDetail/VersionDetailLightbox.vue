@@ -10,6 +10,9 @@
       <div class="item">
         <h3>摘要 Summary</h3>
         <p>{{ versionData.summary }}</p>
+      </div>
+      <div class="item">
+        <h3>英語摘要 Summary in English</h3>
         <p>{{ versionData.summary_en }}</p>
       </div>
       <div class="item">
@@ -28,6 +31,27 @@
               ? versionData.keywords.join(" , ")
               : versionData.three_keywords
           }}
+        </p>
+      </div>
+      <div class="item">
+        <h3>
+          你的議程是否可以接受錄影、錄音、拍照、共筆、直播等形式的記錄，且以開放授權釋出？
+          <br />Do you agree that your presentation will be live-streamed and
+          recorded in the forms of text, photo, audio, and video, and released
+          publicly with an CC BY 4.0 International license?
+        </h3>
+        <p>
+          {{ versionData.is_presentation_cc40 ? "是 Yes" : "否 No" }}
+        </p>
+      </div>
+      <div class="item">
+        <h3>
+          你的投影片是否可以以開放授權釋出？
+          <br />Do you agree that your slides will be released publicly with an
+          CC BY 4.0 International license?
+        </h3>
+        <p>
+          {{ versionData.is_slide_cc40 ? "是 Yes" : "否 No" }}
         </p>
       </div>
     </div>
