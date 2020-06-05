@@ -8,6 +8,7 @@
         :definition="field"
         :other-value="proposalContent[field.otherId] || ''"
         @other-input="handleOther"
+        @valid-change="handleValidChange"
         v-model="proposalContent[field.id]"
       ></form-field>
       <div class="proposal__speakers-wrapper">
@@ -15,10 +16,11 @@
           :max-speakers="maxSpeakers"
           :init-speakers="speakers"
           @change="updateSpeakers"
+          @valid-change="handleValidChange"
         ></speaker-form>
       </div>
       <b-button type="submit" variant="danger" size="lg">
-        提交投稿 Submit Proposal
+        提交投稿 Submit Proposal {{ isAllValid }}
       </b-button>
     </b-form>
   </div>
@@ -60,12 +62,14 @@ const FIELD_DEFINITIONS = [
     id: "title",
     placeholder: "請填寫稿件標題 Please enter proposal title",
     type: "text",
+    maxCount: 150,
     required: true
   },
   {
     label: "英語標題 Title in English",
     id: "title_en",
     placeholder: "請填寫英語標題 Please enter proposal title",
+    maxCount: 150,
     type: "text"
   },
   {
@@ -74,15 +78,16 @@ const FIELD_DEFINITIONS = [
     description: "最多 350 字 Max 350 Words",
     placeholder: "請填寫摘要 Please enter summary",
     type: "textarea",
+    maxCount: 350,
     required: true
   },
   {
     label: "英語摘要 Summary in English",
     id: "summary_en",
     description: `最多 250 字 Max 250 Words ${TIPS_WE_WILL_TRANSLATE}`,
+    maxCount: 250,
     type: "textarea"
   },
-  // TODO: other language
   {
     label: "使用語言 Language",
     placeholder: "請填寫語言 Please enter language",
@@ -92,6 +97,7 @@ const FIELD_DEFINITIONS = [
     otherOption: _.last(ORAL_LANGUAGE_OPTIONS),
     otherId: "oral_language_other",
     options: ORAL_LANGUAGE_OPTIONS,
+    maxCount: 60,
     required: true
   },
   {
@@ -113,6 +119,7 @@ const FIELD_DEFINITIONS = [
     id: "three_keywords",
     description: "",
     type: "text",
+    maxCount: 60,
     required: true
   },
   {
@@ -141,8 +148,6 @@ const FIELD_DEFINITIONS = [
     required: true
   }
 ];
-
-// TODO: 3 keywords
 
 export default {
   name: "ProposalForm",
@@ -176,6 +181,8 @@ export default {
       },
       speakers: [],
       fieldDefinitions: FIELD_DEFINITIONS,
+      validMap: {},
+      isAllValid: true,
       isOnInit: true
     };
   },
@@ -198,6 +205,15 @@ export default {
     this.initProposal();
   },
   methods: {
+    handleValidChange(id, isValid) {
+      if (isValid) {
+        delete this.validMap[id];
+      } else {
+        this.validMap[id] = false;
+      }
+      // Simple but dirty hack, as empty object is not observable
+      this.isAllValid = Object.keys(this.validMap).length === 0;
+    },
     handleOther({ definition, value }) {
       this.proposalContent[definition.otherId] = value;
     },
@@ -232,6 +248,14 @@ export default {
     },
     async onSubmit(evt) {
       evt.preventDefault();
+      if (!this.isAllValid) {
+        const firstInvalid = Object.keys(this.validMap)[0];
+        const invalidDom = document.querySelector(`#${firstInvalid}`);
+        if (invalidDom) {
+          invalidDom.scrollIntoView();
+        }
+        return;
+      }
       const data = {
         ...this.proposalContent,
         speakers: this.speakers
