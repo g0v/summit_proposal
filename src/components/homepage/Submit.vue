@@ -88,13 +88,11 @@
           <li>公開討論截止：2020/07/30</li>
           <li>投稿文字修改截止：2020/08/02</li>
           <li>通知投稿結果：八月底</li>
-          <li>講者報名截止：待議</li>
         </ul>
       </section>
       <section class="item">
         <h3>
-          <b-icon icon="pencil-square" variant="success"></b-icon
-          >投稿方法(以下文字待 finalize)
+          <b-icon icon="pencil-square" variant="success"></b-icon>投稿方法
         </h3>
         <p>
           議程除基調講者及共同主辦單位之部分議程為邀請制外，其餘所有議程皆由大會進行線上公開徵件。
