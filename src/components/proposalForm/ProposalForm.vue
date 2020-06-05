@@ -212,8 +212,9 @@ export default {
     }
   },
   watch: {
-    lastDraft() {
-      if (!this.backupTimer) {
+    lastDraft(newVal, oldValue) {
+      if (oldValue.title && !this.backupTimer) {
+        // only start backup when sth really changed
         this.startPeriodicBackup();
       }
     }
