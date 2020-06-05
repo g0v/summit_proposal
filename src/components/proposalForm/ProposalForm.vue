@@ -20,7 +20,7 @@
         ></speaker-form>
       </div>
       <b-button type="submit" variant="danger" size="lg">
-        提交投稿 Submit Proposal {{ isAllValid }}
+        提交投稿 Submit Proposal
       </b-button>
     </b-form>
   </div>
