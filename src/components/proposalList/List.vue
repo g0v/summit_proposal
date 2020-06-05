@@ -89,6 +89,7 @@ export default {
     border-radius: 5px;
     background-color: #ffffff94;
     text-decoration: none;
+    cursor: pointer;
     @include mediaquery_phone {
       width: 46%;
       margin: 2%;
