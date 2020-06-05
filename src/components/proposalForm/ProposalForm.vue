@@ -149,6 +149,9 @@ const FIELD_DEFINITIONS = [
   }
 ];
 
+// backup every 30 seconds
+const BACKUP_PERIOD = 30 * 1000;
+
 export default {
   name: "ProposalForm",
   components: {
@@ -183,7 +186,8 @@ export default {
       fieldDefinitions: FIELD_DEFINITIONS,
       validMap: {},
       isAllValid: true,
-      isOnInit: true
+      isOnInit: true,
+      backupTimer: null
     };
   },
   computed: {
@@ -199,10 +203,26 @@ export default {
         FORMAT_OPTIONS[0];
 
       return format.maxSpeakers;
+    },
+    lastDraft() {
+      return {
+        ...this.proposalContent,
+        speakers: this.speakers
+      };
     }
   },
-  created() {
-    this.initProposal();
+  watch: {
+    lastDraft() {
+      if (!this.backupTimer) {
+        this.startPeriodicBackup();
+      }
+    }
+  },
+  beforeDestroy() {
+    this.stopPeriodicBackup();
+  },
+  async created() {
+    await this.initProposal();
   },
   methods: {
     handleValidChange(id, isValid) {
@@ -246,6 +266,20 @@ export default {
       this.speakers = _.cloneDeep(formPointer.speakers);
       this.isOnInit = false;
     },
+    stopPeriodicBackup() {
+      clearInterval(this.backupTimer);
+    },
+    startPeriodicBackup() {
+      this.backupTimer = setInterval(() => {
+        this.backupDraft();
+      }, BACKUP_PERIOD);
+    },
+    async backupDraft() {
+      this.$store.dispatch("updateProjectDraft", {
+        id: this.id,
+        data: this.lastDraft
+      });
+    },
     async onSubmit(evt) {
       evt.preventDefault();
       if (!this.isAllValid) {
@@ -256,13 +290,10 @@ export default {
         }
         return;
       }
-      const data = {
-        ...this.proposalContent,
-        speakers: this.speakers
-      };
+      this.stopPeriodicBackup();
       await this.$store.dispatch("createProjectVersion", {
         id: this.id,
-        data
+        data: this.lastDraft
       });
       this.$emit("done");
       this.$router.push({

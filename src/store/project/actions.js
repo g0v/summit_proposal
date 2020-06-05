@@ -11,6 +11,9 @@ export default {
   createProjectVersion(_dummy, { id, data }) {
     return API.POST(`/project/${id}`, data);
   },
+  updateProjectDraft(_dummy, { id, data }) {
+    return API.PATCH(`/project/${id}`, data);
+  },
   async listProjects({ commit }) {
     const rows = await API.GET("/projects");
     if (Array.isArray(rows)) {
