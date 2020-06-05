@@ -128,7 +128,7 @@ export default {
       discussURL: "https://discuss.summit2020.pre-stage.cc",
       projectID: this.$route.params.id,
       projectTitle: this.latestVersion.title || "無標題",
-      categoryID: 
+      categoryID: 2
     };
 
     window.nbb = {};
