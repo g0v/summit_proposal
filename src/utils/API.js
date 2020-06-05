@@ -4,7 +4,9 @@ import axios from "axios";
 const TOKEN_STORAGE_KEY = "summit-auth-token";
 
 const apiClient = axios.create({
-  baseURL: "https://api.summit2020.pre-stage.cc",
+  baseURL: location.href.includes("propo.summit2020.g0v.tw")
+    ? `https://api.summit2020.g0v.tw`
+    : `https://api.summit2020.pre-stage.cc`,
   headers: {
     "Content-Type": "application/json"
   }
