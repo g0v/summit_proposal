@@ -3,18 +3,22 @@
     <div class="banner-container container">
       <div class="info">
         <h2>
-          <span>g0v summit 2020 <br />Call for Paperbr</span><br />2020
-          台灣零時政府<br />高峰會議程招募
+          <span>g0v Summit 2020 <br />Call for Proposal</span><br />2020
+          台灣零時政府<br />雙年會議程徵集
         </h2>
-        <span class="time">招募日期：2020/06/04</span>
-        <span class="time">活動日期：2020/12/03（四）~ 2020/12/06（日）</span>
+        <!--
+        <span class="time">徵集日期 ：2020/06/04</span>
+        <span class="time">活動日期 ：2020/12/03（四）~ 2020/12/06（日）</span>
+        -->
         <div class="buttons">
           <router-link :to="{ name: 'PropasalList' }">
-            <b-button variant="danger" size="lg">投稿瀏覽</b-button>
+            <b-button variant="danger" size="lg">
+              瀏覽投稿<br />Read Proposals
+            </b-button>
           </router-link>
-          <b-button variant="danger" size="lg" @click="goSummit"
-            >我要投稿</b-button
-          >
+          <b-button variant="danger mt2 mt0-l" size="lg" @click="goSummit">
+            我要投稿<br />Submit a Proposal
+          </b-button>
         </div>
       </div>
       <div class="image">

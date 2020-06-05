@@ -60,6 +60,12 @@ export default {
       return responseHandler[response.status](response);
     else return response.data;
   },
+  async PATCH(path, data) {
+    const response = await apiClient.patch(path, data);
+    if (response.status in responseHandler)
+      return responseHandler[response.status](response);
+    else return response.data;
+  },
   async PUT(path, data) {
     const response = await apiClient.put(path, data);
     if (response.status in responseHandler)

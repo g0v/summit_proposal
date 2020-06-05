@@ -4,6 +4,8 @@
     :label="label"
     :label-for="definition.id"
     :description="definition.description"
+    :state="isValid"
+    :invalid-feedback="invalidMessage"
     :class="{ 'formfield--long': definition.labelEn }"
   >
     <label v-if="definition.labelEn" :for="definition.id">
@@ -13,7 +15,9 @@
       v-if="definition.type === 'text'"
       :id="definition.id"
       :placeholder="definition.placeholder"
-      type="text"
+      :type="definition.textType || 'text'"
+      :required="definition.required"
+      :state="isValid"
       :value="value"
       @input="handleInput"
     ></b-form-input>
@@ -22,6 +26,8 @@
       :id="definition.id"
       max-rows="8"
       :placeholder="definition.placeholder"
+      :required="definition.required"
+      :state="isValid"
       :value="value"
       @input="handleInput"
     ></b-form-textarea>
@@ -29,6 +35,8 @@
       v-if="definition.type === 'select'"
       :id="definition.id"
       :options="definition.options"
+      :required="definition.required"
+      :state="isValid"
       :value="value"
       @input="handleInput"
     ></b-form-select>
@@ -37,9 +45,10 @@
       :class="{ 'selectother--other': isOtherOptionSelected }"
     >
       <b-form-select
-        v-if="definition.type === 'select-with-other'"
+        v-if="isSelectWithOther"
         :id="definition.id"
         :options="definition.options"
+        :required="definition.required"
         :value="value"
         @input="handleInput"
       ></b-form-select>
@@ -47,6 +56,8 @@
         v-show="isOtherOptionSelected"
         class="mt2"
         type="text"
+        :required="isOtherTextRequired"
+        :state="isValid"
         :value="otherValue"
         @input="handleOtherInput"
       ></b-form-input>
@@ -57,8 +68,10 @@
       v-model="binaryValue"
       :options="binaryOptions"
       :name="definition.id"
+      :state="isValid"
+      :required="definition.required"
     ></b-form-radio-group>
-    <div class="" v-if="definition.type === 'image'">
+    <div :id="definition.id" v-if="definition.type === 'image'">
       <img
         class="formfield__img mr3"
         v-if="value"
@@ -74,6 +87,10 @@
 </template>
 <script>
 import axios from "axios";
+
+
+const CJK_RANGE = "\u4E00-\u9FFF";
+const cjkRegex = new RegExp(`[${CJK_RANGE}]|\n|[^${CJK_RANGE} \n\t]+`, "g");
 
 const BINARY_OPTIONS = [
   { text: "是 Yes", value: true },
@@ -123,14 +140,49 @@ export default {
       }
       return this.definition.uploadLabel;
     },
+    isSelectWithOther() {
+      return this.definition.type === "select-with-other";
+    },
     isOtherOptionSelected() {
       const def = this.definition;
-      return def.type === "select-with-other" && this.value === def.otherOption;
+      return this.isSelectWithOther && this.value === def.otherOption;
+    },
+    isOtherTextRequired() {
+      const def = this.definition;
+      return this.isOtherOptionSelected && def.required;
+    },
+    invalidMessage() {
+      const def = this.definition;
+      // TODO: img reguired
+      if (def.maxCount) {
+        const value = this.isOtherOptionSelected ? this.otherValue : this.value;
+        const matches = value.match(cjkRegex) || [];
+        const exceed = matches.length - def.maxCount;
+        if (exceed > 0) {
+          return `超過字數上限，請減少 ${exceed} 字 / ${exceed} words over limit`;
+        }
+      }
+      if (def.type === "image" && def.required && !this.value) {
+        return `請${this.def.uploadLabel}`;
+      }
+      return "";
+    },
+    isValid() {
+      if (this.invalidMessage) {
+        return false;
+      }
+      return null;
     }
   },
   watch: {
     binaryValue() {
       this.$emit("input", this.binaryValue);
+    },
+    isValid: {
+      immediate: true,
+      handler() {
+        this.$emit("valid-change", this.definition.id, this.isValid !== false);
+      }
     }
   },
   methods: {

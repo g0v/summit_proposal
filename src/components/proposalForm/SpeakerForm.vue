@@ -16,6 +16,7 @@
             :other-value="speaker[field.otherId] || ''"
             @input="handleInput"
             @other-input="handleOtherInput(speaker, $event)"
+            @valid-change="handleValidChange"
           ></form-field>
           <div class="tr mt3">
             <b-button variant="outline-dark" @click="removeSpeakers(speaker)">
@@ -82,12 +83,14 @@ const FIELD_DEFINITIONS = [
     label: "顯示於網頁的講者名稱 Speaker’s display name",
     id: "display_name",
     type: "text",
+    maxCount: 60,
     required: true
   },
   {
     label: "組織或社群名稱",
     labelEn: "Speaker’s organization or community affiliation",
     id: "organization",
+    maxCount: 60,
     type: "text",
     required: true
   },
@@ -104,18 +107,21 @@ const FIELD_DEFINITIONS = [
     label: "講者所在城市 Speaker’s location (city)",
     id: "city",
     type: "text",
+    maxCount: 60,
     required: true
   },
   {
     label: "講者資訊連結 Speaker info URL ",
     id: "info_url",
     type: "text",
+    textType: "url",
     required: true
   },
   {
     label: "講者簡介 Short bio",
     id: "bio",
     description: "最多 150 字 Max 150 words",
+    maxCount: 150,
     type: "textarea",
     required: true
   },
@@ -123,12 +129,14 @@ const FIELD_DEFINITIONS = [
     label: "講者英語簡介 Speaker’s bio in English",
     id: "bio_en",
     description: "最多 100 字 Max 100 words",
+    maxCount: 100,
     type: "textarea"
   },
   {
     label: "姓名 Name",
     id: "private_name",
     description: PRIVATE_DESP,
+    maxCount: 60,
     type: "text",
     required: true
   },
@@ -144,11 +152,13 @@ const FIELD_DEFINITIONS = [
     id: "private_email",
     description: PRIVATE_DESP,
     type: "text",
+    textType: "email",
     required: true
   },
   {
     label: "聯絡電話 Phone number",
     id: "private_phone_number",
+    maxCount: 20,
     description: PRIVATE_DESP,
     type: "text"
   },
@@ -169,6 +179,7 @@ const FIELD_DEFINITIONS = [
     description: PRIVATE_DESP,
     type: "select-with-other",
     required: true,
+    maxCount: 60,
     otherOption: "其它（請描述）Other (please specify)",
     otherId: "private_channel_other",
     options: [
@@ -186,6 +197,7 @@ const FIELD_DEFINITIONS = [
     labelEn: "Other personal needs or anything you want to let us know",
     id: "private_misc",
     description: PRIVATE_DESP,
+    maxCount: 150,
     type: "textarea"
   }
 ];
@@ -236,6 +248,9 @@ export default {
     }
   },
   methods: {
+    handleValidChange(id, isValid) {
+      this.$emit("valid-change", id, isValid);
+    },
     handleOtherInput(speaker, { definition, value }) {
       speaker[definition.otherId] = value;
       this.handleInput();
