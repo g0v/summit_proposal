@@ -83,7 +83,7 @@ export default {
     text-align: left;
     margin-bottom: 15px;
     padding: 40px 20px;
-    box-shadow: 0px 0px 1px 0px #00000052, 0px 12px 8px -12px #000;
+    box-shadow: 0px 0px 2px 0px #00000052, 0px 12px 8px -12px #000;
     border-radius: 5px;
     background-color: #ffffff94;
     text-decoration: none;
