@@ -2,7 +2,11 @@
   <div class="detail-header">
     <div class="detail-header-container container">
       <div class="cover">
-        <img :src="latestVersion.cover_image" alt="cover" />
+        <img
+          v-if="latestVersion.cover_image"
+          :src="latestVersion.cover_image"
+          alt="cover"
+        />
       </div>
       <div class="title">
         <h2>

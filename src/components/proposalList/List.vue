@@ -17,7 +17,9 @@
             <img
               :src="item.versions[item.versions.length - 1].cover_image"
               alt="project cover"
+              v-if="item.versions[item.versions.length - 1].cover_image"
             />
+            <div class="no-cover" v-else></div>
             <div class="owner">
               <img
                 v-for="(speaker, index) in item.versions[
@@ -112,6 +114,12 @@ export default {
         height: 100%;
         object-fit: contain;
         border-radius: 10px;
+      }
+      .no-cover {
+        width: 100%;
+        height: 100%;
+        background-color: #f5cfcf;
+        border-radius: 5px;
       }
       .owner {
         width: 50px;
