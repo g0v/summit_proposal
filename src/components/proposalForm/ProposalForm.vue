@@ -206,7 +206,11 @@ export default {
       const data = await this.handleApiError(
         this.$store.dispatch("getDetailProject", this.id)
       );
-
+      // 如果非講者本人不能進入此頁面
+      if (!data.owner) {
+        this.$router.push({ name: "Homepage" });
+        return;
+      }
       let formPointer = null;
       if (data.draft && data.draft.title) {
         // use draft first
