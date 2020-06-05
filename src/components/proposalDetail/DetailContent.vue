@@ -127,8 +127,8 @@ export default {
     const config = {
       discussURL: "https://discuss.summit2020.pre-stage.cc",
       projectID: this.$route.params.id,
-      projectTitle: "測試標題",
-      categoryID: 3
+      projectTitle: this.latestVersion.title || "無標題",
+      categoryID: 
     };
 
     window.nbb = {};
