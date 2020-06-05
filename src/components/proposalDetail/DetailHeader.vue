@@ -22,6 +22,12 @@
           />
         </div>
       </div>
+      <div class="notice" v-if="this.projectDetail.owner">
+        <b-button variant="danger" @click="goEdit">前往編輯頁面</b-button>
+        <span v-if="this.projectDetail === {}"
+          >提醒：您尚有編輯中的草稿唷！</span
+        >
+      </div>
     </div>
   </div>
 </template>
@@ -41,6 +47,14 @@ export default {
         this.projectDetail.versions.length - 1
       ];
     }
+  },
+  methods: {
+    goEdit() {
+      this.$router.push({
+        name: "ProposalEdit",
+        params: { id: this.projectDetail._id }
+      });
+    }
   }
 };
 </script>
@@ -50,6 +64,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  flex-wrap: wrap;
   @include mediaquery_pad {
     flex-direction: row;
     justify-content: space-between;
@@ -70,6 +85,9 @@ export default {
       width: 50%;
       margin-bottom: 0px;
     }
+  }
+  .notice {
+    width: 100%;
   }
   .cover {
     height: 250px;
@@ -118,6 +136,13 @@ export default {
         object-fit: cover;
         border-radius: 50%;
       }
+    }
+  }
+  .notice {
+    margin: 20px 0;
+    text-align: right;
+    button {
+      margin-right: 15px;
     }
   }
 }
