@@ -13,7 +13,7 @@
           國講者投稿。雙年會全部由社群參與者志願籌辦，議程也秉持開放協作精神，全部議程皆有口譯、文字記錄和直播。議程除了大會籌辦，也開放完整時段的開放工作坊（Unconference）由參與者提案決定議程內容，以演講、討論、自由對話等形式創造新的協作空間。閉幕前自由報名的全場閃電講更是開源社群傳統，以開放分享的精神貫穿年會。
         </p>
       </article>
-      <article>
+      <article class="feature">
         <h3>
           <b-icon icon="brightness-high-fill" variant="warning"></b-icon>g0v
           summit 2020 特色
@@ -85,6 +85,14 @@ export default {
     }
     p {
       font-size: 17px;
+    }
+  }
+  .feature {
+    h4 {
+      margin-bottom: 12px;
+    }
+    p {
+      margin-bottom: 20px;
     }
   }
 }

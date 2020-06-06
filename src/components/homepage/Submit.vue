@@ -203,8 +203,11 @@ export default {
     .way {
       h4 {
         font-size: 17px;
-        margin-bottom: 15px;
+        margin-bottom: 13px;
         font-weight: 600;
+      }
+      p {
+        margin-bottom: 25px;
       }
     }
     .time {
