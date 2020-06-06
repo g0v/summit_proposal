@@ -75,9 +75,10 @@ export default {
     };
   },
   methods: {
-    logout() {
+    async logout() {
       // TODO: better user notification
-      this.$store.dispatch("logout");
+      await this.$store.dispatch("logout");
+      alert("登出成功");
       if (this.$route.path !== "/") {
         this.$router.push("/");
       }
