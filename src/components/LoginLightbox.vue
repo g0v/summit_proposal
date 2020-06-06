@@ -2,14 +2,17 @@
   <section class="login">
     <div class="agree-container" v-if="!isAgree">
       <div class="title">
-        <h2>g0v Summit 2020 個人資料蒐集、處理及利用同意書</h2>
-        <h2>g0v Summit 2020 Personal Data Collection Agreement</h2>
+        <h2>
+          g0v Summit 2020 個人資料蒐集、處理及利用同意書<br />g0v Summit 2020
+          Personal Data Collection Agreement
+        </h2>
         <b-icon icon="x-square" @click="$emit('close')"></b-icon>
       </div>
       <div class="content" v-if="!isAgree">
         <span>
           為遵守「個人資料保護法」規定，並保障當事人之權利，謹依法告知下列事項：<br />
-          In respect to the “Personal Information Protection Act”, notify you of your responsibilities and rights by the following:
+          In respect to the “Personal Information Protection Act”, notify you of
+          your responsibilities and rights by the following:
         </span>
         <ul class="list">
           <li>
@@ -58,7 +61,8 @@
               <li>請求刪除</li>
             </ul>
             <span>
-              In terms of the 3rd paragraph of the Act, you may request the following rights:
+              In terms of the 3rd paragraph of the Act, you may request the
+              following rights:
             </span>
             <ul>
               <li>Inquire or request to view.</li>
@@ -70,7 +74,8 @@
           </li>
           <li>
             依個人資料保護法第14條規定，當事人查詢或請求閱覽個人資料或製給複製本。<br />
-            In terms of the 14th paragraph of the Act, you can Inquire or request for viewing your personal data or request for a hard copy.
+            In terms of the 14th paragraph of the Act, you can Inquire or
+            request for viewing your personal data or request for a hard copy.
           </li>
           <li>
             若遇行使第5及6條權利，請寫信至
@@ -146,7 +151,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 2;
+  z-index: 5;
 }
 // 共同
 .title {
@@ -155,11 +160,15 @@ export default {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+  position: relative;
   h2 {
     font-size: 20px;
     margin-bottom: 0;
   }
   svg {
+    position: absolute;
+    top: -15px;
+    right: -15px;
     cursor: pointer;
     &:hover {
       opacity: 0.8;
