@@ -25,7 +25,6 @@ export default {
   },
   async getDetailProject({ commit }, id) {
     const data = await API.GET(`/project/${id}`);
-    console.log(data);
     commit("updateProjectDetail", data);
     return data;
   }

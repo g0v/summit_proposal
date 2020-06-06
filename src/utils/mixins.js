@@ -32,15 +32,14 @@ export const addMetaData = {
       let oldDescriptionMeta = document.querySelector("meta[name=description]");
       if (oldDescriptionMeta) {
         oldDescriptionMeta.remove();
-      } else {
-        let newOldDescriptionMeta = document.createElement("meta");
-        newOldDescriptionMeta.setAttribute("name", "description");
-        newOldDescriptionMeta.setAttribute(
-          "content",
-          metaData[routeName].description
-        );
-        head.appendChild(newOldDescriptionMeta);
       }
+      let newOldDescriptionMeta = document.createElement("meta");
+      newOldDescriptionMeta.setAttribute("name", "description");
+      newOldDescriptionMeta.setAttribute(
+        "content",
+        metaData[routeName].description
+      );
+      head.appendChild(newOldDescriptionMeta);
 
       // 社群系列
       metaData[routeName].propertyMeta.forEach(meta => {
@@ -49,12 +48,11 @@ export const addMetaData = {
         );
         if (oldMeta) {
           oldMeta.remove();
-        } else {
-          let createMeta = document.createElement("meta");
-          createMeta.setAttribute("property", `${meta.property}`);
-          createMeta.setAttribute("content", `${meta.content}`);
-          head.appendChild(createMeta);
         }
+        let createMeta = document.createElement("meta");
+        createMeta.setAttribute("property", `${meta.property}`);
+        createMeta.setAttribute("content", `${meta.content}`);
+        head.appendChild(createMeta);
       });
     }
   }
