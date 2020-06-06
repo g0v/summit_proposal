@@ -81,13 +81,37 @@
         </div>
       </section>
       <section class="item">
+        <h3>
+          <b-icon icon="music-note-beamed" variant="warning"></b-icon>形式
+        </h3>
+        <div class="way">
+          <h4>演講 Talk</h4>
+          <p>20 分鐘，1-2 位講者。<br />20 minutes, 1-2 speaker(s)</p>
+          <h4>主題論壇 Panel Disucssion</h4>
+          <p>
+            可選擇 60、90 或 120 分鐘，自行籌組講者群，共 2-4 人，其中 1
+            位可指定為主持人，同時在台上圍繞特定議題對話。<br />Available
+            options: 60, 90 or 120 minutes. You need to form a group of 2-4
+            speakers, 1 of which could be the moderator. Speakers will be
+            on-stage speaking about a specific topic simultaneously.
+          </p>
+          <h4>工作坊 Workshop</h4>
+          <p>
+            可選擇 60、90 或 120 分鐘，由 1-3
+            人主持團隊帶領會眾進行互動式小組討論、動手做等形式的議程。<br />Available
+            options: 60, 90 or 120 minutes. Lead by a team of 1-3 people to
+            conduct group discussion or hands-on activities.
+          </p>
+        </div>
+      </section>
+      <section class="item">
         <h3><b-icon icon="calendar3" variant="primary"></b-icon>投稿時程</h3>
         <ul class="time">
-          <li>徵件開始：2020/06/04</li>
-          <li>徵件截止：2020/06/28</li>
-          <li>公開討論截止：2020/07/30</li>
-          <li>投稿文字修改截止：2020/08/02</li>
-          <li>通知投稿結果：八月底</li>
+          <li>徵件開始 Submission and open discussion start：2020/06/08</li>
+          <li>徵件截止 Dealine for new submission：2020/06/30</li>
+          <li>公開討論截止 Open discussion ends：2020/07/30</li>
+          <li>投稿文字修改截止 Proposal editing freezes：2020/08/02</li>
+          <li>通知投稿結果 Notification of accepted proposals：八月底</li>
         </ul>
       </section>
       <section class="item">
@@ -174,6 +198,13 @@ export default {
             font-size: 17px;
           }
         }
+      }
+    }
+    .way {
+      h4 {
+        font-size: 17px;
+        margin-bottom: 15px;
+        font-weight: 600;
       }
     }
     .time {
