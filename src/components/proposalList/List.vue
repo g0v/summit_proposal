@@ -32,11 +32,11 @@
             </div>
           </div>
           <div class="content">
-            <span
-              class="notice"
-              v-if="displayDraftNotice && Object.keys(item.draft).length !== 0"
-              >提醒：您有尚未編輯完成的暫存內容唷</span
-            >
+            <draft-notifier
+              class="mv2"
+              v-if="displayDraftNotice"
+              :proposal="item"
+            />
             <h3>
               <span>{{ item.versions[item.versions.length - 1].title }}</span>
               <span>{{
@@ -52,15 +52,27 @@
           </div>
         </template>
         <!-- draft 暫存版本的 -->
-        <div v-else>此為暫存版本，請點選進入，查看詳細資訊</div>
+        <div v-else>
+          <div class="mv3">
+            此為暫存版本，請點選進入，查看詳細資訊
+          </div>
+          <div class="mv3">
+            This proposal is not submitted yet. Click here to get latest draft.
+          </div>
+        </div>
       </router-link>
     </div>
   </div>
 </template>
 
 <script>
+import DraftNotifier from "@/components/DraftNotifier";
+
 export default {
   name: "List",
+  components: {
+    DraftNotifier
+  },
   props: {
     list: {
       type: Array,
@@ -156,12 +168,6 @@ export default {
         span {
           display: block;
         }
-      }
-      .notice {
-        display: block;
-        color: $main-color;
-        margin-bottom: 10px;
-        font-size: 14px;
       }
       p {
         overflow: hidden;

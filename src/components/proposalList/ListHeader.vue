@@ -1,15 +1,15 @@
 <template>
   <div class="list-header">
     <div class="list-header-container container">
-      <h2>提案列表</h2>
+      <h2>提案列表 Proposals</h2>
       <div class="search">
-        <b-form-group label="搜尋提案" label-for="search">
+        <b-form-group label="搜尋提案 Search proposals" label-for="search">
           <b-form-input
             id="search"
             :value="keyword"
             @input="updateKeyword($event)"
             trim
-            placeholder="請輸入標題關鍵字"
+            placeholder="請輸入標題 Type title to search "
           ></b-form-input>
         </b-form-group>
       </div>
@@ -58,6 +58,10 @@ export default {
   }
   ::v-deep .form-group {
     margin-bottom: 0;
+  }
+  #search {
+    width: 18rem;
+    max-width: 80vw;
   }
 }
 </style>
