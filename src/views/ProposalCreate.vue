@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { handleApiError } from "@/utils/mixins";
+import { handleApiError, addMetaData } from "@/utils/mixins";
 
 import ProposalForm from "@/components/proposalForm/ProposalForm.vue";
 import ProposalFormHeader from "@/components/proposalForm/ProposalFormHeader.vue";
@@ -21,7 +21,7 @@ const CUR_PROJECT_ID_KEY = "summit-cur-project-id";
 export default {
   name: "ProposalCreate",
   components: { ProposalForm, ProposalFormHeader },
-  mixins: [handleApiError],
+  mixins: [handleApiError, addMetaData],
   data() {
     return {
       projectId: null
@@ -30,6 +30,7 @@ export default {
   beforeRouteEnter(to, from, next) {
     next(vm => {
       if (!vm.$store.getters.isLoggedIn) {
+        vm.addMetaData(to.name);
         vm.$router.push({ name: "Homepage" });
       }
     });

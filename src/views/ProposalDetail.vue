@@ -31,14 +31,15 @@ import DetailHeader from "@/components/proposalDetail/DetailHeader.vue";
 import DetailContent from "@/components/proposalDetail/DetailContent.vue";
 import VersionDetailLightbox from "@/components/proposalDetail/VersionDetailLightbox.vue";
 
-import { handleApiError } from "@/utils/mixins";
+import { handleApiError, addMetaData } from "@/utils/mixins";
 
 export default {
   name: "ProposalDetail",
   components: { DetailHeader, DetailContent, VersionDetailLightbox },
-  mixins: [handleApiError],
+  mixins: [handleApiError, addMetaData],
   beforeRouteEnter(to, from, next) {
     next(async vm => {
+      vm.addMetaData(to.name);
       await vm.handleApiError(
         vm.$store.dispatch("getDetailProject", to.params.id)
       );

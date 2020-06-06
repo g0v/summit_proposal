@@ -10,12 +10,15 @@
 <script>
 import ProposalForm from "@/components/proposalForm/ProposalForm.vue";
 import ProposalFormHeader from "@/components/proposalForm/ProposalFormHeader.vue";
+import { addMetaData } from "@/utils/mixins";
 
 export default {
   name: "ProposalEdit",
   components: { ProposalForm, ProposalFormHeader },
+  mixins: [addMetaData],
   beforeRouteEnter(to, from, next) {
     next(vm => {
+      vm.addMetaData(to.name);
       if (!vm.$store.getters.isLoggedIn) {
         vm.$router.push({ name: "Homepage" });
       }

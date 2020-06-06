@@ -18,6 +18,7 @@ import FAQ from "@/components/homepage/FAQ.vue";
 import Committee from "@/components/homepage/Committee.vue";
 import AboutUS from "@/components/homepage/AboutUS.vue";
 import Agenda from "@/components/homepage/Agenda.vue";
+import { addMetaData } from "@/utils/mixins";
 
 export default {
   name: "Homepage",
@@ -29,6 +30,12 @@ export default {
     Committee,
     AboutUS,
     Agenda
+  },
+  mixins: [addMetaData],
+  beforeRouteEnter(to, from, next) {
+    next(vm => {
+      vm.addMetaData(to.name);
+    });
   }
 };
 </script>

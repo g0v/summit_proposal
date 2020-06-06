@@ -1,6 +1,5 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import metaData from "@/utils/metaData.js";
 
 Vue.use(VueRouter);
 
@@ -56,38 +55,6 @@ const router = new VueRouter({
       return { x: 0, y: 0 };
     }
   }
-});
-
-router.beforeEach(function(to, from, next) {
-  document.title = metaData[to.name].title;
-
-  let head = document.querySelector("head");
-  let oldDescriptionMeta = document.querySelector("meta[name=description]");
-  if (oldDescriptionMeta) {
-    oldDescriptionMeta.remove();
-  } else {
-    let newOldDescriptionMeta = document.createElement("meta");
-    newOldDescriptionMeta.setAttribute("name", "description");
-    newOldDescriptionMeta.setAttribute(
-      "content",
-      metaData[to.name].description
-    );
-    head.appendChild(newOldDescriptionMeta);
-  }
-
-  // 社群系列
-  metaData[to.name].propertyMeta.forEach(meta => {
-    let oldMeta = document.querySelector(`meta[property='${meta.property}']`);
-    if (oldMeta) {
-      oldMeta.remove();
-    } else {
-      let createMeta = document.createElement("meta");
-      createMeta.setAttribute("property", `${meta.property}`);
-      createMeta.setAttribute("content", `${meta.content}`);
-      head.appendChild(createMeta);
-    }
-  });
-  next();
 });
 
 export default router;

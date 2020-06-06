@@ -24,14 +24,15 @@ import ListHeader from "@/components/proposalList/ListHeader.vue";
 import List from "@/components/proposalList/List.vue";
 import ListPagination from "@/components/proposalList/ListPagination.vue";
 
-import { handleApiError } from "@/utils/mixins";
+import { handleApiError, addMetaData } from "@/utils/mixins";
 
 export default {
   name: "PropasalManageList",
-  mixins: [handleApiError],
+  mixins: [handleApiError, addMetaData],
   components: { ListHeader, List, ListPagination },
   beforeRouteEnter(to, from, next) {
     next(async vm => {
+      vm.addMetaData(to.name);
       if (!vm.$store.getters.isLoggedIn) {
         vm.$router.push({ name: "Homepage" });
       }
