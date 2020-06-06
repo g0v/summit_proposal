@@ -51,8 +51,7 @@
           >我因有特殊考慮，不希望被錄影、錄音、拍照、直播，或任何形式的記錄，這樣適合投稿嗎？<br />I
           don’t want to be filmed, recorded, shoot, broadcasting or any forms of
           minutes based on a special consideration. Is it stll suitable for me
-          to submit a proposal?<br />Sure. The submission system will have the
-          option have proposal authors to check.
+          to submit a proposal?
         </div>
         <p class="a">
           <b-icon icon="chat-dots" variant="dark"></b-icon
