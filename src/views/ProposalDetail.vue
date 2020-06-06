@@ -31,16 +31,25 @@ import DetailHeader from "@/components/proposalDetail/DetailHeader.vue";
 import DetailContent from "@/components/proposalDetail/DetailContent.vue";
 import VersionDetailLightbox from "@/components/proposalDetail/VersionDetailLightbox.vue";
 
-import { handleApiError } from "@/utils/mixins";
+import { handleApiError, addMetaData } from "@/utils/mixins";
 
 export default {
   name: "ProposalDetail",
   components: { DetailHeader, DetailContent, VersionDetailLightbox },
-  mixins: [handleApiError],
+  mixins: [handleApiError, addMetaData],
   beforeRouteEnter(to, from, next) {
     next(async vm => {
+      vm.addMetaData(to.name);
       await vm.handleApiError(
         vm.$store.dispatch("getDetailProject", to.params.id)
+      );
+      let latestVersion =
+        vm.$store.getters.projectDetail.versions[
+          vm.$store.getters.projectDetail.versions.length - 1
+        ];
+      vm.addAPIMetaData(
+        `g0v 雙年會 2020 議程徵集 - ${latestVersion.title}`,
+        latestVersion.summary
       );
     });
   },
@@ -54,7 +63,37 @@ export default {
     openVersionDetailLightboxOpen(index) {
       this.isVersionDetailLightboxOpen = true;
       this.openVersionIndex = index;
-      console.log(index);
+    },
+    addAPIMetaData(title, description) {
+      document.title = title;
+
+      let head = document.querySelector("head");
+      let oldDescriptionMeta = document.querySelector("meta[name=description]");
+      if (oldDescriptionMeta) {
+        oldDescriptionMeta.remove();
+      }
+      let newOldDescriptionMeta = document.createElement("meta");
+      newOldDescriptionMeta.setAttribute("name", "description");
+      newOldDescriptionMeta.setAttribute("content", description);
+      head.appendChild(newOldDescriptionMeta);
+
+      // 社群系列
+      let addMeta = [
+        { property: "og:title", content: title },
+        { property: "og:description", content: description }
+      ];
+      addMeta.forEach(meta => {
+        let oldMeta = document.querySelector(
+          `meta[property='${meta.property}']`
+        );
+        if (oldMeta) {
+          oldMeta.remove();
+        }
+        let createMeta = document.createElement("meta");
+        createMeta.setAttribute("property", `${meta.property}`);
+        createMeta.setAttribute("content", `${meta.content}`);
+        head.appendChild(createMeta);
+      });
     }
   }
 };

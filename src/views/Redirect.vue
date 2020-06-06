@@ -12,10 +12,13 @@
 </template>
 
 <script>
+import { addMetaData } from "@/utils/mixins";
 export default {
   name: "Redirect",
+  mixins: [addMetaData],
   beforeRouteEnter(to, from, next) {
     next(vm => {
+      vm.addMetaData(to.name);
       vm.$store.dispatch("updateToken", to.query.token);
       vm.$store.dispatch("fetchUserInfo");
       vm.$router.push({ name: "Homepage" });

@@ -26,12 +26,6 @@ export default {
       return state.projectList.filter(item => item.enable);
     },
     myProjectList(state) {
-      // const userId = getters.userInfo._id;
-      // console.log("userId", userId, state.projectList);
-      // if (!userId) {
-      //   return [];
-      // }
-      console.log(state.projectList.filter(project => project.owner));
       return state.projectList.filter(project => project.owner);
     },
     projectDetail({ projectDetail }) {
