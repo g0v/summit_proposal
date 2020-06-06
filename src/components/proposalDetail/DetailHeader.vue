@@ -22,19 +22,28 @@
           />
         </div>
       </div>
-      <div class="notice" v-if="this.projectDetail.owner">
-        <b-button variant="danger" @click="goEdit">前往編輯頁面</b-button>
-        <span v-if="this.projectDetail === {}"
-          >提醒：您尚有編輯中的草稿唷！</span
-        >
+      <div
+        class="mv3 flex justify-end items-center w-100"
+        v-if="this.projectDetail.owner"
+      >
+        <draft-notifier class="mr2" :proposal="projectDetail" />
+        <b-button variant="danger" @click="goEdit">
+          編輯提案 <br />
+          Edit Proposal
+        </b-button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import DraftNotifier from "@/components/DraftNotifier";
+
 export default {
   name: "DetailHeader",
+  components: {
+    DraftNotifier
+  },
   props: {
     projectDetail: {
       type: Object,
@@ -86,9 +95,6 @@ export default {
       margin-bottom: 0px;
     }
   }
-  .notice {
-    width: 100%;
-  }
   .cover {
     height: 250px;
     position: relative;
@@ -136,13 +142,6 @@ export default {
         object-fit: cover;
         border-radius: 50%;
       }
-    }
-  }
-  .notice {
-    margin: 20px 0;
-    text-align: right;
-    button {
-      margin-right: 15px;
     }
   }
 }
