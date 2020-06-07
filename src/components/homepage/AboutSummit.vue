@@ -88,8 +88,10 @@
         <p>
           相較於過去的 g0v Summit，為期 2-3 天，在單一會場集中舉行，g0v Summit
           2020 擴大參與，聯合在地社群，推出連續 4
-          天的黑客松、短講、主題論壇、自由對話與開放工作坊，活動場所也擴大到散佈在市區的數個會場，包含各在地社群經營多年的空間與群眾。<br />Compared
-          to the previous g0v Summit, which lasted for 2-3 days with a single
+          天的黑客松、短講、主題論壇、自由對話與開放工作坊，活動場所也擴大到散佈在市區的數個會場，包含各在地社群經營多年的空間與群眾。
+        </p>
+        <p>
+          Compared to the previous g0v Summit, which lasted for 2-3 days with a single
           venue, g0v Summit 2020 expanded its participation and connected the
           local communities, launching 4 consecutive days of hackathons, short
           talks, themed forums, free dialogue, and unconference. Workshops and
