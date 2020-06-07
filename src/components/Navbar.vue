@@ -57,7 +57,6 @@
       </b-navbar-nav>
     </b-collapse>
     <LoginLightbox
-      v-body-scroll-lock="isLoginLightboxOpen"
       v-if="isLoginLightboxOpen"
       @close="isLoginLightboxOpen = false"
     />

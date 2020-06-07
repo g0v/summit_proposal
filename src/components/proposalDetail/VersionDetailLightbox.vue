@@ -1,6 +1,9 @@
 <template>
   <div class="version-lightbox">
-    <div class="version-lightbox-container container">
+    <div
+      class="version-lightbox-container container"
+      v-body-scroll-lock="isVersionDetailLightboxOpen"
+    >
       <b-icon
         class="close-icon"
         icon="x-square"
@@ -64,6 +67,9 @@ export default {
   props: {
     versionData: {
       type: Object
+    },
+    isVersionDetailLightboxOpen: {
+      type: Boolean
     }
   }
 };
