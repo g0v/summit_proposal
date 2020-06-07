@@ -14,6 +14,27 @@
           在這場開放資料、開放政府的運動中，g0v
           社群也開創出台灣公民社會與政府互動的新模式。
         </p>
+        <p>
+          Since 2012, the civic tech movement has been sweeping across the
+          globe. g0v, a community that advocates open source, transparency of
+          information and civic participation, also rode the wave and launched
+          the first event that year with the slogan ““Code to refactor
+          society””. Since then, the movement continues with no sight of ending.
+        </p>
+        <p>
+          Over the past 8 years, g0v has invited thousands of participants to
+          join our hackathons and in turn created several platforms that promote
+          open data and open government. g0v aims to reduce the digital divide
+          and allow citizens easy access to public information, so that
+          discussion of issues can be based on facts. It can also raise the
+          awareness of rational discussion on public affairs.
+        </p>
+        <p>
+          With its emphasis on openness and participation, g0v community has
+          created a new model for the Taiwan society and the government to
+          interact with each other in this open data and open government
+          movement.
+        </p>
       </div>
     </div>
   </section>
@@ -48,7 +69,7 @@ export default {
     margin-bottom: 25px;
     font-weight: 500;
   }
-  p:nth-child(3) {
+  p:last-child {
     margin-bottom: 0;
   }
 }
