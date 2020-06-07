@@ -31,26 +31,6 @@
         </b-card>
 
         <b-card
-          title="ky"
-          img-src="@/assets/images/pics/ky.png"
-          img-alt="ky"
-          img-top
-        >
-          <b-card-text>
-            g0v
-            社群參與者，不務正業的法律人程序控，長年的台日交流小幫手，平常遊走於公私部門之間的協調者，2016
-            年意外跌進了 vTaiwan 的坑
-            ，和大家一起探索開放社群永續發展的極限。<br />A g0v contributor who
-            builds communities and works between the public and private sectors.
-            Mainly contributed in vTaiwan project, exploring the possibility of
-            open communities.
-          </b-card-text>
-          <template v-slot:header>
-            <small>自由人<br />Yorozuya</small>
-          </template>
-        </b-card>
-
-        <b-card
           title="Hsinyi"
           img-src="@/assets/images/pics/Hsinyi.jpg"
           img-alt="Hsinyi"
@@ -189,6 +169,26 @@
           </b-card-text>
           <template v-slot:header>
             <small>好想工作室 創辦人<br />Goodideas-Studio, the Host</small>
+          </template>
+        </b-card>
+
+        <b-card
+          title="ky"
+          img-src="@/assets/images/pics/ky.png"
+          img-alt="ky"
+          img-top
+        >
+          <b-card-text>
+            g0v
+            社群參與者，不務正業的法律人程序控，長年的台日交流小幫手，平常遊走於公私部門之間的協調者，2016
+            年意外跌進了 vTaiwan 的坑
+            ，和大家一起探索開放社群永續發展的極限。<br />A g0v contributor who
+            builds communities and works between the public and private sectors.
+            Mainly contributed in vTaiwan project, exploring the possibility of
+            open communities.
+          </b-card-text>
+          <template v-slot:header>
+            <small>自由人<br />Yorozuya</small>
           </template>
         </b-card>
 
