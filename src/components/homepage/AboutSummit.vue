@@ -141,7 +141,7 @@ export default {
       margin-bottom: 12px;
     }
     p {
-      margin-bottom: 40px;
+      margin-bottom: 40px!important;
     }
   }
 }
