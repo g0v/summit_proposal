@@ -95,12 +95,12 @@
         <div class="q">
           <b-icon icon="question-square-fill" variant="danger"></b-icon
           >我的議程將以非華語進行，大會是否能提供翻譯協助？<br />My presentation
-          will not be conducted in Mandarin, will Summit offer intepreters?
+          will not be conducted in Mandarin, will Summit offer interpreters?
         </div>
         <p class="a">
           <b-icon icon="chat-dots" variant="dark"></b-icon
           >部分場地與時段可協助安排口譯，請於提案時備註使用語言。<br />We will
-          have intepreters available in some parts of the venues and timeslots.
+          have interpreters available in some parts of the venues and timeslots.
           Please leave a note about the language you using when submitting a
           proposal.
         </p>
