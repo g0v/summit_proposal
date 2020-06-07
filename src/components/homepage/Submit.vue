@@ -36,7 +36,7 @@
               <li>公私協力 Public-private collaboration</li>
               <li>開源軟體 Open-source software</li>
               <li>開源硬體 Open-source hardware</li>
-              <li>自造者運動 Makers’ movemen</li>
+              <li>自造者運動 Makers’ movement</li>
             </ul>
           </div>
           <div class="category">
