@@ -88,7 +88,6 @@
 <script>
 import axios from "axios";
 
-
 const CJK_RANGE = "\u4E00-\u9FFF";
 const cjkRegex = new RegExp(`[${CJK_RANGE}]|\n|[^${CJK_RANGE} \n\t]+`, "g");
 

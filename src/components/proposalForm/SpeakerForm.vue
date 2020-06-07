@@ -1,6 +1,6 @@
 <template>
   <div class="speaker">
-    <h2>講者資訊 Speaker Information</h2>
+    <h2 class="h2">講者資訊 Speaker Information</h2>
     <div class="flex flex-wrap">
       <div
         class="speaker__item w-50-l mv3"
@@ -78,6 +78,9 @@ const DEFAULT_SPAKER = {
   bio_en: ""
 };
 
+const TIPS_WE_WILL_TRANSLATE =
+  "若無提供，主辦單位將代為翻譯 or we will help you translate it";
+
 const FIELD_DEFINITIONS = [
   {
     label: "顯示於網頁的講者名稱 Speaker’s display name",
@@ -127,7 +130,7 @@ const FIELD_DEFINITIONS = [
   {
     label: "講者英語簡介 Speaker’s bio in English",
     id: "bio_en",
-    description: "最多 100 字 Max 100 words",
+    description: `最多 100 字 Max 100 words ${TIPS_WE_WILL_TRANSLATE}`,
     maxCount: 100,
     type: "textarea"
   },

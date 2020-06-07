@@ -1,7 +1,7 @@
 <template>
   <div class="proposal form-container" v-if="!isOnInit">
     <b-form @submit="onSubmit">
-      <h2>稿件資訊 Proposal Information</h2>
+      <h2 class="h2">稿件資訊 Proposal Information</h2>
       <form-field
         v-for="field in fieldDefinitions"
         :key="field.id"
@@ -57,7 +57,7 @@ const FORMAT_OPTIONS = [
 const ORAL_LANGUAGE_OPTIONS = ["華語", "English", "其他 Others"];
 
 const TIPS_WE_WILL_TRANSLATE =
-  "若無提供，主辦單位將代為翻譯 We will help you translate this field if it's not presented";
+  "若無提供，主辦單位將代為翻譯 or we will help you translate it";
 
 const FIELD_DEFINITIONS = [
   {
@@ -73,6 +73,7 @@ const FIELD_DEFINITIONS = [
     id: "title_en",
     placeholder: "請填寫英語標題 Please enter proposal title",
     maxCount: 150,
+    description: TIPS_WE_WILL_TRANSLATE,
     type: "text"
   },
   {
