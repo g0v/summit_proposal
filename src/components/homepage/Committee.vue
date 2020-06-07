@@ -61,10 +61,24 @@
             關心各式的人權議題，但能投入的有限，目前也是人權公約施行監督聯盟和西藏台灣人權連線的理事。
             希望能活著見到台灣獨立以及廢除死刑。
             對於g0v只有遠遠的仰望及少少的接觸，但覺得這群人正在做很酷的事，很榮幸今年可以參與g0v-summit
-            2020及學習。
+            2020及學習。<br />Currently working as the executive director for
+            Taiwan Alliance to End Death Penalty (TAEDP). Helped with the
+            establishment of TAEDP in 2003 then became the first full-time staff
+            in 2006 and worked there even since. Most of the career and time
+            have been devoted to abolishing death penalty. Care about lots of
+            human rights issues but has limited time and energy to devote. Also
+            serve as a Senior Director for Covenants Watch and Human Rights
+            Network for Tibet and Taiwan. Would like to see the day that Taiwan
+            abolishes death penalty before I die. Have been admiring g0v from a
+            far with a few encounters, but I know this group of people is doing
+            something really cool. I am honored to be able to participate the
+            g0v-summit 2020 and learn from this experience.
           </b-card-text>
           <template v-slot:header>
-            <small>台灣廢除死刑推動聯盟執行長</small>
+            <small
+              >台灣廢除死刑推動聯盟執行長<br />Taiwan Alliance to End the Death
+              Penalty Executive Director</small
+            >
           </template>
         </b-card>
 
@@ -152,7 +166,7 @@
             develop ways to make local council better in summit.
           </b-card-text>
           <template v-slot:header>
-            <small>台南新芽秘書長</small>
+            <small>台南新芽秘書長<br />Tainan Sprout General Secretary</small>
           </template>
         </b-card>
         <b-card
