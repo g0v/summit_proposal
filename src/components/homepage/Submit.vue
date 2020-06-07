@@ -136,7 +136,7 @@
           網站上公布。
         </p>
         <p>
-          The agenda of g0v Summit 2020 will come from this open call for papers
+          The agenda of g0v Summit 2020 will come from this open call for proposals
           with exceptions of the invited keynotes and the sessions curated by
           our co-hosts.
         </p>
