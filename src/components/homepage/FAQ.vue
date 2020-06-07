@@ -2,35 +2,35 @@
   <section class="faq" id="faq">
     <div class="faq-container container">
       <h2 class="main-title drark">FAQ</h2>
-      <h3>投稿相關</h3>
+      <h3>投稿相關 About Submitting a Proposal</h3>
       <div class="item">
         <div class="q">
           <b-icon icon="question-square-fill" variant="danger"></b-icon
           >結果何時公佈？入選與未入選都會收到通知嗎？ <br />
-          When will announce the result? Will everyone receive notifications
+          When will you announce the result? Will everyone receive notifications
           whether the proposal is accpected or denied?
         </div>
         <p class="a">
           <b-icon icon="chat-dots" variant="dark"></b-icon
-          >議程規劃將於八月底完成，我們將以 email 通知入選或未入選稿件。<br />The
-          plan of programming will be done in the end of August, we will send a
-          email to notify the proposal whether is accepted or not.
+          >議程規劃將於八月底完成，我們將以 email 通知入選或未入選稿件。<br />We
+          will finish our review process by the end of August. We will then send
+          an email to notify every proposers if the proposal is accepted or not.
         </p>
       </div>
       <div class="item">
         <div class="q">
           <b-icon icon="question-square-fill" variant="danger"></b-icon
-          >投稿後，是否還可以修改投稿內容？<br />Can I revise or modify my
-          proposal after submission?
+          >投稿後，是否還可以修改投稿內容？<br />Can I revise my proposal after
+          submission?
         </div>
         <p class="a">
           <b-icon icon="chat-dots" variant="dark"></b-icon>可以。g0v Summit 2020
           採開放協作式的投稿系統。投稿者投稿後，內容將會呈現在系統網站上，開放提問及討論。投稿者在
           7/30 之前，都可以透過網站與公眾互動，並修改稿件內容。系統將於 8/2
           關閉修改功能。<br />Sure. g0v Summit 2020 uses an open-collaborated
-          submission system. After submission, the content will show on the
-          system’s website. Proposal authors can interact with the public and
-          revise or modify their proposals. The System will be shut down on 8/2.
+          submission system. After submission, the proposal will display on the
+          summit website. Proposers can interact with our community and revise
+          their proposals accordingly. All revisions will be freezed on Aug 2.
         </p>
       </div>
       <div class="item">
@@ -41,22 +41,23 @@
         <p class="a">
           <b-icon icon="chat-dots" variant="dark"></b-icon
           >可以。議程委員會依講者多元性、稿件內容等條件綜合評量。<br />Sure. The
-          Programming Commitee will assess through the diversity of speakers,
-          the content of proposals and the others conditions.
+          Programming Commitee will assess all proposals according to the
+          diversity of speakers, the quality of proposals, etc.
         </p>
       </div>
       <div class="item">
         <div class="q">
           <b-icon icon="question-square-fill" variant="danger"></b-icon
-          >我因有特殊考慮，不希望被錄影、錄音、拍照、直播，或任何形式的記錄，這樣適合投稿嗎？<br />I
-          don’t want to be filmed, recorded, shoot, broadcasting or any forms of
-          minutes based on a special consideration. Is it stll suitable for me
-          to submit a proposal?
+          >我因有特殊考慮，不希望被錄影、錄音、拍照、直播，或任何形式的記錄，這樣適合投稿嗎？<br />For
+          some reasons, I don’t want to be filmed, recorded, shoot, broadcasting
+          or leave any forms of records. Is it stll suitable for me to submit a
+          proposal?
         </div>
         <p class="a">
           <b-icon icon="chat-dots" variant="dark"></b-icon
           >可以。投稿系統上將有此欄位供投稿者勾選。<br />Sure. The submission
-          system will have the option have proposal authors to check.
+          system will have the option for you to choose if your talk can be
+          recorded in any format.
         </p>
       </div>
       <div class="item">
@@ -68,13 +69,13 @@
         </div>
         <p class="a">
           <b-icon icon="chat-dots" variant="dark"></b-icon
-          >可以。投稿時，請於「顯示於網頁的名字」留下團隊名字，「講者簡介」留下團隊簡介。「講者姓名」、「電子信箱」、「聯絡方式」則請留下團隊聯絡人資訊。若希望個別講者也列名於議程網站上，可於講者簡介中列舉講者。另一種方式是以多人為講者投稿（見前一題），但在「所屬單位或社群」欄位標註團隊名。<br />Sure.
-          Please write your team name in “the name show on the website” blank,
-          and write the team introduction in “the speaker’s introduction” blank.
-          “Speaker’s name”, “e-mail address”, “the contact” blanks, please write
-          the contact for the team. If you want to list all of the team menbers
-          (or speakers), please list the names in “the speaker’s introduction”
-          blank.
+          >可以。投稿時，請於「顯示於網頁的講者名稱」留下團隊名字，「講者簡介」留下團隊簡介。「講者姓名」、「電子信箱」、「聯絡方式」則請留下團隊聯絡人資訊。若希望個別講者也列名於議程網站上，可於講者簡介中列舉講者。<br />Sure.
+          Please write the name of your team in “the name show on the website”,
+          and write the team introduction in “the speaker’s introduction”.
+          Please fill in one contact’s info in “Speaker’s name”, “e-mail
+          address”, “the contact”. If you want to list all of your team members
+          (or speakers), please list their names in “the speaker’s
+          introduction”.
         </p>
       </div>
       <div class="item">
@@ -89,26 +90,27 @@
           all of the speakers’ information on the submission system.
         </p>
       </div>
-      <h3>議程需求</h3>
+      <h3>議程需求 About the Conference</h3>
       <div class="item">
         <div class="q">
           <b-icon icon="question-square-fill" variant="danger"></b-icon
-          >我的議程將以非華語進行，大會是否能提供翻譯協助？<br />My proposal
-          isn’t do in Chinese, will Summit offer translations?
+          >我的議程將以非華語進行，大會是否能提供翻譯協助？<br />My presentation
+          will not be conducted in Mandarin, will Summit offer intepreters?
         </div>
         <p class="a">
           <b-icon icon="chat-dots" variant="dark"></b-icon
           >部分場地與時段可協助安排口譯，請於提案時備註使用語言。<br />We will
-          have some intepreters at some part of the stages and periods, please
-          leave a note about the language you using when submitting a proposal.
+          have intepreters available in some parts of the venues and timeslots.
+          Please leave a note about the language you using when submitting a
+          proposal.
         </p>
       </div>
       <div class="item">
         <div class="q">
           <b-icon icon="question-square-fill" variant="danger"></b-icon
           >我的議程有需要特殊協助（例如手語、無障礙空間等等），大會是否可以協助安排？<br />My
-          proposal needs some special assistance (like sign language, accessible
-          place), will Summit help providing some assistance?
+          proposal needs special assistance (like sign language, accessiblility,
+          etc.), will you be able to help?
         </div>
         <p class="a">
           <b-icon icon="chat-dots" variant="dark"></b-icon
@@ -121,31 +123,30 @@
       <div class="item">
         <div class="q">
           <b-icon icon="question-square-fill" variant="danger"></b-icon
-          >會議場地有提供什麼器材？<br />What equipments will be provided at
-          conference stages.
+          >會議場地有提供什麼器材？<br />What equipments will be provided?
         </div>
         <p class="a">
           <b-icon icon="chat-dots" variant="dark"></b-icon
-          >各場地均備有基礎會議設備，包括投影、麥克風、直播等設備。若有特殊需求，請於提案時備註。<br />Every
-          stage will provide some basic equipments for conference, including
-          projecter, microphone, broadcaster. If there’s any demand, please
-          leave a note when submitting a proposal.
+          >各場地均備有基礎會議設備，包括投影機、麥克風、直播等設備。若有特殊需求，請於提案時備註。<br />All
+          the venues will provide basic conference equipments, including
+          projecter, microphones, and live streaming equipments. If there’s any
+          speical needs, please leave a note when submitting your proposal.
         </p>
       </div>
-      <h3>交通、住宿相關</h3>
+      <h3>交通、住宿相關 About Travel and Accommodation</h3>
       <div class="item">
         <div class="q">
           <b-icon icon="question-square-fill" variant="danger"></b-icon
           >我不住在台南，大會是否會協助講者安排住宿與交通？或是提供補助？<br />I
-          don’t live in Tainan, Could g0v Summit assist the speaker to arrange
-          accommodation and transportation? or provide subsidy?
+          don’t live in Tainan, would you help arrange accommodation and
+          transportation? Would you provide travel subsidy?
         </div>
         <p class="a">
           <b-icon icon="chat-dots" variant="dark"></b-icon
           >很抱歉，此次大會並不提供任何住宿與交通協助。歡迎大家開發台南好吃好住好玩的地點！<br />Sorry,
           g0v Summit won’t provide any accommodation and transportation
-          assistance. We welcome everyone to discover good places in Tainan to
-          eat, live, and have fun!
+          assistance. We welcome everyone to explore Tainan, and discover good
+          places to eat, stay, and have fun!
         </p>
       </div>
       <div class="item">
@@ -157,7 +158,8 @@
         </div>
         <p class="a">
           <b-icon icon="chat-dots" variant="dark"></b-icon
-          >我們將會在通知入選時一併寄送邀請函，供簽證及入境申請使用。其它簽證辦理相關問題，請參考<a
+          >我們將會在通知入選時一併寄送邀請函，供簽證及入境申請使用。
+          其它簽證辦理相關問題，請參考<a
             href="https://www.boca.gov.tw/mp-2.html"
             >外交部領事事務局網站</a
           >並洽詢<a href="https://www.boca.gov.tw/sp-foof-countrylp-01-2.html"
@@ -165,16 +167,17 @@
           >。若有需要主辦單位提供任何文件，請與我們聯繫
           <a href="mailto:programming@summit.g0v.tw。"
             >programming@summit.g0v.tw。</a
-          ><br />We will send an invitation letter for visa and entry related
-          documents’ application together with notification of the selected
-          proposal. For other visa-related issues, please refer to the
+          ><br />We will send an invitation letter after notifying selected
+          propsals so that you can use it toward visa application and upon the
+          entry of Taiwan. For other visa-related questions, please refer to the
           <a href="https://www.boca.gov.tw/mp-2.html"
             >Ministry of Foreign Affairs</a
           >
           and consult our
           <a href="https://www.boca.gov.tw/sp-foof-countrylp-01-2.html"
             >overseas representative offices</a
-          >. If you need g0v Summit to provide any document, please contact us
+          >. If you need g0v Summit to provide any other documents, please
+          contact us
           <a href="mailto:programming@summit.g0v.tw。"
             >programming@summit.g0v.tw。</a
           >
