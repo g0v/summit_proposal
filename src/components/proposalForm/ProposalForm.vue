@@ -57,7 +57,7 @@ const FORMAT_OPTIONS = [
 const ORAL_LANGUAGE_OPTIONS = ["華語", "English", "其他 Others"];
 
 const TIPS_WE_WILL_TRANSLATE =
-  "若無提供，主辦單位將代為翻譯 Organizer would do translatation if this field not presented";
+  "若無提供，主辦單位將代為翻譯 We will help you translate this field if it's not presented";
 
 const FIELD_DEFINITIONS = [
   {
