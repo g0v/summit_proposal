@@ -18,7 +18,7 @@
       />
     </template>
     <VersionDetailLightbox
-      v-body-scroll-lock="isVersionDetailLightboxOpen"
+      :isVersionDetailLightboxOpen="isVersionDetailLightboxOpen"
       v-if="isVersionDetailLightboxOpen"
       @close="isVersionDetailLightboxOpen = false"
       :versionData="$store.getters.projectDetail.versions[openVersionIndex]"

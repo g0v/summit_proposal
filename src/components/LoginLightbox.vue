@@ -1,6 +1,6 @@
 <template>
   <section class="login">
-    <div class="agree-container" v-if="!isAgree">
+    <div class="agree-container" v-if="!isAgree" v-body-scroll-lock="!isAgree">
       <div class="title">
         <h2>
           g0v Summit 2020 個人資料蒐集、處理及利用同意書<br />g0v Summit 2020
@@ -8,7 +8,7 @@
         </h2>
         <b-icon icon="x-square" @click="$emit('close')"></b-icon>
       </div>
-      <div class="content" v-if="!isAgree">
+      <div class="content">
         <span>
           為遵守「個人資料保護法」規定，並保障當事人之權利，謹依法告知下列事項：<br />
           In respect to the “Personal Information Protection Act”, notify you of
@@ -93,7 +93,7 @@
       </div>
       <b-button @click="isAgree = true">同意，繼續下一步</b-button>
     </div>
-    <div class="login-container" v-else>
+    <div class="login-container" v-else v-body-scroll-lock="isAgree">
       <div class="title">
         <h2>登入</h2>
         <b-icon icon="x-square" @click="$emit('close')"></b-icon>
@@ -208,6 +208,7 @@ button {
   text-align: center;
   max-height: 85vh;
   overflow: scroll;
+  max-width: 90%;
   .title {
     h2 {
       color: $main-color;
