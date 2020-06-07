@@ -3,7 +3,7 @@
     <div class="banner-container container">
       <div class="info">
         <h2>
-          <span>g0v Summit 2020 <br />Call for Proposal</span><br />2020
+          <span>g0v Summit 2020 <br />Call for Proposals</span><br />2020
           台灣零時政府<br />雙年會議程徵集
         </h2>
         <!--
