@@ -99,28 +99,16 @@
         <b-icon icon="x-square" @click="$emit('close')"></b-icon>
       </div>
       <div class="content">
-        <a
-          :href="
-            `https://api.summit2020.pre-stage.cc/auth/facebook?authCallback=${domain}/redirect`
-          "
+        <a :href="`${baseURL}/auth/facebook?authCallback=${domain}/redirect`"
           ><b-button>Facebook</b-button></a
         >
-        <a
-          :href="
-            `https://api.summit2020.pre-stage.cc/auth/google?authCallback=${domain}/redirect`
-          "
+        <a :href="`${baseURL}/auth/google?authCallback=${domain}/redirect`"
           ><b-button>Google</b-button></a
         >
-        <a
-          :href="
-            `https://api.summit2020.pre-stage.cc/auth/github?authCallback=${domain}/redirect`
-          "
+        <a :href="`${baseURL}/auth/github?authCallback=${domain}/redirect`"
           ><b-button>Github</b-button></a
         >
-        <a
-          :href="
-            `https://api.summit2020.pre-stage.cc/auth/slack?authCallback=${domain}/redirect`
-          "
+        <a :href="`${baseURL}/auth/slack?authCallback=${domain}/redirect`"
           ><b-button>Slack</b-button></a
         >
       </div>
@@ -134,7 +122,10 @@ export default {
   data() {
     return {
       domain: window.location.origin,
-      isAgree: false
+      isAgree: false,
+      baseURL: location.href.includes("propose.summit2020.g0v.tw")
+        ? `https://api.summit2020.g0v.tw`
+        : `https://api.summit2020.pre-stage.cc`
     };
   }
 };
