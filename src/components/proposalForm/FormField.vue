@@ -3,7 +3,7 @@
     class="formfield"
     :label="label"
     :label-for="definition.id"
-    :description="definition.description"
+    :description="description"
     :state="isValid"
     :invalid-feedback="invalidMessage"
     :class="{ 'formfield--long': definition.labelEn }"
@@ -118,19 +118,17 @@ export default {
     };
   },
   computed: {
-    label() {
-      if (this.definition.required) {
-        return this.definition.label + "*";
+    description() {
+      const def = this.definition;
+      if (def.required) {
+        return def.description;
       }
+      return `選填欄位 Optional field. ${def.description || ""}`;
+    },
+    label() {
       return this.definition.label;
     },
     labelEn() {
-      if (!this.definition.labelEn) {
-        return "";
-      }
-      if (this.definition.required) {
-        return this.definition.labelEn + "*";
-      }
       return this.definition.labelEn;
     },
     imageCtaLabel() {

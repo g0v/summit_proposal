@@ -66,6 +66,7 @@ const FIELD_DEFINITIONS = [
       "Do you agree that content of this proposal is released under CC BY 4.0 license?",
     id: "is_content_cc40",
     type: "boolean",
+    required: true,
     valueMust: true,
     description:
       "g0v Summit 2020 要求所有投稿的稿件內容，皆以 CC BY 4.0 授權釋出，拒絕者，將無法投稿。此要求僅限稿件內容，關於會議時的紀錄與投影片授權，請見下方相關欄位。 We require all content of proposal submitted to g0v Summit 2020 to be licensed under CC BY 4.0. Proposal that doesn’t follow this requirement would not be able to submit. This requirement is only applied to content of proposal. For license about slides or presentation record, please see related question below."
