@@ -17,10 +17,10 @@
         <ul class="list">
           <li>
             機關單位名稱：g0v summit 2020 籌備團隊<br />
-            Institution: g0v Summit 2020 Team.
+            Institution: g0v Summit 2020 Working Group.
           </li>
           <li>
-            蒐集之特定目的：g0v summit 活動籌備使用<br />
+            蒐集之特定目的：g0v Summit 活動籌備使用<br />
             Purpose: g0v Summit event usage.
           </li>
           <li>
@@ -31,8 +31,8 @@
             <span>個人資料利用之期間、地區、對象及方式：</span>
             <ul class="list-detail">
               <li>
-                期間: g0v summit 2020 及未來 g0v summit 籌備期間
-                （籌備時間認定為該屆總召確認當日起，至活動結束後30天內）
+                期間: g0v Summit 2020 及未來 g0v Summit 籌備期間
+                （籌備時間認定為該屆總召確認當日起，至活動結束後 30 天內）
               </li>
               <li>地區：台灣</li>
               <li>對象：於 g0v summit 2020 網頁提案者</li>
@@ -52,8 +52,8 @@
             </ul>
           </li>
           <li>
-            <span>依個人資料保護法第3條規定，當事人可行使以下權利：</span>
-            <ul>
+            <span>依個人資料保護法第 3條規定，當事人可行使以下權利：</span>
+            <ul class="list-detail">
               <li>查詢或請求閱覽。</li>
               <li>請求製給複製本。</li>
               <li>請求補充或更正</li>
@@ -64,11 +64,11 @@
               In terms of the 3rd paragraph of the Act, you may request the
               following rights:
             </span>
-            <ul>
+            <ul class="list-detail">
               <li>Inquire or request to view.</li>
               <li>Request for a hard copy.</li>
               <li>Request for annotation or correction.</li>
-              <li>Request for stop collecting, edit(怪), using.</li>
+              <li>Request for stop collecting, edit, using.</li>
               <li>Request for Deletion.</li>
             </ul>
           </li>
