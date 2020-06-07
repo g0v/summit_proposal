@@ -1,7 +1,7 @@
 <template>
   <div class="proposal form-container" v-if="!isOnInit">
     <b-form @submit="onSubmit">
-      <h2>稿件資訊 Proposal Information</h2>
+      <h2 class="h2">稿件資訊 Proposal Information</h2>
       <form-field
         v-for="field in fieldDefinitions"
         :key="field.id"
@@ -57,9 +57,20 @@ const FORMAT_OPTIONS = [
 const ORAL_LANGUAGE_OPTIONS = ["華語", "English", "其他 Others"];
 
 const TIPS_WE_WILL_TRANSLATE =
-  "若無提供，主辦單位將代為翻譯 We will help you translate this field if it's not presented";
+  "若無提供，主辦單位將代為翻譯 or we will help you translate it";
 
 const FIELD_DEFINITIONS = [
+  {
+    label: "稿件內容是否以 CC BY 4.0 授權釋出？",
+    labelEn:
+      "Do you agree that content of this proposal is released under CC BY 4.0 license?",
+    id: "is_content_cc40",
+    type: "boolean",
+    required: true,
+    valueMust: true,
+    description:
+      "g0v Summit 2020 要求所有投稿的稿件內容，皆以 CC BY 4.0 授權釋出，拒絕者，將無法投稿。此要求僅限稿件內容，關於會議時的紀錄與投影片授權，請見下方相關欄位。 We require all content of proposal submitted to g0v Summit 2020 to be licensed under CC BY 4.0. Proposal that doesn’t follow this requirement would not be able to submit. This requirement is only applied to content of proposal. For license about slides or presentation record, please see related question below."
+  },
   {
     label: "稿件標題 Proposal Title",
     id: "title",
@@ -73,6 +84,7 @@ const FIELD_DEFINITIONS = [
     id: "title_en",
     placeholder: "請填寫英語標題 Please enter proposal title",
     maxCount: 150,
+    description: TIPS_WE_WILL_TRANSLATE,
     type: "text"
   },
   {
@@ -182,6 +194,7 @@ export default {
         topic: "",
         three_keywords: "",
         cover_image: "",
+        is_content_cc40: null,
         is_presentation_cc40: null,
         is_slide_cc40: null
       },

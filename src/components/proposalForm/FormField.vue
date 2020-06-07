@@ -3,7 +3,7 @@
     class="formfield"
     :label="label"
     :label-for="definition.id"
-    :description="definition.description"
+    :description="description"
     :state="isValid"
     :invalid-feedback="invalidMessage"
     :class="{ 'formfield--long': definition.labelEn }"
@@ -69,7 +69,7 @@
       :options="binaryOptions"
       :name="definition.id"
       :state="isValid"
-      :required="definition.required"
+      :required="isBooleanRequired"
     ></b-form-radio-group>
     <div :id="definition.id" v-if="definition.type === 'image'">
       <img
@@ -87,7 +87,6 @@
 </template>
 <script>
 import axios from "axios";
-
 
 const CJK_RANGE = "\u4E00-\u9FFF";
 const cjkRegex = new RegExp(`[${CJK_RANGE}]|\n|[^${CJK_RANGE} \n\t]+`, "g");
@@ -119,19 +118,17 @@ export default {
     };
   },
   computed: {
-    label() {
-      if (this.definition.required) {
-        return this.definition.label + "*";
+    description() {
+      const def = this.definition;
+      if (def.required) {
+        return def.description;
       }
+      return `選填欄位 Optional field. ${def.description || ""}`;
+    },
+    label() {
       return this.definition.label;
     },
     labelEn() {
-      if (!this.definition.labelEn) {
-        return "";
-      }
-      if (this.definition.required) {
-        return this.definition.labelEn + "*";
-      }
       return this.definition.labelEn;
     },
     imageCtaLabel() {
@@ -139,6 +136,10 @@ export default {
         return this.definition.changeLabel;
       }
       return this.definition.uploadLabel;
+    },
+    isBooleanRequired() {
+      const def = this.definition;
+      return def.required || "valueMust" in def;
     },
     isSelectWithOther() {
       return this.definition.type === "select-with-other";
@@ -164,6 +165,18 @@ export default {
       }
       if (def.type === "image" && def.required && !this.value) {
         return `請${def.uploadLabel}`;
+      }
+      if (
+        def.type === "boolean" &&
+        "valueMust" in def &&
+        this.value !== "" &&
+        this.value !== def.valueMust
+      ) {
+        if (def.valueMust) {
+          return '選擇必須為「是」 Please select "Yes"';
+        } else {
+          return '選擇必須為「否」 Please select "No"';
+        }
       }
       return "";
     },
