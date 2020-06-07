@@ -185,7 +185,7 @@ const FIELD_DEFINITIONS = [
     otherOption: "其它（請描述）Other (please specify)",
     otherId: "private_channel_other",
     options: [
-      "社交媒體 Social media (Facebook, Twitter, Istagram)",
+      "社交媒體 Social media (Facebook, Twitter, Instagram)",
       "g0v 黑客松 g0v hackathon",
       "其它開源或公民科技社群 Open source and civic tech communities",
       "揪松電子報 Jothon’s newsletter",
