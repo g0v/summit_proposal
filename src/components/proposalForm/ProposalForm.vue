@@ -44,11 +44,14 @@ const TOPIC_OPTIONS = [
 
 const FORMAT_OPTIONS = [
   { name: "演講 （20 分鐘）Talk (20 min)", maxSpeakers: 2 },
-  {
-    name: "主題論壇 （60/90/120 分鐘）Panel discussion (60/90/120 min)",
+  ...[60, 90, 120].map(minute => ({
+    name: `主題論壇 （${minute} 分鐘）Panel discussion (${minute} min)`,
     maxSpeakers: 4
-  },
-  { name: "工作坊 （60/90/120 分鐘）Workshop (60/90/120 min)", maxSpeakers: 3 }
+  })),
+  ...[60, 90, 120].map(minute => ({
+    name: `工作坊 （${minute} 分鐘）Workshop (${minute} min)`,
+    maxSpeakers: 3
+  }))
 ];
 
 const ORAL_LANGUAGE_OPTIONS = ["華語", "English", "其他 Others"];
