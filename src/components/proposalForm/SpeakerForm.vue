@@ -114,8 +114,7 @@ const FIELD_DEFINITIONS = [
     label: "講者資訊連結 Speaker info URL ",
     id: "info_url",
     type: "text",
-    textType: "url",
-    required: true
+    textType: "url"
   },
   {
     label: "講者簡介 Short bio",

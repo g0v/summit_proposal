@@ -163,8 +163,8 @@ export default {
       h3 {
         font-size: 18px;
         font-weight: 600;
-        margin-bottom: 5px;
-        height: 70px;
+        margin-bottom: 8px;
+        // height: 70px;
         span {
           display: block;
         }
@@ -177,6 +177,7 @@ export default {
         -webkit-line-clamp: 4;
         margin-bottom: 0;
         font-size: 15px;
+        white-space: pre-line;
       }
     }
   }
