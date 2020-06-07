@@ -163,7 +163,7 @@ export default {
         }
       }
       if (def.type === "image" && def.required && !this.value) {
-        return `請${this.def.uploadLabel}`;
+        return `請${def.uploadLabel}`;
       }
       return "";
     },
