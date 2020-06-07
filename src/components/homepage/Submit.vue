@@ -149,7 +149,7 @@
           feedbacks and discussions will lead to better proposals.
         </p>
         <p>
-          Submissions are due on Jun 30 2020. After June 30, we no longer accpet
+          Submissions are due on Jun 30 2020. After June 30, we no longer accept
           new proposals. However, summitted proposals can continue discussion
           and revision on the forum. Discussion will be closed on Jul 30 and
           revision be freezed on Aug 2. Once both discussion and revision are
