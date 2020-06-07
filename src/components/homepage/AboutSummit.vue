@@ -1,26 +1,30 @@
 <template>
   <section class="about-summit">
     <div class="about-summit-container container">
-      <h2 class="main-title drark">關於 g0v Summit</h2>
+      <h2 class="main-title drark">g0v Summit</h2>
       <article>
         <h3>
-          <b-icon icon="brightness-high-fill" variant="warning"></b-icon>簡介
-          About g0v Summit
+          <b-icon icon="brightness-high-fill" variant="warning"></b-icon>關於
+          About
         </h3>
         <p>
           g0v Summit
           國際雙年會兩年舉辦一次，關注開放政府、開源協作、公民參與等面向，是國際開放政府社群的焦點活動，過去三屆吸引多達
-          33
-          國講者投稿。雙年會大部份由社群貢獻者志願籌辦，議程秉持開放協作精神，籌備大會的討論文件皆以共筆形式公開，也鼓勵參與者協作議程的文字紀錄，會中也有現場口譯和影像直播輔助，減少參與的負擔。議程除了大會籌辦，也開放完整時段的開放工作坊（Unconference）由參與者提案決定議程內容，以演講、討論、自由對話等形式創造新的協作空間。會中自由報名的全場閃電講更是開源社群傳統，以開放分享的精神貫穿年會。
+          33 國講者投稿。
+        </p>
+        <p>
+          雙年會大部份由社群貢獻者志願籌辦，議程秉持開放協作精神，籌備大會的討論文件皆以共筆形式公開，也鼓勵參與者協作議程的文字紀錄，會中也有現場口譯和影像直播輔助，減少參與的負擔。議程除了大會籌辦，也開放完整時段的開放工作坊（Unconference）由參與者提案決定議程內容，以演講、討論、自由對話等形式創造新的協作空間。會中自由報名的全場閃電講更是開源社群傳統，以開放分享的精神貫穿年會。
         </p>
         <p>
           g0v Summit is a biennial gathering focuses on open government,
           open-source collaboration, and citizen participation. It is a
           high-profile event of the international open government community. The
-          past 3 times have attracted speakers from 33 countries.All the Summit
-          sections are organized by community contributors, and the agenda
-          adheres to an open and collaborative spirit. Documents and discussions
-          during preparation are made public as collaborative notes.
+          past 3 times have attracted speakers from 33 countries.
+        </p>
+        <p>
+          All the Summit sections are organized by community contributors, and
+          the agenda adheres to an open and collaborative spirit. Documents and
+          discussions during preparation are made public as collaborative notes.
           Participants are encouraged to share and cowork their notes during
           sessions. Simultaneous interpretation and live streaming are provided
           to lower the barrier of participation. In addition to the planned
@@ -43,7 +47,7 @@
         </h4>
         <p>
           歷屆 g0v Summit
-          皆有來自全球各國的參與者來到台灣，帶著豐富的經驗，透過演講、討論、工作坊，與近千名會眾交流經驗。<br />In
+          皆有來自全球各國的參與者來到台灣，帶著豐富的經驗，透過演講、討論、工作坊，與近千名會眾交流經驗。。<br />In
           previous g0v Summits, participants with rich experience from all over
           the world came to Taiwan. They exchanged experiences with nearly 1,000
           congregations through speeches, discussions, and workshops.

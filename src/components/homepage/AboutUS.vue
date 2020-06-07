@@ -1,7 +1,7 @@
 <template>
   <section class="about-us" id="about-us">
     <div class="about-us-container container">
-      <h2 class="main-title drark">g0v 介紹</h2>
+      <h2 class="main-title drark">什麼是 g0v？</h2>
       <div class="content">
         <p>
           自 2012 年以來，公民科技運動風起雲湧。以開放透明、公民參與為號召的

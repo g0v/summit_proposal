@@ -3,7 +3,9 @@
     <div class="submit-container container">
       <h2 class="main-title light">投稿辦法</h2>
       <section class="item">
-        <h3><b-icon icon="heart-fill" variant="danger"></b-icon>投稿主題</h3>
+        <h3>
+          <b-icon icon="heart-fill" variant="danger"></b-icon>投稿主題 Topics
+        </h3>
         <div class="categories">
           <div class="category">
             <h4>「沒有人」的島<br />Nobody’s island</h4>
@@ -83,6 +85,7 @@
       <section class="item">
         <h3>
           <b-icon icon="music-note-beamed" variant="warning"></b-icon>形式
+          Format
         </h3>
         <div class="way">
           <h4>演講 Talk</h4>
@@ -92,15 +95,15 @@
             可選擇 60、90 或 120 分鐘，自行籌組講者群，共 2-4 人，其中 1
             位可指定為主持人，同時在台上圍繞特定議題對話。<br />Available
             options: 60, 90 or 120 minutes. You need to form a group of 2-4
-            speakers, 1 of which could be the moderator. Speakers will be
-            on-stage speaking about a specific topic simultaneously.
+            discussants, 1 of which could be the moderator. Discussants will be
+            on-stage having a conversation about a specific topic.
           </p>
           <h4>工作坊 Workshop</h4>
           <p>
             可選擇 60、90 或 120 分鐘，由 1-3
             人主持團隊帶領會眾進行互動式小組討論、動手做等形式的議程。<br />Available
             options: 60, 90 or 120 minutes. Lead by a team of 1-3 people to
-            conduct group discussion or hands-on activities.
+            moderate group discussion or hands-on activities.
           </p>
         </div>
       </section>
@@ -131,6 +134,27 @@
           關閉，提案修改則於 8/2 關閉。提案與修改皆凍結後，g0v summit 2020
           議程委員將會選出本屆 summit 的議程，並於八月底陸續在 g0v summit 2020
           網站上公布。
+        </p>
+        <p>
+          The agenda of g0v Summit 2020 will come from this open call for papers
+          with exceptions of the invited keynotes and the sessions curated by
+          our co-hosts.
+        </p>
+        <p>
+          Once your proposal is submitted, it will openly display on the summit
+          website under an CC BY 4.0 International license after taking off
+          speakers’ personal information. The submission is open to discussion
+          and revision. We welcome and encourage all proposers to interact with
+          each other and the community on the proposal forum. Hopefully the
+          feedbacks and discussions will lead to better proposals.
+        </p>
+        <p>
+          Submissions are due on Jun 30 2020. After June 30, we no longer accpet
+          new proposals. However, summitted proposals can continue discussion
+          and revision on the forum. Discussion will be closed on Jul 30 and
+          revision be freezed on Aug 2. Once both discussion and revision are
+          closed, the Programming Committee will start the review process.
+          Result notification emails will be sent out in late August.
         </p>
       </section>
     </div>
