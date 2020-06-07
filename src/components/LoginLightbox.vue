@@ -16,8 +16,8 @@
         </span>
         <ul class="list">
           <li>
-            機關單位名稱：g0v summit 2020 籌備團隊<br />
-            Institution: g0v Summit 2020 Team.
+            機關單位名稱：g0v Summit 2020 Working Group 工作小組<br />
+            Institution: g0v Summit 2020 Working Group Team.
           </li>
           <li>
             蒐集之特定目的：g0v summit 活動籌備使用<br />
