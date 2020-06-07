@@ -124,8 +124,11 @@ export default {
     }
   },
   mounted() {
+    let baseURL = location.href.includes("propose.summit2020.g0v.tw")
+      ? `https://discuss.summit2020.g0v.tw/`
+      : `https://discuss.summit2020.pre-stage.cc`;
     const config = {
-      discussURL: "https://discuss.summit2020.pre-stage.cc",
+      discussURL: baseURL,
       projectID: this.$route.params.id,
       projectTitle: this.latestVersion.title || "無標題",
       categoryID: 2
