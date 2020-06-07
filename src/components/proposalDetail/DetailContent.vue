@@ -18,11 +18,11 @@
         <main>
           <div class="item">
             <h3>摘要 Summary</h3>
-            <p>{{ latestVersion.summary }}</p>
+            <rich-multiline :text="latestVersion.summary" />
           </div>
           <div class="item">
             <h3>英語摘要 Summary in English</h3>
-            <p>{{ latestVersion.summary_en }}</p>
+            <rich-multiline :text="latestVersion.summary_en" />
           </div>
           <div class="item">
             <h3>使用語言 Language</h3>
@@ -108,8 +108,13 @@
 </template>
 
 <script>
+import RichMultiline from "./RichMultiline";
+
 export default {
   name: "DetailContent",
+  components: {
+    RichMultiline
+  },
   props: {
     projectDetail: {
       type: Object,
@@ -237,6 +242,7 @@ export default {
       }
       p {
         margin-bottom: 0;
+        white-space: pre-line;
       }
     }
   }
