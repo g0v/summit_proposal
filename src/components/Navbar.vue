@@ -38,6 +38,10 @@
           歷年議程<br />
           Prev Events
         </b-nav-item>
+        <b-nav-item href="https://discuss.summit2020.g0v.tw">
+          討論區<br />
+          Forum
+        </b-nav-item>
         <b-nav-item
           v-if="$store.getters.isLoggedIn"
           :to="{ name: 'PropasalManageList' }"
