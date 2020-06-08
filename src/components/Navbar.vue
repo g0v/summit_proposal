@@ -17,7 +17,10 @@
           投稿辦法<br />
           Process
         </b-nav-item>
-        <b-nav-item :to="{ name: 'Homepage', hash: '#faq' }">FAQ</b-nav-item>
+        <b-nav-item :to="{ name: 'Homepage', hash: '#faq' }">
+          常見問題<br />
+          FAQ
+        </b-nav-item>
         <b-nav-item :to="{ name: 'Homepage', hash: '#committee' }">
           議程委員會<br />
           Committee
