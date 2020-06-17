@@ -16,7 +16,7 @@
               <li>地方治理 Local governance</li>
               <li>開放治理 Open governance</li>
               <li>社會創新 Social innovation</li>
-              <li>地方創生 Placemaking</li>
+              <li>地方創生 Regional revitalization</li>
             </ul>
           </div>
           <div class="category">
@@ -114,7 +114,10 @@
           <li>徵件截止 Dealine for new submission：2020/06/30</li>
           <li>公開討論截止 Open discussion ends：2020/07/30</li>
           <li>投稿文字修改截止 Proposal editing freezes：2020/08/02</li>
-          <li>通知投稿結果 Notification of accepted proposals：八月底</li>
+          <li>
+            通知投稿結果 Notification of accepted proposals：八月底 End of
+            August
+          </li>
         </ul>
       </section>
       <section class="item">
@@ -136,9 +139,9 @@
           網站上公布。
         </p>
         <p>
-          The agenda of g0v Summit 2020 will come from this open call for proposals
-          with exceptions of the invited keynotes and the sessions curated by
-          our co-hosts.
+          The agenda of g0v Summit 2020 will come from this open call for
+          proposals with exceptions of the invited keynotes and the sessions
+          curated by our co-hosts.
         </p>
         <p>
           Once your proposal is submitted, it will openly display on the summit
