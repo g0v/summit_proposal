@@ -52,6 +52,20 @@
               }}
             </p>
           </div>
+          <div class="item" v-if="latestVersion.related_url">
+            <h3>相關專案資訊連結 Related projects / works URL</h3>
+            <p>
+              <a
+                class="gray dim hover-gray"
+                :href="latestVersion.related_url"
+                target="_blank"
+                rel="noopener"
+              >
+                {{ latestVersion.related_url }}
+                <b-icon icon="box-arrow-up-right" />
+              </a>
+            </p>
+          </div>
           <div class="item">
             <h3>
               你的議程是否可以接受錄影、錄音、拍照、共筆、直播等形式的記錄，且以開放授權釋出？
