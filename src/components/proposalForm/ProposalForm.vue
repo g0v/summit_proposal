@@ -138,6 +138,12 @@ const FIELD_DEFINITIONS = [
     required: true
   },
   {
+    label: "相關專案資訊連結 Related projects / works URL",
+    id: "related_url",
+    type: "text",
+    textType: "url"
+  },
+  {
     label: "主圖 Cover image",
     id: "cover_image",
     type: "image",
