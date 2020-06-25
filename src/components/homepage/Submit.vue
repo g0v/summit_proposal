@@ -78,6 +78,10 @@
               <li>醫療 Healthcare</li>
               <li>環境 Environment</li>
               <li>科學 Science</li>
+              <li>民主 Democracy</li>
+              <li>審議 Deliberation</li>
+              <li>農林漁牧 Agriculture, forestry, fishing & husbandry</li>
+              <li>其他 Other</li>
             </ul>
           </div>
         </div>
