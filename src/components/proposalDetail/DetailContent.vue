@@ -59,9 +59,9 @@
                 class="gray dim hover-gray"
                 :href="latestVersion.related_url"
                 target="_blank"
-                rel="noopener"
+                rel="noopener nofollow"
               >
-                {{ latestVersion.related_url }}
+                {{ urlShortener(latestVersion.related_url) }}
                 <b-icon icon="box-arrow-up-right" />
               </a>
             </p>
@@ -108,7 +108,16 @@
             <h4>講者所在城市 Speaker’s location (city)</h4>
             <p>{{ speaker.city }}</p>
             <h4>講者資訊連結 Speaker info URL</h4>
-            <p><a :href="speaker.info_url" target="_blank">前往外部連結</a></p>
+            <p>
+              <a
+                :href="speaker.info_url"
+                rel="noopener nofollow"
+                target="_blank"
+              >
+                {{ urlShortener(speaker.info_url) }}
+                <b-icon icon="box-arrow-up-right" />
+              </a>
+            </p>
             <h4>講者簡介 Short bio</h4>
             <p>{{ speaker.bio }}</p>
             <h4>Speaker’s bio in English</h4>
@@ -123,6 +132,10 @@
 
 <script>
 import RichMultiline from "./RichMultiline";
+
+const MAX_URL_LEN = 40;
+const URL_ELLIPSIS = "...";
+const MIN_URL_TAIL_LEN = 5;
 
 export default {
   name: "DetailContent",
@@ -177,6 +190,28 @@ export default {
         document.getElementsByTagName("body")[0]
       ).appendChild(window.nbb.script);
     })();
+  },
+  methods: {
+    urlShortener(url) {
+      if (!url.startsWith("http")) {
+        // just to ensure it's a url
+        // or become an invalid stuff
+        url = "https://" + url;
+      }
+      if (url.length <= MAX_URL_LEN + URL_ELLIPSIS.length) {
+        return url;
+      }
+      const urlTokens = url.split("/");
+      let domain = urlTokens.slice(0, 3).join("/") + "/";
+      if (domain.length > MAX_URL_LEN) {
+        domain = domain.slice(0, MAX_URL_LEN - MIN_URL_TAIL_LEN);
+      }
+      const postfix = urlTokens.slice(3).join("/");
+      const lenLeft = Math.max(MAX_URL_LEN - domain.length, MIN_URL_TAIL_LEN);
+      const shortUrl =
+        domain + URL_ELLIPSIS + postfix.slice(postfix.length - lenLeft);
+      return shortUrl;
+    }
   }
 };
 </script>

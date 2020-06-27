@@ -2,15 +2,16 @@
   <section class="propasal-list">
     <ListHeader
       :keyword="keyword"
-      @updateKeyword="keyword = $event"
-      @updateCurrentPage="paginationData.currentPage = $event"
+      @updateKeyword="setKeyword"
+      @updateCurrentPage="switchPage"
     />
     <List :list="listByPage" routerName="ProposalDetail" />
     <ListPagination
-      :perPage="paginationData.perPage"
-      :currentPage="paginationData.currentPage"
+      v-if="listByKeywordFilter.length"
+      :perPage="perPage"
+      :currentPage="currentPage"
       :allDataLength="listByKeywordFilter.length"
-      @updateCurrentPage="paginationData.currentPage = $event"
+      @updateCurrentPage="switchPage"
     />
   </section>
 </template>
@@ -21,6 +22,8 @@ import List from "@/components/proposalList/List.vue";
 import ListPagination from "@/components/proposalList/ListPagination.vue";
 
 import { handleApiError, addMetaData } from "@/utils/mixins";
+
+const ITEM_PER_PAGE = 12;
 
 export default {
   name: "PropasalList",
@@ -34,11 +37,7 @@ export default {
   },
   data() {
     return {
-      keyword: "",
-      paginationData: {
-        currentPage: 1,
-        perPage: 12
-      }
+      perPage: ITEM_PER_PAGE
     };
   },
   computed: {
@@ -60,9 +59,58 @@ export default {
     },
     listByPage() {
       return this.listByKeywordFilter.slice(
-        (this.paginationData.currentPage - 1) * this.paginationData.perPage,
-        this.paginationData.currentPage * this.paginationData.perPage
+        (this.currentPage - 1) * this.perPage,
+        this.currentPage * this.perPage
       );
+    },
+    keyword() {
+      const keyword = this.$route.query.q || "";
+      return keyword.trim();
+    },
+    currentPage() {
+      const page = Number.parseInt(this.$route.query.page || 1, 10);
+      return page > 0 ? page : 1;
+    }
+  },
+  watch: {
+    listByKeywordFilter(newList) {
+      const page = this.currentPage;
+      const perPage = this.perPage;
+      if (newList.length < (page - 1) * perPage) {
+        this.switchPage(1, true);
+      }
+    }
+  },
+  methods: {
+    updateUrlCursor({ page, keyword, replaceRoute }) {
+      const route = this.$router;
+      page = page || this.currentPage;
+      keyword = keyword === undefined ? this.keyword : keyword;
+      const query = { page };
+      if (keyword) {
+        query.q = keyword;
+      }
+      const newRoute = {
+        name: route.name,
+        query
+      };
+      if (replaceRoute) {
+        this.$router.replace(newRoute);
+      } else {
+        this.$router.push(newRoute);
+      }
+    },
+    switchPage(page, replaceRoute = false) {
+      if (page !== this.currentPage) {
+        // just in case someone pass invalid stuff
+        replaceRoute = replaceRoute === true;
+        this.updateUrlCursor({ page, replaceRoute });
+      }
+    },
+    setKeyword(keyword) {
+      if (keyword !== this.keyword) {
+        this.updateUrlCursor({ keyword });
+      }
     }
   }
 };
