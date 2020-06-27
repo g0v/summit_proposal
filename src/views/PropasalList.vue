@@ -8,8 +8,8 @@
     <List :list="listByPage" routerName="ProposalDetail" />
     <ListPagination
       v-if="listByKeywordFilter.length"
-      :perPage="paginationData.perPage"
-      :currentPage="paginationData.currentPage"
+      :perPage="perPage"
+      :currentPage="currentPage"
       :allDataLength="listByKeywordFilter.length"
       @updateCurrentPage="switchPage"
     />
@@ -23,6 +23,8 @@ import ListPagination from "@/components/proposalList/ListPagination.vue";
 
 import { handleApiError, addMetaData } from "@/utils/mixins";
 
+const ITEM_PER_PAGE = 12;
+
 export default {
   name: "PropasalList",
   mixins: [handleApiError, addMetaData],
@@ -34,14 +36,8 @@ export default {
     });
   },
   data() {
-    const keyword = this.$route.query.q || "";
-    const page = Number.parseInt(this.$route.query.page || 1, 10);
     return {
-      keyword: keyword.trim(),
-      paginationData: {
-        currentPage: page > 0 ? page : 1,
-        perPage: 12
-      }
+      perPage: ITEM_PER_PAGE
     };
   },
   computed: {
@@ -63,44 +59,57 @@ export default {
     },
     listByPage() {
       return this.listByKeywordFilter.slice(
-        (this.paginationData.currentPage - 1) * this.paginationData.perPage,
-        this.paginationData.currentPage * this.paginationData.perPage
+        (this.currentPage - 1) * this.perPage,
+        this.currentPage * this.perPage
       );
+    },
+    keyword() {
+      const keyword = this.$route.query.q || "";
+      return keyword.trim();
+    },
+    currentPage() {
+      const page = Number.parseInt(this.$route.query.page || 1, 10);
+      return page > 0 ? page : 1;
     }
   },
   watch: {
     listByKeywordFilter(newList) {
-      const page = this.paginationData.currentPage;
-      const perPage = this.paginationData.perPage;
+      const page = this.currentPage;
+      const perPage = this.perPage;
       if (newList.length < (page - 1) * perPage) {
-        this.switchPage(1);
+        this.switchPage(1, true);
       }
     }
   },
   methods: {
-    updateUrlCursor() {
+    updateUrlCursor({ page, keyword, replaceRoute }) {
       const route = this.$router;
-      const query = {
-        page: this.paginationData.currentPage
-      };
-      if (this.keyword) {
-        query.q = this.keyword;
+      page = page || this.currentPage;
+      keyword = keyword === undefined ? this.keyword : keyword;
+      const query = { page };
+      if (keyword) {
+        query.q = keyword;
       }
-      this.$router.push({
+      const newRoute = {
         name: route.name,
         query
-      });
+      };
+      if (replaceRoute) {
+        this.$router.replace(newRoute);
+      } else {
+        this.$router.push(newRoute);
+      }
     },
-    switchPage(page) {
-      if (page !== this.paginationData.currentPage) {
-        this.paginationData.currentPage = page;
-        this.updateUrlCursor();
+    switchPage(page, replaceRoute = false) {
+      if (page !== this.currentPage) {
+        // just in case someone pass invalid stuff
+        replaceRoute = replaceRoute === true;
+        this.updateUrlCursor({ page, replaceRoute });
       }
     },
     setKeyword(keyword) {
       if (keyword !== this.keyword) {
-        this.keyword = keyword;
-        this.updateUrlCursor();
+        this.updateUrlCursor({ keyword });
       }
     }
   }
