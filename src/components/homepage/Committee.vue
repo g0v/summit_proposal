@@ -61,7 +61,20 @@
             >
           </template>
         </b-card>
-
+        <b-card
+          title="ly"
+          img-src="@/assets/images/pics/ly.jpg"
+          img-alt="ly"
+          img-top
+        >
+          <b-card-text>
+            g0v 前填坑者參與多項專案：國會大代誌、前端松、vTaiwan。g0v summit 2016 總召。<br />
+            g0v ex-volunteer join many projects like ly.g0v.tw, fr0ntend, vTaiwan. g0v summit 2016 general coordinator.
+          </b-card-text>
+          <template v-slot:header>
+            <small>資深軟體工程師<br />Senior Software Engineer</small>
+          </template>
+        </b-card>
         <b-card
           title="jsl"
           img-src="@/assets/images/pics/jsl.jpg"
