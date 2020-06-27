@@ -2,15 +2,16 @@
   <section class="propasal-list">
     <ListHeader
       :keyword="keyword"
-      @updateKeyword="keyword = $event"
-      @updateCurrentPage="paginationData.currentPage = $event"
+      @updateKeyword="setKeyword"
+      @updateCurrentPage="switchPage"
     />
     <List :list="listByPage" routerName="ProposalDetail" />
     <ListPagination
+      v-if="listByKeywordFilter.length"
       :perPage="paginationData.perPage"
       :currentPage="paginationData.currentPage"
       :allDataLength="listByKeywordFilter.length"
-      @updateCurrentPage="paginationData.currentPage = $event"
+      @updateCurrentPage="switchPage"
     />
   </section>
 </template>
@@ -33,10 +34,12 @@ export default {
     });
   },
   data() {
+    const keyword = this.$route.query.q || "";
+    const page = Number.parseInt(this.$route.query.page || 1, 10);
     return {
-      keyword: "",
+      keyword: keyword.trim(),
       paginationData: {
-        currentPage: 1,
+        currentPage: page > 0 ? page : 1,
         perPage: 12
       }
     };
@@ -63,6 +66,42 @@ export default {
         (this.paginationData.currentPage - 1) * this.paginationData.perPage,
         this.paginationData.currentPage * this.paginationData.perPage
       );
+    }
+  },
+  watch: {
+    listByKeywordFilter(newList) {
+      const page = this.paginationData.currentPage;
+      const perPage = this.paginationData.perPage;
+      if (newList.length < (page - 1) * perPage) {
+        this.switchPage(1);
+      }
+    }
+  },
+  methods: {
+    updateUrlCursor() {
+      const route = this.$router;
+      const query = {
+        page: this.paginationData.currentPage
+      };
+      if (this.keyword) {
+        query.q = this.keyword;
+      }
+      this.$router.push({
+        name: route.name,
+        query
+      });
+    },
+    switchPage(page) {
+      if (page !== this.paginationData.currentPage) {
+        this.paginationData.currentPage = page;
+        this.updateUrlCursor();
+      }
+    },
+    setKeyword(keyword) {
+      if (keyword !== this.keyword) {
+        this.keyword = keyword;
+        this.updateUrlCursor();
+      }
     }
   }
 };

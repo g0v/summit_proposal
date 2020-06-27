@@ -7,7 +7,6 @@
       <router-link
         v-for="item in list"
         :key="item._id"
-        tag="div"
         class="item"
         :to="{ name: routerName, params: { id: item._id } }"
       >
