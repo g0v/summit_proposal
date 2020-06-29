@@ -107,17 +107,19 @@
             <p>{{ speaker.organization }}</p>
             <h4>講者所在城市 Speaker’s location (city)</h4>
             <p>{{ speaker.city }}</p>
-            <h4>講者資訊連結 Speaker info URL</h4>
-            <p>
-              <a
-                :href="speaker.info_url"
-                rel="noopener nofollow"
-                target="_blank"
-              >
-                {{ urlShortener(speaker.info_url) }}
-                <b-icon icon="box-arrow-up-right" />
-              </a>
-            </p>
+            <template v-if="speaker.info_url">
+              <h4>講者資訊連結 Speaker info URL</h4>
+              <p>
+                <a
+                  :href="speaker.info_url"
+                  rel="noopener nofollow"
+                  target="_blank"
+                >
+                  {{ urlShortener(speaker.info_url) }}
+                  <b-icon icon="box-arrow-up-right" />
+                </a>
+              </p>
+            </template>
             <h4>講者簡介 Short bio</h4>
             <p>{{ speaker.bio }}</p>
             <h4>Speaker’s bio in English</h4>
