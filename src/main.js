@@ -1,11 +1,23 @@
 import Vue from "vue";
+import * as Sentry from "@sentry/browser";
+import { Vue as VueIntegration } from "@sentry/integrations";
+
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import API from "@/utils/API.js";
 import "@/utils/veeValidate";
 
-Vue.config.productionTip = process.env.NODE_ENV !== "production";
+const isDevEnv = process.env.NODE_ENV !== "production";
+Vue.config.productionTip = isDevEnv;
+
+if (!isDevEnv) {
+  Sentry.init({
+    dsn:
+      "https://fdd85abbffad4665bcfa8e962627a295@o413793.ingest.sentry.io/5301999",
+    integrations: [new VueIntegration({ Vue, attachProps: true })]
+  });
+}
 
 //引入已編譯完成，且全局可使用的 scss 檔案
 import "./assets/scss/base/reset.scss";
