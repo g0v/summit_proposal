@@ -1,9 +1,6 @@
 <template>
   <section class="proposal-detail">
-    <div
-      class="loading-container container"
-      v-if="!$store.getters.projectDetail._id"
-    >
+    <div class="loading-container container" v-if="!isProjectReady">
       <div class="loading">
         <div class="line"></div>
         <div class="line"></div>
@@ -58,6 +55,12 @@ export default {
       isVersionDetailLightboxOpen: false,
       openVersionIndex: 0
     };
+  },
+  computed: {
+    isProjectReady() {
+      const detail = this.$store.getters.projectDetail;
+      return detail && detail._id && detail.versions.length > 0;
+    }
   },
   methods: {
     openVersionDetailLightboxOpen(index) {
