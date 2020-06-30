@@ -2,7 +2,7 @@
   <section class="proposal-edit">
     <div class="proposal-edit-container container">
       <ProposalFormHeader />
-      <ProposalForm :id="$route.params.id" />
+      <ProposalForm :id="$route.params.id" @access-denied="handleUnauthVisit" />
     </div>
   </section>
 </template>
@@ -23,6 +23,11 @@ export default {
         vm.$router.push({ name: "Homepage" });
       }
     });
+  },
+  methods: {
+    handleUnauthVisit() {
+      this.$router.push("/proposal-list");
+    }
   }
 };
 </script>

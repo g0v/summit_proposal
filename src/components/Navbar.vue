@@ -37,7 +37,7 @@
             >g0v 介紹</b-dropdown-item
           >
         </b-nav-item-dropdown> -->
-        <b-nav-item href="#agenda">
+        <b-nav-item :to="{ name: 'Homepage', hash: '#agenda' }">
           歷年議程<br />
           Prev Events
         </b-nav-item>

@@ -2,7 +2,12 @@
   <section class="proposal-create">
     <div class="proposal-create-container container">
       <ProposalFormHeader :is-creation="true" />
-      <ProposalForm v-if="projectId" :id="projectId" @done="finishCreate" />
+      <ProposalForm
+        v-if="projectId"
+        :id="projectId"
+        @done="finishCreate"
+        @access-denied="createMyProposal"
+      />
     </div>
   </section>
 </template>
@@ -40,15 +45,20 @@ export default {
     if (existingId) {
       this.projectId = existingId;
     } else {
-      this.projectId = await this.handleApiError(
-        this.$store.dispatch("createEmptyProject")
-      );
-      localStorage.setItem(CUR_PROJECT_ID_KEY, this.projectId);
+      await this.createMyProposal();
     }
   },
   methods: {
     finishCreate() {
       localStorage.setItem(CUR_PROJECT_ID_KEY, "");
+    },
+    async createMyProposal() {
+      // #26
+      // get this event when user login with different account in the same browser
+      this.projectId = await this.handleApiError(
+        this.$store.dispatch("createEmptyProject")
+      );
+      localStorage.setItem(CUR_PROJECT_ID_KEY, this.projectId);
     }
   }
 };
