@@ -239,6 +239,9 @@ export default {
         // only start backup when sth really changed
         this.startPeriodicBackup();
       }
+    },
+    id() {
+      this.initProposal();
     }
   },
   beforeDestroy() {
@@ -262,12 +265,13 @@ export default {
     },
     async initProposal() {
       this.isOnInit = true;
+      // TODO: handle invalid id as we pass url directly into it
       const data = await this.handleApiError(
         this.$store.dispatch("getDetailProject", this.id)
       );
       // 如果非講者本人不能進入此頁面
-      if (!data.owner) {
-        this.$router.push({ name: "Homepage" });
+      if (!data || !data.owner) {
+        this.$emit("access-denied");
         return;
       }
       let formPointer = null;
