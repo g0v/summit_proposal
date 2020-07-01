@@ -115,7 +115,7 @@
         <h3><b-icon icon="calendar3" variant="primary"></b-icon>投稿時程</h3>
         <ul class="time">
           <li>徵件開始 Submission and open discussion start：2020/06/08</li>
-          <li>徵件截止 Dealine for new submission：2020/06/30</li>
+          <li>徵件截止 Dealine for new submission：2020/07/15</li>
           <li>公開討論截止 Open discussion ends：2020/07/30</li>
           <li>投稿文字修改截止 Proposal editing freezes：2020/08/02</li>
           <li>
@@ -136,7 +136,7 @@
           網頁上，並開設提案討論區供大眾發表評論。我們鼓勵提案者在討論區與提問者互動討論，進而調整與修改提案內容。
         </p>
         <p>
-          線上投稿系統將於 6/30 截止，但提案者仍可以持續在 g0v summit 2020 CFP
+          線上投稿系統將於 7/15 截止，但提案者仍可以持續在 g0v summit 2020 CFP
           系統中修改提案內容，並在討論區持續與大眾互動。討論功能將於 7/30
           關閉，提案修改則於 8/2 關閉。提案與修改皆凍結後，g0v summit 2020
           議程委員將會選出本屆 summit 的議程，並於八月底陸續在 g0v summit 2020
