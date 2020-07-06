@@ -1,4 +1,5 @@
 import API from "@/utils/API.js";
+import FORUM_API from "@/utils/FORUM_API.js";
 
 export default {
   updateToken({ commit }, token) {
@@ -12,5 +13,8 @@ export default {
   logout({ commit }) {
     commit("logout");
     API.RESET_AUTH_TOKEN();
+  },
+  getForumNotifications() {
+    return FORUM_API.GET("/api/notifications");
   }
 };
