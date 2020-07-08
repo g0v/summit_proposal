@@ -51,8 +51,6 @@ export default {
   }
 }
 .function {
-  padding-left: calc(15px + 1.5%);
-  padding-right: calc(15px + 1.5%);
   display: flex;
   justify-content: space-between;
   .sort,

@@ -29,9 +29,8 @@ export default {
 
 <style lang="scss" scoped>
 .pagination-container {
-  padding: 20px 0;
-  padding-left: calc(15px + 1.5%);
-  padding-right: calc(15px + 1.5%);
+  padding-top: 20px;
+  padding-bottom: 20px;
   .pagination {
     margin: 0;
   }
