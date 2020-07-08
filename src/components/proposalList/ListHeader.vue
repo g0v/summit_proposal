@@ -1,17 +1,21 @@
 <template>
   <div class="list-header">
-    <div class="list-header-container container">
-      <h2>提案列表 Proposals</h2>
-      <div class="search">
-        <b-form-group label="搜尋提案 Search proposals" label-for="search">
+    <div class="container">
+      <div class="title">
+        <h2>提案列表 Proposals</h2>
+      </div>
+      <div class="function">
+        <div class="sort"></div>
+        <div class="search">
           <b-form-input
             id="search"
             :value="keyword"
             @input="updateKeyword($event)"
             trim
-            placeholder="請輸入標題 Type title to search "
+            placeholder="Search..."
           ></b-form-input>
-        </b-form-group>
+          <label for="search">搜尋 Search</label>
+        </div>
       </div>
     </div>
   </div>
@@ -35,33 +39,39 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.list-header-container {
+.title {
   padding: 30px;
   background-color: $sub-color;
   border-radius: 10px;
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   margin-bottom: 30px;
   h2 {
     color: #fff;
     font-size: 25px;
+    margin: 0;
+  }
+}
+.function {
+  padding-left: calc(15px + 1.5%);
+  padding-right: calc(15px + 1.5%);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+  .sort,
+  .search {
+    width: 50%;
   }
   .search {
     display: flex;
     align-items: center;
-    svg {
-      margin-left: 10px;
-      cursor: pointer;
-    }
+    justify-content: flex-end;
   }
-  ::v-deep .form-group {
-    margin-bottom: 0;
+  label {
+    margin: 0;
   }
   #search {
-    width: 18rem;
+    width: 12rem;
     max-width: 80vw;
+    margin-right: 5px;
   }
 }
 </style>
