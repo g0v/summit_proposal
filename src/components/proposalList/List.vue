@@ -112,6 +112,7 @@ export default {
   .no-info {
     color: #000;
     font-size: 20px;
+    margin: 20px 0;
   }
   &:after {
     content: "";
