@@ -2,7 +2,10 @@
   <section class="propasal-list">
     <ListHeader
       :keyword="keyword"
+      :topicOptions="topicOptions"
+      :topic="topic"
       @updateKeyword="setKeyword"
+      @updateTopic="setTopic"
       @updateCurrentPage="switchPage"
     />
     <ListPagination
@@ -31,6 +34,16 @@ import ListPagination from "@/components/proposalList/ListPagination.vue";
 import { handleApiError, addMetaData } from "@/utils/mixins";
 
 const ITEM_PER_PAGE = 12;
+const TOPIC_OPTIONS = [
+  "全部",
+  "「沒有人」的島 Nobody’s island",
+  "島嶼大聯盟 Island’s federation",
+  "大島開放 Open island",
+  "沒有島是局外島 No island is outside island",
+  "第四個島 The fourth island",
+  "賢者之島 Academia Formosa",
+  "海海人聲 Voice of the islanders"
+];
 
 export default {
   name: "PropasalList",
@@ -44,7 +57,8 @@ export default {
   },
   data() {
     return {
-      perPage: ITEM_PER_PAGE
+      perPage: ITEM_PER_PAGE,
+      topicOptions: TOPIC_OPTIONS
     };
   },
   computed: {
@@ -52,7 +66,7 @@ export default {
       let listByKeywordFilter = this.$store.getters.displayProjectList.filter(
         project => {
           let lastVersion = project.versions[project.versions.length - 1];
-          // 支援標題與內文搜尋
+          // 支援標題搜尋
           let title =
             lastVersion.title
               .toLowerCase()
@@ -61,6 +75,7 @@ export default {
             lastVersion.title_en
               .toLowerCase()
               .search(this.keyword.toLowerCase()) != -1;
+          // 支援內文搜尋
           let summary =
             lastVersion.summary
               .toLowerCase()
@@ -69,7 +84,13 @@ export default {
             lastVersion.summary_en
               .toLowerCase()
               .search(this.keyword.toLowerCase()) != -1;
-          return [title, title_en, summary, summary_en].includes(true);
+          // 支援過濾主題
+          let topicfilter = ["", "全部"].includes(this.topic)
+            ? true
+            : lastVersion.topic === this.topic;
+          return [title, title_en, summary, summary_en].includes(
+            true && topicfilter
+          );
         }
       );
       return listByKeywordFilter;
@@ -83,6 +104,10 @@ export default {
     keyword() {
       const keyword = this.$route.query.q || "";
       return keyword.trim();
+    },
+    topic() {
+      const topic = this.$route.query.topic || "";
+      return topic;
     },
     currentPage() {
       const page = Number.parseInt(this.$route.query.page || 1, 10);
@@ -99,13 +124,17 @@ export default {
     }
   },
   methods: {
-    updateUrlCursor({ page, keyword, replaceRoute }) {
+    updateUrlCursor({ page, keyword, topic, replaceRoute }) {
       const route = this.$router;
       page = page || this.currentPage;
       keyword = keyword === undefined ? this.keyword : keyword;
+      topic = topic === undefined ? this.topic : topic;
       const query = { page };
       if (keyword) {
         query.q = keyword;
+      }
+      if (topic) {
+        query.topic = topic;
       }
       const newRoute = {
         name: route.name,
@@ -127,6 +156,11 @@ export default {
     setKeyword(keyword) {
       if (keyword !== this.keyword) {
         this.updateUrlCursor({ keyword });
+      }
+    },
+    setTopic(topic) {
+      if (topic !== this.topic) {
+        this.updateUrlCursor({ topic });
       }
     }
   }

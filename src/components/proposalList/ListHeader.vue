@@ -5,7 +5,24 @@
         <h2>提案列表 Proposals</h2>
       </div>
       <div class="function">
-        <div class="sort"></div>
+        <div class="sort">
+          <b-dropdown
+            :text="topic ? topic : '主題分類 Topic'"
+            variant="outline-primary"
+          >
+            <b-dropdown-item
+              v-for="(option, index) in topicOptions"
+              :key="index"
+              @click="updateTopic(option)"
+              >{{ option }}</b-dropdown-item
+            >
+          </b-dropdown>
+          <!-- <b-dropdown text="Dropdown Button" variant="outline-primary">
+            <b-dropdown-item>First Action</b-dropdown-item>
+            <b-dropdown-item>Second Action</b-dropdown-item>
+            <b-dropdown-item>Third Action</b-dropdown-item>
+          </b-dropdown> -->
+        </div>
         <div class="search">
           <b-form-input
             id="search"
@@ -27,11 +44,21 @@ export default {
   props: {
     keyword: {
       type: String
+    },
+    topicOptions: {
+      type: Array
+    },
+    topic: {
+      type: String
     }
   },
   methods: {
     updateKeyword(value) {
       this.$emit("updateKeyword", value);
+      this.$emit("updateCurrentPage", 1);
+    },
+    updateTopic(value) {
+      this.$emit("updateTopic", value);
       this.$emit("updateCurrentPage", 1);
     }
   }
