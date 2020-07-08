@@ -6,11 +6,7 @@
       </div>
       <div class="function">
         <div class="sort">
-          <b-dropdown
-            text="主題分類 Topic"
-            variant="outline-primary"
-            ref="topicdropdown"
-          >
+          <b-dropdown text="主題分類 Topic" variant="outline-primary">
             <b-dropdown-form
               v-for="(option, index) in topicOptions"
               :key="index"
@@ -104,18 +100,24 @@ export default {
   .search {
     width: 50%;
   }
+  .sort {
+    text-align: left;
+    ::v-deep .dropdown-menu {
+      width: 300px;
+    }
+  }
   .search {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-  }
-  label {
-    margin: 0;
-  }
-  #search {
-    width: 12rem;
-    max-width: 80vw;
-    margin-right: 5px;
+    label {
+      margin: 0;
+    }
+    #search {
+      width: 12rem;
+      max-width: 80vw;
+      margin-right: 5px;
+    }
   }
 }
 </style>
