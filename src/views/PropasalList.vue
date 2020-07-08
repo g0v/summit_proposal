@@ -45,14 +45,24 @@ export default {
       let listByKeywordFilter = this.$store.getters.displayProjectList.filter(
         project => {
           let lastVersion = project.versions[project.versions.length - 1];
-          return (
+          // 支援標題與內文搜尋
+          let title =
             lastVersion.title
               .toLowerCase()
-              .search(this.keyword.toLowerCase()) != -1 ||
+              .search(this.keyword.toLowerCase()) != -1;
+          let title_en =
             lastVersion.title_en
               .toLowerCase()
-              .search(this.keyword.toLowerCase()) != -1
-          );
+              .search(this.keyword.toLowerCase()) != -1;
+          let summary =
+            lastVersion.summary
+              .toLowerCase()
+              .search(this.keyword.toLowerCase()) != -1;
+          let summary_en =
+            lastVersion.summary_en
+              .toLowerCase()
+              .search(this.keyword.toLowerCase()) != -1;
+          return [title, title_en, summary, summary_en].includes(true);
         }
       );
       return listByKeywordFilter;
