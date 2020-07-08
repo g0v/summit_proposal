@@ -5,6 +5,13 @@
       @updateKeyword="setKeyword"
       @updateCurrentPage="switchPage"
     />
+    <ListPagination
+      v-if="listByKeywordFilter.length"
+      :perPage="perPage"
+      :currentPage="currentPage"
+      :allDataLength="listByKeywordFilter.length"
+      @updateCurrentPage="switchPage"
+    />
     <List :list="listByPage" routerName="ProposalDetail" />
     <ListPagination
       v-if="listByKeywordFilter.length"

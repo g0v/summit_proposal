@@ -43,7 +43,7 @@ export default {
   padding: 30px;
   background-color: $sub-color;
   border-radius: 10px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   h2 {
     color: #fff;
     font-size: 25px;
@@ -55,7 +55,6 @@ export default {
   padding-right: calc(15px + 1.5%);
   display: flex;
   justify-content: space-between;
-  margin-bottom: 25px;
   .sort,
   .search {
     width: 50%;

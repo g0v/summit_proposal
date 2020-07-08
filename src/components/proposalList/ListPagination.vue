@@ -1,7 +1,7 @@
 <template>
   <div class="pagination-container container">
     <b-pagination
-      align="center"
+      align="right"
       :total-rows="allDataLength"
       :per-page="perPage"
       :value="currentPage"
@@ -30,5 +30,10 @@ export default {
 <style lang="scss" scoped>
 .pagination-container {
   padding: 20px 0;
+  padding-left: calc(15px + 1.5%);
+  padding-right: calc(15px + 1.5%);
+  .pagination {
+    margin: 0;
+  }
 }
 </style>
