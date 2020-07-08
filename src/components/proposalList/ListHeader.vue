@@ -13,17 +13,25 @@
               ><b-form-checkbox
                 v-model="topicCheckboxStatus[index]"
                 :value="option"
-                @input="updateTopic(option)"
+                @input="updateTopic"
               >
                 {{ option }}
               </b-form-checkbox></b-dropdown-form
             >
           </b-dropdown>
-          <!-- <b-dropdown text="Dropdown Button" variant="outline-primary">
-            <b-dropdown-item>First Action</b-dropdown-item>
-            <b-dropdown-item>Second Action</b-dropdown-item>
-            <b-dropdown-item>Third Action</b-dropdown-item>
-          </b-dropdown> -->
+          <b-dropdown text="形式 Format" variant="outline-primary">
+            <b-dropdown-form
+              v-for="(option, index) in formatOption"
+              :key="index"
+              ><b-form-checkbox
+                v-model="formatCheckboxStatus[index]"
+                :value="option"
+                @input="updateFormat"
+              >
+                {{ option }}
+              </b-form-checkbox></b-dropdown-form
+            >
+          </b-dropdown>
         </div>
         <div class="search">
           <b-form-input
@@ -52,18 +60,32 @@ export default {
     },
     topic: {
       type: Array
+    },
+    formatOption: {
+      type: Array
+    },
+    format: {
+      type: Array
     }
   },
   data() {
     return {
-      topicCheckboxStatus: []
+      topicCheckboxStatus: [],
+      formatCheckboxStatus: []
     };
   },
   created() {
+    // 依照來自 route 的 queryString 設定初始資料
     this.topicCheckboxStatus = new Array(this.topic.length).fill(false);
     this.topicOptions.forEach((item, index) => {
       if (this.topic.includes(item)) {
         this.topicCheckboxStatus[index] = item;
+      }
+    });
+    this.formatCheckboxStatus = new Array(this.format.length).fill(false);
+    this.formatOption.forEach((item, index) => {
+      if (this.format.includes(item)) {
+        this.formatCheckboxStatus[index] = item;
       }
     });
   },
@@ -75,6 +97,13 @@ export default {
     updateTopic() {
       let updateValue = this.topicCheckboxStatus.filter(item => item !== false);
       this.$emit("updateTopic", updateValue.join(","));
+      this.$emit("updateCurrentPage", 1);
+    },
+    updateFormat() {
+      let updateValue = this.formatCheckboxStatus.filter(
+        item => item !== false
+      );
+      this.$emit("updateFormat", updateValue.join(","));
       this.$emit("updateCurrentPage", 1);
     }
   }
@@ -102,6 +131,9 @@ export default {
   }
   .sort {
     text-align: left;
+    .dropdown:first-child {
+      margin-right: 10px;
+    }
     ::v-deep .dropdown-menu {
       width: 300px;
     }

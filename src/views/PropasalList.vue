@@ -4,8 +4,11 @@
       :keyword="keyword"
       :topicOptions="topicOptions"
       :topic="topic"
+      :formatOption="formatOption"
+      :format="format"
       @updateKeyword="setKeyword"
       @updateTopic="setTopic"
+      @updateFormat="setFormat"
       @updateCurrentPage="switchPage"
     />
     <ListPagination
@@ -43,6 +46,15 @@ const TOPIC_OPTIONS = [
   "賢者之島 Academia Formosa",
   "海海人聲 Voice of the islanders"
 ];
+const FORMAT_OPTIONS = [
+  "演講 （20 分鐘）Talk (20 min)",
+  ...[60, 90, 120].map(
+    minute => `主題論壇 （${minute} 分鐘）Panel discussion (${minute} min)`
+  ),
+  ...[60, 90, 120].map(
+    minute => `工作坊 （${minute} 分鐘）Workshop (${minute} min)`
+  )
+];
 
 export default {
   name: "PropasalList",
@@ -57,7 +69,8 @@ export default {
   data() {
     return {
       perPage: ITEM_PER_PAGE,
-      topicOptions: TOPIC_OPTIONS
+      topicOptions: TOPIC_OPTIONS,
+      formatOption: FORMAT_OPTIONS
     };
   },
   computed: {
@@ -84,12 +97,17 @@ export default {
               .toLowerCase()
               .search(this.keyword.toLowerCase()) != -1;
           // 支援過濾主題
-          let topicfilter =
+          let topicFilter =
             this.topic.length !== 0
               ? this.topic.includes(lastVersion.topic)
               : true;
+          // 支援過濾形式
+          let formatFilter =
+            this.format.length !== 0
+              ? this.format.includes(lastVersion.format)
+              : true;
           return [title, title_en, summary, summary_en].includes(
-            true && topicfilter
+            true && topicFilter && formatFilter
           );
         }
       );
@@ -111,6 +129,12 @@ export default {
         : [];
       return topic;
     },
+    format() {
+      const format = this.$route.query.format
+        ? this.$route.query.format.split(",")
+        : [];
+      return format;
+    },
     currentPage() {
       const page = Number.parseInt(this.$route.query.page || 1, 10);
       return page > 0 ? page : 1;
@@ -126,17 +150,19 @@ export default {
     }
   },
   methods: {
-    updateUrlCursor({ page, keyword, topic, replaceRoute }) {
+    updateUrlCursor({ page, keyword, topic, format, replaceRoute }) {
       const route = this.$router;
       page = page || this.currentPage;
       keyword = keyword === undefined ? this.keyword : keyword;
-      topic = topic === undefined ? this.topic : topic;
       const query = { page };
       if (keyword) {
         query.q = keyword;
       }
       if (topic) {
         query.topic = topic;
+      }
+      if (format) {
+        query.format = format;
       }
       const newRoute = {
         name: route.name,
@@ -161,8 +187,13 @@ export default {
       }
     },
     setTopic(topic) {
-      if (topic !== this.topic) {
+      if (topic !== this.topic.join(",")) {
         this.updateUrlCursor({ topic });
+      }
+    },
+    setFormat(format) {
+      if (format !== this.format.join(",")) {
+        this.updateUrlCursor({ format });
       }
     }
   }
