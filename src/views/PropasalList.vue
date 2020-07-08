@@ -154,6 +154,8 @@ export default {
       const route = this.$router;
       page = page || this.currentPage;
       keyword = keyword === undefined ? this.keyword : keyword;
+      topic = topic === undefined ? this.topic.join(",") : topic;
+      format = format === undefined ? this.format.join(",") : format;
       const query = { page };
       if (keyword) {
         query.q = keyword;
@@ -187,14 +189,12 @@ export default {
       }
     },
     setTopic(topic) {
-      if (topic !== this.topic.join(",")) {
-        this.updateUrlCursor({ topic });
-      }
+      // ListHeader 使用 Array, router 的 query 統一用 string
+      this.updateUrlCursor({ topic: topic.join(",") });
     },
     setFormat(format) {
-      if (format !== this.format.join(",")) {
-        this.updateUrlCursor({ format });
-      }
+      // ListHeader 使用 Array, router 的 query 統一用 string
+      this.updateUrlCursor({ format: format.join(",") });
     }
   }
 };

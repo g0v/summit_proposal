@@ -96,14 +96,14 @@ export default {
     },
     updateTopic() {
       let updateValue = this.topicCheckboxStatus.filter(item => item !== false);
-      this.$emit("updateTopic", updateValue.join(","));
+      this.$emit("updateTopic", updateValue);
       this.$emit("updateCurrentPage", 1);
     },
     updateFormat() {
       let updateValue = this.formatCheckboxStatus.filter(
         item => item !== false
       );
-      this.$emit("updateFormat", updateValue.join(","));
+      this.$emit("updateFormat", updateValue);
       this.$emit("updateCurrentPage", 1);
     }
   }
@@ -124,13 +124,25 @@ export default {
 }
 .function {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  @include mediaquery_pad {
+    flex-direction: row;
+    justify-content: space-between;
+  }
   .sort,
   .search {
-    width: 50%;
+    width: 100%;
+    @include mediaquery_pad {
+      width: 50%;
+    }
   }
   .sort {
-    text-align: left;
+    text-align: right;
+    margin-bottom: 20px;
+    @include mediaquery_pad {
+      text-align: left;
+      margin-bottom: 0;
+    }
     .dropdown:first-child {
       margin-right: 10px;
     }
