@@ -7,14 +7,20 @@
       <div class="function">
         <div class="sort">
           <b-dropdown
-            :text="topic ? topic : '主題分類 Topic'"
+            text="主題分類 Topic"
             variant="outline-primary"
+            ref="topicdropdown"
           >
-            <b-dropdown-item
+            <b-dropdown-form
               v-for="(option, index) in topicOptions"
               :key="index"
-              @click="updateTopic(option)"
-              >{{ option }}</b-dropdown-item
+              ><b-form-checkbox
+                v-model="topicCheckboxStatus[index]"
+                :value="option"
+                @input="updateTopic(option)"
+              >
+                {{ option }}
+              </b-form-checkbox></b-dropdown-form
             >
           </b-dropdown>
           <!-- <b-dropdown text="Dropdown Button" variant="outline-primary">
@@ -49,16 +55,30 @@ export default {
       type: Array
     },
     topic: {
-      type: String
+      type: Array
     }
+  },
+  data() {
+    return {
+      topicCheckboxStatus: []
+    };
+  },
+  created() {
+    this.topicCheckboxStatus = new Array(this.topic.length).fill(false);
+    this.topicOptions.forEach((item, index) => {
+      if (this.topic.includes(item)) {
+        this.topicCheckboxStatus[index] = item;
+      }
+    });
   },
   methods: {
     updateKeyword(value) {
       this.$emit("updateKeyword", value);
       this.$emit("updateCurrentPage", 1);
     },
-    updateTopic(value) {
-      this.$emit("updateTopic", value);
+    updateTopic() {
+      let updateValue = this.topicCheckboxStatus.filter(item => item !== false);
+      this.$emit("updateTopic", updateValue.join(","));
       this.$emit("updateCurrentPage", 1);
     }
   }

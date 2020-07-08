@@ -35,7 +35,6 @@ import { handleApiError, addMetaData } from "@/utils/mixins";
 
 const ITEM_PER_PAGE = 12;
 const TOPIC_OPTIONS = [
-  "全部",
   "「沒有人」的島 Nobody’s island",
   "島嶼大聯盟 Island’s federation",
   "大島開放 Open island",
@@ -85,9 +84,10 @@ export default {
               .toLowerCase()
               .search(this.keyword.toLowerCase()) != -1;
           // 支援過濾主題
-          let topicfilter = ["", "全部"].includes(this.topic)
-            ? true
-            : lastVersion.topic === this.topic;
+          let topicfilter =
+            this.topic.length !== 0
+              ? this.topic.includes(lastVersion.topic)
+              : true;
           return [title, title_en, summary, summary_en].includes(
             true && topicfilter
           );
@@ -106,7 +106,9 @@ export default {
       return keyword.trim();
     },
     topic() {
-      const topic = this.$route.query.topic || "";
+      const topic = this.$route.query.topic
+        ? this.$route.query.topic.split(",")
+        : [];
       return topic;
     },
     currentPage() {

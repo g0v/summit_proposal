@@ -39,7 +39,8 @@ import {
   FormPlugin,
   FormSelectPlugin,
   ToastPlugin,
-  PaginationPlugin
+  PaginationPlugin,
+  FormCheckboxPlugin
 } from "bootstrap-vue";
 Vue.use(NavbarPlugin);
 Vue.use(LayoutPlugin);
@@ -54,6 +55,7 @@ Vue.use(FormPlugin);
 Vue.use(FormSelectPlugin);
 Vue.use(ToastPlugin);
 Vue.use(PaginationPlugin);
+Vue.use(FormCheckboxPlugin);
 
 import VBodyScrollLock from "v-body-scroll-lock";
 Vue.use(VBodyScrollLock);
