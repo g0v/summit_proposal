@@ -3,6 +3,24 @@
     <div class="container">
       <div class="title">
         <h2>提案列表 Proposals</h2>
+        <div class="switch">
+          <div
+            class="item"
+            :class="{ active: mode === 'list' }"
+            @click="$emit('updateMode', 'list')"
+          >
+            <b-icon icon="list"></b-icon>
+            <span>清單模式 List Mode</span>
+          </div>
+          <div
+            class="item"
+            :class="{ active: mode === 'card' }"
+            @click="$emit('updateMode', 'card')"
+          >
+            <b-icon icon="image"></b-icon>
+            <span>卡片模式 Card Mode</span>
+          </div>
+        </div>
       </div>
       <div class="function">
         <div class="sort">
@@ -66,6 +84,9 @@ export default {
     },
     format: {
       type: Array
+    },
+    mode: {
+      type: String
     }
   },
   data() {
@@ -116,10 +137,42 @@ export default {
   background-color: $sub-color;
   border-radius: 10px;
   margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  h2,
+  .switch {
+    width: 50%;
+  }
   h2 {
     color: #fff;
     font-size: 25px;
     margin: 0;
+    text-align: left;
+  }
+  .switch {
+    display: flex;
+    justify-content: flex-end;
+    .item {
+      width: 190px;
+      padding: 8px;
+      border: 1px solid white;
+      cursor: pointer;
+      color: #fff;
+      &:first-child {
+        border-radius: 8px 0 0 8px;
+      }
+      &:last-child {
+        border-radius: 0 8px 8px 0;
+      }
+      svg {
+        margin-right: 5px;
+      }
+      &.active {
+        background-color: #fff;
+        color: #000;
+      }
+    }
   }
 }
 .function {

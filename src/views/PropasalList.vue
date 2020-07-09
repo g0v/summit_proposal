@@ -6,10 +6,12 @@
       :topic="topic"
       :formatOption="formatOption"
       :format="format"
+      :mode="mode"
       @updateKeyword="setKeyword"
       @updateTopic="setTopic"
       @updateFormat="setFormat"
       @updateCurrentPage="switchPage"
+      @updateMode="updateMode"
     />
     <ListPagination
       v-if="listByFilter.length"
@@ -18,8 +20,12 @@
       :allDataLength="listByFilter.length"
       @updateCurrentPage="switchPage"
     />
-    <TableList v-if="false" :list="listByPage" routerName="ProposalDetail" />
-    <CardList :list="listByPage" routerName="ProposalDetail" />
+    <TableList
+      v-if="mode === 'list'"
+      :list="listByPage"
+      routerName="ProposalDetail"
+    />
+    <CardList v-else :list="listByPage" routerName="ProposalDetail" />
     <ListPagination
       v-if="listByFilter.length"
       :perPage="perPage"
@@ -72,7 +78,8 @@ export default {
     return {
       perPage: ITEM_PER_PAGE,
       topicOptions: TOPIC_OPTIONS,
-      formatOption: FORMAT_OPTIONS
+      formatOption: FORMAT_OPTIONS,
+      mode: "list"
     };
   },
   computed: {
@@ -205,6 +212,9 @@ export default {
     setFormat(format) {
       // ListHeader 使用 Array, router 的 query 統一用 string
       this.updateUrlCursor({ format: format.join(",") });
+    },
+    updateMode(mode) {
+      this.mode = mode;
     }
   }
 };
