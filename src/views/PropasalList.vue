@@ -12,18 +12,18 @@
       @updateCurrentPage="switchPage"
     />
     <ListPagination
-      v-if="listByKeywordFilter.length"
+      v-if="listByFilter.length"
       :perPage="perPage"
       :currentPage="currentPage"
-      :allDataLength="listByKeywordFilter.length"
+      :allDataLength="listByFilter.length"
       @updateCurrentPage="switchPage"
     />
     <List :list="listByPage" routerName="ProposalDetail" />
     <ListPagination
-      v-if="listByKeywordFilter.length"
+      v-if="listByFilter.length"
       :perPage="perPage"
       :currentPage="currentPage"
-      :allDataLength="listByKeywordFilter.length"
+      :allDataLength="listByFilter.length"
       @updateCurrentPage="switchPage"
     />
   </section>
@@ -74,8 +74,8 @@ export default {
     };
   },
   computed: {
-    listByKeywordFilter() {
-      let listByKeywordFilter = this.$store.getters.displayProjectList.filter(
+    listByFilter() {
+      let listByFilter = this.$store.getters.displayProjectList.filter(
         project => {
           let lastVersion = project.versions[project.versions.length - 1];
           // 支援標題搜尋
@@ -106,15 +106,17 @@ export default {
             this.format.length !== 0
               ? this.format.includes(lastVersion.format)
               : true;
-          return [title, title_en, summary, summary_en].includes(
-            true && topicFilter && formatFilter
+          return (
+            [title, title_en, summary, summary_en].includes(true) &&
+            topicFilter &&
+            formatFilter
           );
         }
       );
-      return listByKeywordFilter;
+      return listByFilter;
     },
     listByPage() {
-      return this.listByKeywordFilter.slice(
+      return this.listByFilter.slice(
         (this.currentPage - 1) * this.perPage,
         this.currentPage * this.perPage
       );
@@ -141,7 +143,7 @@ export default {
     }
   },
   watch: {
-    listByKeywordFilter(newList) {
+    listByFilter(newList) {
       const page = this.currentPage;
       const perPage = this.perPage;
       if (newList.length < (page - 1) * perPage) {
