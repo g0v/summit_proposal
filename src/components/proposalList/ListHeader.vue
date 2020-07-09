@@ -138,21 +138,36 @@ export default {
   border-radius: 10px;
   margin-bottom: 20px;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
+  @include mediaquery_medium_devices {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
   h2,
   .switch {
-    width: 50%;
+    width: 100%;
+    @include mediaquery_medium_devices {
+      width: 50%;
+    }
   }
   h2 {
     color: #fff;
     font-size: 25px;
-    margin: 0;
-    text-align: left;
+    margin: 0 0 10px;
+    text-align: center;
+    @include mediaquery_medium_devices {
+      text-align: left;
+      margin: 0;
+    }
   }
   .switch {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+    @include mediaquery_medium_devices {
+      justify-content: flex-end;
+    }
     .item {
       width: 190px;
       padding: 8px;
