@@ -7,6 +7,8 @@
       :formatOption="formatOption"
       :format="format"
       :mode="mode"
+      :isNeedModeSwitch="true"
+      :isNeedSortFunction="true"
       @updateKeyword="setKeyword"
       @updateTopic="setTopic"
       @updateFormat="setFormat"
@@ -125,12 +127,6 @@ export default {
       return listByFilter;
     },
     listByPage() {
-      console.log(
-        this.listByFilter.slice(
-          (this.currentPage - 1) * this.perPage,
-          this.currentPage * this.perPage
-        )
-      );
       return this.listByFilter.slice(
         (this.currentPage - 1) * this.perPage,
         this.currentPage * this.perPage

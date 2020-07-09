@@ -3,7 +3,7 @@
     <div class="container">
       <div class="title">
         <h2>提案列表 Proposals</h2>
-        <div class="switch">
+        <div v-if="isNeedModeSwitch" class="switch">
           <div
             class="item"
             :class="{ active: mode === 'list' }"
@@ -24,7 +24,11 @@
       </div>
       <div class="function">
         <div class="sort">
-          <b-dropdown text="主題分類 Topic" variant="outline-primary">
+          <b-dropdown
+            text="主題分類 Topic"
+            variant="outline-primary"
+            v-if="isNeedSortFunction"
+          >
             <b-dropdown-form
               v-for="(option, index) in topicOptions"
               :key="index"
@@ -37,7 +41,11 @@
               </b-form-checkbox></b-dropdown-form
             >
           </b-dropdown>
-          <b-dropdown text="形式 Format" variant="outline-primary">
+          <b-dropdown
+            text="形式 Format"
+            variant="outline-primary"
+            v-if="isNeedSortFunction"
+          >
             <b-dropdown-form
               v-for="(option, index) in formatOption"
               :key="index"
@@ -87,6 +95,12 @@ export default {
     },
     mode: {
       type: String
+    },
+    isNeedModeSwitch: {
+      type: Boolean
+    },
+    isNeedSortFunction: {
+      type: Boolean
     }
   },
   data() {
@@ -97,18 +111,20 @@ export default {
   },
   created() {
     // 依照來自 route 的 queryString 設定初始資料
-    this.topicCheckboxStatus = new Array(this.topic.length).fill(false);
-    this.topicOptions.forEach((item, index) => {
-      if (this.topic.includes(item)) {
-        this.topicCheckboxStatus[index] = item;
-      }
-    });
-    this.formatCheckboxStatus = new Array(this.format.length).fill(false);
-    this.formatOption.forEach((item, index) => {
-      if (this.format.includes(item)) {
-        this.formatCheckboxStatus[index] = item;
-      }
-    });
+    if (this.isNeedSortFunction) {
+      this.topicCheckboxStatus = new Array(this.topic.length).fill(false);
+      this.topicOptions.forEach((item, index) => {
+        if (this.topic.includes(item)) {
+          this.topicCheckboxStatus[index] = item;
+        }
+      });
+      this.formatCheckboxStatus = new Array(this.format.length).fill(false);
+      this.formatOption.forEach((item, index) => {
+        if (this.format.includes(item)) {
+          this.formatCheckboxStatus[index] = item;
+        }
+      });
+    }
   },
   methods: {
     updateKeyword(value) {

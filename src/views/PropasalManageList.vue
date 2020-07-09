@@ -2,6 +2,8 @@
   <section class="propasal-list">
     <ListHeader
       :keyword="keyword"
+      :isNeedModeSwitch="false"
+      :isNeedSortFunction="false"
       @updateKeyword="keyword = $event"
       @updateCurrentPage="paginationData.currentPage = $event"
     />
@@ -55,14 +57,24 @@ export default {
           project => {
             let lastVersion = project.versions[project.versions.length - 1];
             if (!lastVersion) return false;
-            return (
+            let title =
               lastVersion.title
                 .toLowerCase()
-                .search(this.keyword.toLowerCase()) != -1 ||
+                .search(this.keyword.toLowerCase()) != -1;
+            let title_en =
               lastVersion.title_en
                 .toLowerCase()
-                .search(this.keyword.toLowerCase()) != -1
-            );
+                .search(this.keyword.toLowerCase()) != -1;
+            // 支援內文搜尋
+            let summary =
+              lastVersion.summary
+                .toLowerCase()
+                .search(this.keyword.toLowerCase()) != -1;
+            let summary_en =
+              lastVersion.summary_en
+                .toLowerCase()
+                .search(this.keyword.toLowerCase()) != -1;
+            return [title, title_en, summary, summary_en].includes(true);
           }
         );
         return listByKeywordFilter;
