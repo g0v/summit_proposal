@@ -19,7 +19,7 @@
       @updateCurrentPage="switchPage"
     />
     <TableList v-if="false" :list="listByPage" routerName="ProposalDetail" />
-    <List :list="listByPage" routerName="ProposalDetail" />
+    <CardList :list="listByPage" routerName="ProposalDetail" />
     <ListPagination
       v-if="listByFilter.length"
       :perPage="perPage"
@@ -32,7 +32,7 @@
 
 <script>
 import ListHeader from "@/components/proposalList/ListHeader.vue";
-import List from "@/components/proposalList/List.vue";
+import CardList from "@/components/proposalList/CardList.vue";
 import TableList from "@/components/proposalList/TableList.vue";
 import ListPagination from "@/components/proposalList/ListPagination.vue";
 
@@ -61,7 +61,7 @@ const FORMAT_OPTIONS = [
 export default {
   name: "PropasalList",
   mixins: [handleApiError, addMetaData],
-  components: { ListHeader, List, TableList, ListPagination },
+  components: { ListHeader, CardList, TableList, ListPagination },
   beforeRouteEnter(to, from, next) {
     next(async vm => {
       vm.addMetaData(to.name);

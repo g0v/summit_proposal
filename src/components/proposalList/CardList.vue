@@ -71,7 +71,7 @@
 import DraftNotifier from "@/components/DraftNotifier";
 
 export default {
-  name: "List",
+  name: "CardList",
   components: {
     DraftNotifier
   },

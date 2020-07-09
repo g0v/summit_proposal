@@ -5,7 +5,7 @@
       @updateKeyword="keyword = $event"
       @updateCurrentPage="paginationData.currentPage = $event"
     />
-    <List
+    <CardList
       :list="listByPage"
       routerName="ProposalEdit"
       :displayDraftNotice="true"
@@ -21,7 +21,7 @@
 
 <script>
 import ListHeader from "@/components/proposalList/ListHeader.vue";
-import List from "@/components/proposalList/List.vue";
+import CardList from "@/components/proposalList/CardList.vue";
 import ListPagination from "@/components/proposalList/ListPagination.vue";
 
 import { handleApiError, addMetaData } from "@/utils/mixins";
@@ -29,7 +29,7 @@ import { handleApiError, addMetaData } from "@/utils/mixins";
 export default {
   name: "PropasalManageList",
   mixins: [handleApiError, addMetaData],
-  components: { ListHeader, List, ListPagination },
+  components: { ListHeader, CardList, ListPagination },
   beforeRouteEnter(to, from, next) {
     next(async vm => {
       vm.addMetaData(to.name);
