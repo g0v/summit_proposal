@@ -1,5 +1,6 @@
 <template>
   <div class="version-lightbox">
+    <div class="version-lightbox-background" @click="$emit('close')"></div>
     <div
       class="version-lightbox-container container"
       v-body-scroll-lock="isVersionDetailLightboxOpen"
@@ -82,11 +83,16 @@ export default {
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: #ffffff7d;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 2;
+  .version-lightbox-background {
+    background-color: #ffffff7d;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+  }
   .version-lightbox-container {
     background-color: $sub-color;
     max-height: 80vh;
