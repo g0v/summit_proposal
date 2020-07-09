@@ -40,8 +40,10 @@ import {
   FormSelectPlugin,
   ToastPlugin,
   PaginationPlugin,
-  FormCheckboxPlugin
+  FormCheckboxPlugin,
+  TablePlugin
 } from "bootstrap-vue";
+Vue.use(TablePlugin);
 Vue.use(NavbarPlugin);
 Vue.use(LayoutPlugin);
 Vue.use(ButtonPlugin);

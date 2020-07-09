@@ -18,6 +18,7 @@
       :allDataLength="listByFilter.length"
       @updateCurrentPage="switchPage"
     />
+    <TableList v-if="false" :list="listByPage" routerName="ProposalDetail" />
     <List :list="listByPage" routerName="ProposalDetail" />
     <ListPagination
       v-if="listByFilter.length"
@@ -32,6 +33,7 @@
 <script>
 import ListHeader from "@/components/proposalList/ListHeader.vue";
 import List from "@/components/proposalList/List.vue";
+import TableList from "@/components/proposalList/TableList.vue";
 import ListPagination from "@/components/proposalList/ListPagination.vue";
 
 import { handleApiError, addMetaData } from "@/utils/mixins";
@@ -59,7 +61,7 @@ const FORMAT_OPTIONS = [
 export default {
   name: "PropasalList",
   mixins: [handleApiError, addMetaData],
-  components: { ListHeader, List, ListPagination },
+  components: { ListHeader, List, TableList, ListPagination },
   beforeRouteEnter(to, from, next) {
     next(async vm => {
       vm.addMetaData(to.name);
@@ -116,6 +118,12 @@ export default {
       return listByFilter;
     },
     listByPage() {
+      console.log(
+        this.listByFilter.slice(
+          (this.currentPage - 1) * this.perPage,
+          this.currentPage * this.perPage
+        )
+      );
       return this.listByFilter.slice(
         (this.currentPage - 1) * this.perPage,
         this.currentPage * this.perPage
