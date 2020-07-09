@@ -5,7 +5,8 @@ const TOKEN_STORAGE_KEY = "summit-auth-token";
 
 const baseURL = location.href.includes("propose.summit2020.g0v.tw")
   ? `https://api.summit2020.g0v.tw`
-  : `https://api.summit2020.pre-stage.cc`;
+  : `https://api.summit2020.g0v.tw`;
+// https://api.summit2020.pre-stage.cc
 
 const { apiClient, apis } = createAxiosWrapper(baseURL);
 

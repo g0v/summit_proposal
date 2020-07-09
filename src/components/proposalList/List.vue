@@ -181,6 +181,7 @@ export default {
     }
     .content {
       color: #000;
+      width: 100%;
       h3 {
         font-size: 18px;
         font-weight: 600;
@@ -191,6 +192,7 @@ export default {
         }
       }
       p {
+        width: 100%;
         overflow: hidden;
         text-overflow: ellipsis;
         display: -webkit-box;
