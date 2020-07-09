@@ -221,23 +221,38 @@ export default {
     }
   }
   .sort {
-    text-align: right;
+    // text-align: left;
+    display: flex;
+    flex-direction: column;
     margin-bottom: 20px;
     @include mediaquery_pad {
-      text-align: left;
+      flex-direction: row;
       margin-bottom: 0;
     }
     .dropdown:first-child {
-      margin-right: 10px;
+      margin-bottom: 10px;
+      @include mediaquery_pad {
+        margin-bottom: 0;
+        margin-right: 10px;
+      }
+    }
+    .dropdown {
+      width: 200px;
     }
     ::v-deep .dropdown-menu {
       width: 300px;
+      @include mediaquery_pad {
+        width: 350px;
+      }
     }
   }
   .search {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: flex-start;
+    @include mediaquery_pad {
+      justify-content: flex-end;
+    }
     label {
       margin: 0;
     }
