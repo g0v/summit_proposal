@@ -1,62 +1,65 @@
 <template>
   <div class="list">
-    <div class="list-container container" v-if="list.length === 0">
+    <div class="list-container" v-if="list.length === 0">
       <span class="no-info">抱歉，目前尚無提案供閱讀</span>
     </div>
-    <div class="list-container container" v-else>
+    <div class="list-container" v-else>
       <router-link
         v-for="item in list"
         :key="item._id"
         class="item"
         :to="{ name: routerName, params: { id: item._id } }"
       >
-        <!-- 正常有版本的 -->
-        <template v-if="item.versions[item.versions.length - 1]">
-          <div class="cover">
-            <img
-              :src="item.versions[item.versions.length - 1].cover_image"
-              alt="project cover"
-              v-if="item.versions[item.versions.length - 1].cover_image"
-            />
-            <div class="no-cover" v-else></div>
-            <div class="owner">
+        <div class="item-container">
+          <!-- 正常有版本的 -->
+          <template v-if="item.versions[item.versions.length - 1]">
+            <div class="cover">
               <img
-                v-for="(speaker, index) in item.versions[
-                  item.versions.length - 1
-                ].speakers"
-                :key="index"
-                :src="speaker.avatar_url"
-                alt="owner pic"
+                :src="item.versions[item.versions.length - 1].cover_image"
+                alt="project cover"
+                v-if="item.versions[item.versions.length - 1].cover_image"
               />
+              <div class="no-cover" v-else></div>
+              <div class="owner">
+                <img
+                  v-for="(speaker, index) in item.versions[
+                    item.versions.length - 1
+                  ].speakers"
+                  :key="index"
+                  :src="speaker.avatar_url"
+                  alt="owner pic"
+                />
+              </div>
             </div>
-          </div>
-          <div class="content">
-            <draft-notifier
-              class="mv2"
-              v-if="displayDraftNotice"
-              :proposal="item"
-            />
-            <h3>
-              <span>{{ item.versions[item.versions.length - 1].title }}</span>
-              <span>{{
-                item.versions[item.versions.length - 1].title_en
-              }}</span>
-            </h3>
-            <p>
-              {{ item.versions[item.versions.length - 1].summary }}
-            </p>
-            <p>
-              {{ item.versions[item.versions.length - 1].summary_en }}
-            </p>
-          </div>
-        </template>
-        <!-- draft 暫存版本的 -->
-        <div v-else>
-          <div class="mv3">
-            此為暫存版本，請點選進入，查看詳細資訊
-          </div>
-          <div class="mv3">
-            This proposal is not submitted yet. Click here to get latest draft.
+            <div class="content">
+              <draft-notifier
+                class="mv2"
+                v-if="displayDraftNotice"
+                :proposal="item"
+              />
+              <h3>
+                <span>{{ item.versions[item.versions.length - 1].title }}</span>
+                <span>{{
+                  item.versions[item.versions.length - 1].title_en
+                }}</span>
+              </h3>
+              <p>
+                {{ item.versions[item.versions.length - 1].summary }}
+              </p>
+              <p>
+                {{ item.versions[item.versions.length - 1].summary_en }}
+              </p>
+            </div>
+          </template>
+          <!-- draft 暫存版本的 -->
+          <div v-else>
+            <div class="mv3">
+              此為暫存版本，請點選進入，查看詳細資訊
+            </div>
+            <div class="mv3">
+              This proposal is not submitted yet. Click here to get latest
+              draft.
+            </div>
           </div>
         </div>
       </router-link>
@@ -68,7 +71,7 @@
 import DraftNotifier from "@/components/DraftNotifier";
 
 export default {
-  name: "List",
+  name: "CardList",
   components: {
     DraftNotifier
   },
@@ -89,35 +92,50 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.list {
+  padding: 0 1rem;
+}
 .list-container {
+  max-width: $width--proposal-list;
+  margin: 0 auto;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   flex-wrap: wrap;
+  // padding: 0 10px;
   .no-info {
     color: #000;
     font-size: 20px;
+    margin: 20px 0;
+  }
+  &:after {
+    content: "";
+    flex: auto;
   }
   .item {
     width: 100%;
+    padding: 10px;
+    text-decoration: none;
+    @include mediaquery_phone {
+      width: 50%;
+    }
+    @include mediaquery_medium_devices {
+      width: 33.33333%;
+    }
+    @include mediaquery_large_devices {
+      width: 25%;
+    }
+  }
+  .item-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: left;
-    margin-bottom: 15px;
     padding: 40px 20px;
     box-shadow: 0px 0px 2px 0px #00000052, 0px 12px 8px -12px #000;
     border-radius: 5px;
     background-color: #ffffff94;
-    text-decoration: none;
     cursor: pointer;
-    @include mediaquery_phone {
-      width: 46%;
-      margin: 2%;
-    }
-    @include mediaquery_medium_devices {
-      width: 31%;
-      margin: 0 1% 2%;
-    }
+    height: 100%;
     &:hover {
       background-color: #ffffffbf;
       position: relative;
@@ -159,6 +177,7 @@ export default {
     }
     .content {
       color: #000;
+      width: 100%;
       h3 {
         font-size: 18px;
         font-weight: 600;
@@ -169,6 +188,7 @@ export default {
         }
       }
       p {
+        width: 100%;
         overflow: hidden;
         text-overflow: ellipsis;
         display: -webkit-box;
