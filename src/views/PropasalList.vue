@@ -46,7 +46,7 @@ import ListPagination from "@/components/proposalList/ListPagination.vue";
 
 import { handleApiError, addMetaData } from "@/utils/mixins";
 
-const ITEM_PER_PAGE = 12;
+const ITEM_PER_PAGE = 24;
 const TOPIC_OPTIONS = [
   "「沒有人」的島 Nobody’s island",
   "島嶼大聯盟 Island’s federation",

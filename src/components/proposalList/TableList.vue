@@ -51,7 +51,7 @@ export default {
   padding: 1rem;
   &__content {
     background: white;
-    max-width: 1280px;
+    max-width: $width--proposal-list;
     margin: 0 auto;
   }
 }

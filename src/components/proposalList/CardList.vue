@@ -1,9 +1,9 @@
 <template>
   <div class="list">
-    <div class="list-container container" v-if="list.length === 0">
+    <div class="list-container" v-if="list.length === 0">
       <span class="no-info">抱歉，目前尚無提案供閱讀</span>
     </div>
-    <div class="list-container container" v-else>
+    <div class="list-container" v-else>
       <router-link
         v-for="item in list"
         :key="item._id"
@@ -92,23 +92,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.list {
+  padding: 0 1rem;
+}
 .list-container {
+  max-width: $width--proposal-list;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  // 為了做到 flex 漂亮排版，往外拉了20px
-  @include mediaquery_phone {
-    max-width: 560px;
-  }
-  @include mediaquery_pad {
-    max-width: 740px;
-  }
-  @include mediaquery_medium_devices {
-    max-width: 980px;
-  }
-  @include mediaquery_large_devices {
-    max-width: 1160px;
-  }
+  // padding: 0 10px;
   .no-info {
     color: #000;
     font-size: 20px;
@@ -127,6 +120,9 @@ export default {
     }
     @include mediaquery_medium_devices {
       width: 33.33333%;
+    }
+    @include mediaquery_large_devices {
+      width: 25%;
     }
   }
   .item-container {

@@ -1,5 +1,5 @@
 <template>
-  <div class="pagination-container container">
+  <div class="pagination-container">
     <b-pagination
       align="right"
       :total-rows="allDataLength"
@@ -29,8 +29,9 @@ export default {
 
 <style lang="scss" scoped>
 .pagination-container {
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding: 20px 1rem;
+  max-width: calc(#{$width--proposal-list} + 2rem);
+  margin: 0 auto;
   .pagination {
     margin: 0;
   }
