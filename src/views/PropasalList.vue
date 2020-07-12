@@ -1,5 +1,5 @@
 <template>
-  <section class="propasal-list">
+  <section class="propasal-list pv3 pv4-l">
     <ListHeader
       :keyword="keyword"
       :topicOptions="topicOptions"
@@ -217,7 +217,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 .propasal-list {
-  padding: 45px 0;
   min-height: calc(100vh - 80px);
 }
 </style>
