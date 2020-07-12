@@ -24,9 +24,3 @@
         @content;
     }
 }
-//1200
-@mixin mediaquery_design_devices{
-    @media all and (min-width: $width--design_devices){
-        @content;
-    }
-}

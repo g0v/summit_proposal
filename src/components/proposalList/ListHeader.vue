@@ -1,6 +1,6 @@
 <template>
-  <div class="list-header">
-    <div class="container">
+  <div class="list-header ph3">
+    <div class="list-header__container">
       <div class="title">
         <h2>提案列表 Proposals</h2>
         <div v-if="isNeedModeSwitch" class="switch">
@@ -148,6 +148,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.list-header {
+  &__container {
+    max-width: $width--proposal-list;
+    margin: 0 auto;
+  }
+}
 .title {
   padding: 30px;
   background-color: $sub-color;

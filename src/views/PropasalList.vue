@@ -1,5 +1,5 @@
 <template>
-  <section class="propasal-list">
+  <section class="propasal-list pv3 pv4-l">
     <ListHeader
       :keyword="keyword"
       :topicOptions="topicOptions"
@@ -46,7 +46,7 @@ import ListPagination from "@/components/proposalList/ListPagination.vue";
 
 import { handleApiError, addMetaData } from "@/utils/mixins";
 
-const ITEM_PER_PAGE = 12;
+const ITEM_PER_PAGE = 24;
 const TOPIC_OPTIONS = [
   "「沒有人」的島 Nobody’s island",
   "島嶼大聯盟 Island’s federation",
@@ -217,7 +217,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 .propasal-list {
-  padding: 45px 0;
   min-height: calc(100vh - 80px);
 }
 </style>
