@@ -1,8 +1,9 @@
+import moment from "moment";
+import _ from "lodash";
+
 import API from "@/utils/API.js";
 import FORUM_API from "@/utils/FORUM_API.js";
-import moment from 'moment';
-
-const COMMENT_PER_PAGE = 20;
+import commentCache from "@/assets/commentCache.json";
 
 export default {
   async createEmptyProject() {
@@ -27,10 +28,20 @@ export default {
       throw new Error("Failed to load project list");
     }
   },
-  async listComments({ commit }) {
+  async listComments({ state, commit }) {
+    if (state.commentList.length === 0) {
+      const defaultComments = commentCache.map(comment => {
+        return {
+          ...comment,
+          updatedAt: moment(comment.updatedAt)
+        };
+      });
+      commit("initCommentList", defaultComments);
+    }
+    const curUpdatedAt = Math.max(...state.commentList.map(c => c.updatedAt));
     for (let curPage = 1; ; curPage++) {
       const resp = await FORUM_API.GET(`/api/recent?page=${curPage}`);
-      if (resp.topics) {
+      if (resp.topics && resp.topics.length) {
         const comments = resp.topics.map(topic => {
           return {
             title: topic.title,
@@ -42,13 +53,15 @@ export default {
             commentCount: topic.postcount - 1
           };
         });
-        if (curPage === 1) {
-          // reset it when get new data
-          commit("resetComment");
+        const tailUpdatedAt = _.last(comments).updatedAt;
+        commit("mergeCommentList", comments);
+
+        if (tailUpdatedAt < curUpdatedAt) {
+          // no need to query nodebb, as we are older than cache
+          break;
         }
-        commit("appendCommentList", comments);
       }
-      if (resp.topics.length < COMMENT_PER_PAGE) {
+      if (resp.topics.length <= 0) {
         break;
       }
     }

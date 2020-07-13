@@ -46,11 +46,21 @@ export default {
     updateProjectDetail(state, detail) {
       state.projectDetail = detail;
     },
-    resetComment(state) {
-      state.commentList = [];
+    initCommentList(state, commentList) {
+      state.commentList = commentList;
     },
-    appendCommentList(state, commentList) {
-      state.commentList.push(...commentList);
+    mergeCommentList(state, newCommentList) {
+      newCommentList.forEach(newComment => {
+        const existingComment = state.commentList.find(
+          comment => comment.id === newComment.id
+        );
+        if (existingComment) {
+          existingComment.updatedAt = newComment.updatedAt;
+          existingComment.commentCount = newComment.commentCount;
+        } else {
+          state.commentList.push(newComment);
+        }
+      });
     }
   },
   getters: {
