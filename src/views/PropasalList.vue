@@ -73,6 +73,7 @@ export default {
   beforeRouteEnter(to, from, next) {
     next(async vm => {
       vm.addMetaData(to.name);
+      vm.$store.dispatch("listComments");
       await vm.handleApiError(vm.$store.dispatch("listProjects"));
     });
   },

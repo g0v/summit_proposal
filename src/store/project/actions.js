@@ -1,4 +1,9 @@
+import moment from "moment";
+import _ from "lodash";
+
 import API from "@/utils/API.js";
+import FORUM_API from "@/utils/FORUM_API.js";
+import commentCache from "@/assets/commentCache.json";
 
 export default {
   async createEmptyProject() {
@@ -21,6 +26,44 @@ export default {
       return rows;
     } else {
       throw new Error("Failed to load project list");
+    }
+  },
+  async listComments({ state, commit }) {
+    if (state.commentList.length === 0) {
+      const defaultComments = commentCache.map(comment => {
+        return {
+          ...comment,
+          updatedAt: moment(comment.updatedAt)
+        };
+      });
+      commit("initCommentList", defaultComments);
+    }
+    const curUpdatedAt = Math.max(...state.commentList.map(c => c.updatedAt));
+    for (let curPage = 1; ; curPage++) {
+      const resp = await FORUM_API.GET(`/api/recent?page=${curPage}`);
+      if (resp.topics && resp.topics.length) {
+        const comments = resp.topics.map(topic => {
+          return {
+            title: topic.title,
+            // we actually don't know what's diff between title & titleRaw, store both of them just in case
+            titleRaw: topic.titleRaw,
+            updatedAt: moment(topic.lastposttimeISO),
+            id: topic.tid,
+            // 1 post would be initial post for this topic
+            commentCount: topic.postcount - 1
+          };
+        });
+        const tailUpdatedAt = _.last(comments).updatedAt;
+        commit("mergeCommentList", comments);
+
+        if (tailUpdatedAt < curUpdatedAt) {
+          // no need to query nodebb, as we are older than cache
+          break;
+        }
+      }
+      if (resp.topics.length <= 0) {
+        break;
+      }
     }
   },
   async getDetailProject({ commit }, id) {

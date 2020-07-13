@@ -20,6 +20,7 @@
       </div>
     </div>
     <div class="flex justify-between justify-start-l">
+      <!--
       <div class="rowview__speakers flex items-center">
         <div
           class="rowview__speaker mr1"
@@ -35,6 +36,24 @@
               />
             </div>
           </div>
+        </div>
+      </div>
+      -->
+      <div
+        class="rowview__comment flex items-center ml3"
+        v-show="row.commentCount"
+      >
+        <div class="br2 white bg-gold pv1 ph2">
+          <b-icon icon="chat-square-dots" />
+          <b-icon icon="x" class="ml1" />
+          {{ row.commentCount }}
+        </div>
+      </div>
+      <div class="rowview__ts flex flex-wrap items-center ml3 tr f6">
+        <div v-if="!isHeader">
+          {{ zhFromNow }}
+          <br />
+          {{ enFromNow }}
         </div>
       </div>
     </div>
@@ -73,6 +92,18 @@ export default {
     },
     speakers() {
       return this.lastVersion.speakers || [];
+    },
+    zhFromNow() {
+      return this.row.updatedAt
+        .clone()
+        .locale("zh-tw")
+        .fromNow();
+    },
+    enFromNow() {
+      return this.row.updatedAt
+        .clone()
+        .locale("en")
+        .fromNow();
     },
     topic() {
       return this.lastVersion.topic || "";
@@ -119,6 +150,9 @@ $topic-width: 12rem;
     img {
       object-fit: cover;
     }
+  }
+  &__ts {
+    color: #555;
   }
 }
 </style>
