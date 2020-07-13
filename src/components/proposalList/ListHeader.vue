@@ -67,7 +67,6 @@
             trim
             placeholder="Search..."
           ></b-form-input>
-          <label for="search">搜尋 Search</label>
         </div>
       </div>
     </div>
@@ -243,7 +242,10 @@ export default {
       }
     }
     .dropdown {
-      width: 200px;
+      width: 100%;
+      @include mediaquery_pad {
+        width: 200px;
+      }
     }
     ::v-deep .dropdown-menu {
       width: 300px;
@@ -255,17 +257,16 @@ export default {
   .search {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    @include mediaquery_pad {
-      justify-content: flex-end;
-    }
+    justify-content: flex-end;
     label {
       margin: 0;
     }
     #search {
-      width: 12rem;
-      max-width: 80vw;
-      margin-right: 5px;
+      width: 100%;
+      @include mediaquery_pad {
+        width: 16rem;
+        max-width: 80vw;
+      }
     }
   }
 }
