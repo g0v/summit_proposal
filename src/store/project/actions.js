@@ -1,4 +1,8 @@
 import API from "@/utils/API.js";
+import FORUM_API from "@/utils/FORUM_API.js";
+import moment from 'moment';
+
+const COMMENT_PER_PAGE = 20;
 
 export default {
   async createEmptyProject() {
@@ -21,6 +25,32 @@ export default {
       return rows;
     } else {
       throw new Error("Failed to load project list");
+    }
+  },
+  async listComments({ commit }) {
+    for (let curPage = 1; ; curPage++) {
+      const resp = await FORUM_API.GET(`/api/recent?page=${curPage}`);
+      if (resp.topics) {
+        const comments = resp.topics.map(topic => {
+          return {
+            title: topic.title,
+            // we actually don't know what's diff between title & titleRaw, store both of them just in case
+            titleRaw: topic.titleRaw,
+            updatedAt: moment(topic.lastposttimeISO),
+            id: topic.tid,
+            // 1 post would be initial post for this topic
+            commentCount: topic.postcount - 1
+          };
+        });
+        if (curPage === 1) {
+          // reset it when get new data
+          commit("resetComment");
+        }
+        commit("appendCommentList", comments);
+      }
+      if (resp.topics.length < COMMENT_PER_PAGE) {
+        break;
+      }
     }
   },
   async getDetailProject({ commit }, id) {
