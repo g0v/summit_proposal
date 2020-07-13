@@ -15,8 +15,8 @@
         </template>
       </div>
       <div class="rowview__title mv3 mv0-l">
-        <div class="truncate">{{ lastVersion.title }}</div>
-        <div class="truncate">{{ lastVersion.title_en }}</div>
+        <div class="truncate-l">{{ lastVersion.title }}</div>
+        <div class="truncate-l">{{ lastVersion.title_en }}</div>
       </div>
     </div>
     <div class="flex justify-between justify-start-l">
@@ -90,7 +90,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-$topic-width: 10rem;
+$topic-width: 12rem;
 
 .rowview {
   color: black;
@@ -106,11 +106,13 @@ $topic-width: 10rem;
     filter: invert(1);
   }
   &__topic {
-    width: $topic-width;
     color: #555;
+    width: $topic-width;
   }
   &__title {
-    max-width: calc(100% - #{$topic-width} - 3rem);
+    @include mediaquery_pad {
+      max-width: calc(100% - #{$topic-width} - 3rem);
+    }
   }
   &__speaker {
     width: 2.5rem;
