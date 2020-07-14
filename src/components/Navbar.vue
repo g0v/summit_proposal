@@ -93,6 +93,14 @@ export default {
       return this.$store.getters.isLoggedIn;
     }
   },
+  watch: {
+    isLoggedIn(newVal) {
+      if (newVal) {
+        // sync immediately when login
+        this.syncUnreadCommentCount();
+      }
+    }
+  },
   created() {
     this.syncUnreadCommentCount();
     setInterval(() => {
@@ -123,7 +131,6 @@ export default {
       if (resp && resp.notifications) {
         this.unreadCommentCount = resp.notifications.length;
       }
-      console.log("debug", resp);
     }
   }
 };
