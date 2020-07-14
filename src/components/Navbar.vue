@@ -41,19 +41,21 @@
           歷年議程<br />
           Prev Events
         </b-nav-item>
-        <b-nav-item href="https://discuss.summit2020.g0v.tw">
+        <b-nav-item class="relative" href="https://discuss.summit2020.g0v.tw">
           討論區<br />
           Forum
+          <div
+            class="unread-count br-pill bg-light-red white f7"
+            v-show="unreadCommentCount"
+          >
+            {{ unreadCommentCount }}
+          </div>
         </b-nav-item>
-        <b-nav-item
-          v-if="$store.getters.isLoggedIn"
-          :to="{ name: 'PropasalManageList' }"
+        <b-nav-item v-if="isLoggedIn" :to="{ name: 'PropasalManageList' }"
           >管理投稿<br />
           Manage Proposals
         </b-nav-item>
-        <b-nav-item
-          v-if="!$store.getters.isLoggedIn"
-          @click="isLoginLightboxOpen = true"
+        <b-nav-item v-if="!isLoggedIn" @click="isLoginLightboxOpen = true"
           >登入<br />
           Sign In
         </b-nav-item>
@@ -72,13 +74,30 @@
 
 <script>
 import LoginLightbox from "@/components/LoginLightbox.vue";
+import FORUM_API from "@/utils/FORUM_API.js";
+
+// sync every 5 min
+const COMMENT_SYNC_INTERVAL = 5 * 60 * 1000;
+
 export default {
   name: "Navbar",
   components: { LoginLightbox },
   data() {
     return {
-      isLoginLightboxOpen: false
+      isLoginLightboxOpen: false,
+      unreadCommentCount: 0
     };
+  },
+  computed: {
+    isLoggedIn() {
+      return this.$store.getters.isLoggedIn;
+    }
+  },
+  created() {
+    this.syncUnreadCommentCount();
+    setInterval(() => {
+      this.syncUnreadCommentCount();
+    }, COMMENT_SYNC_INTERVAL);
   },
   methods: {
     async logout() {
@@ -88,6 +107,23 @@ export default {
       if (this.$route.path !== "/") {
         this.$router.push("/");
       }
+    },
+    async syncUnreadCommentCount() {
+      if (!this.isLoggedIn) {
+        return;
+      }
+      let resp = null;
+      try {
+        resp = await FORUM_API.GET("/api/notifications", {
+          withCredentials: true
+        });
+      } catch (err) {
+        // that's ok
+      }
+      if (resp && resp.notifications) {
+        this.unreadCommentCount = resp.notifications.length;
+      }
+      console.log("debug", resp);
     }
   }
 };
@@ -102,6 +138,25 @@ nav {
   }
   .navbar-nav {
     align-items: center;
+  }
+  .nav-item {
+    &:not(:last-child) {
+      margin-right: 0.5rem;
+    }
+  }
+  .unread-count {
+    position: absolute;
+    bottom: 0.5rem;
+    right: -2rem;
+    padding: 0.125rem 0.25rem;
+    min-width: 1.5rem;
+    @include mediaquery_pad {
+      bottom: 0;
+      right: -0.5rem;
+    }
+  }
+  .nav-item:hover .unread-count {
+    background: rgba(255, 114, 92, 0.7);
   }
 }
 </style>
