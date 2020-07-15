@@ -19,7 +19,7 @@
           @valid-change="handleValidChange"
         ></speaker-form>
       </div>
-      <b-button type="submit" variant="danger" size="lg">
+      <b-button type="submit" variant="danger" size="lg" v-if="isHaveAnyVersion">
         提交投稿 Submit Proposal
       </b-button>
     </b-form>
@@ -209,7 +209,9 @@ export default {
       validMap: {},
       isAllValid: true,
       isOnInit: true,
-      backupTimer: null
+      backupTimer: null,
+      // 投稿截止後，無任何版本者，不能在更新投稿了
+      isHaveAnyVersion:false
     };
   },
   computed: {
@@ -275,6 +277,10 @@ export default {
         return;
       }
       let formPointer = null;
+      // 投稿截止後，無任何版本者，不能在更新投稿了
+      if(data.versions.length !== 0){
+        this.isHaveAnyVersion = true
+      }
       if (data.draft && data.draft.title) {
         // use draft first
         formPointer = data.draft;
