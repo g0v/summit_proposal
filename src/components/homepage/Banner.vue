@@ -16,9 +16,9 @@
               瀏覽投稿<br />Read Proposals
             </b-button>
           </router-link>
-          <b-button variant="danger mt2 mt0-l" size="lg" @click="goSummit">
+          <!-- <b-button variant="danger mt2 mt0-l" size="lg" @click="goSummit">
             我要投稿<br />Submit a Proposal
-          </b-button>
+          </b-button> -->
         </div>
       </div>
       <div class="image">
