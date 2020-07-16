@@ -19,8 +19,22 @@
           @valid-change="handleValidChange"
         ></speaker-form>
       </div>
-      <b-button type="submit" variant="danger" size="lg" v-if="isHaveAnyVersion">
+      <b-button
+        type="submit"
+        variant="danger"
+        size="lg"
+        v-if="isHaveAnyVersion"
+      >
         提交投稿 Submit Proposal
+      </b-button>
+      <b-button
+        class="proposal__nosubmit"
+        disabled
+        variant="danger"
+        size="lg"
+        v-else
+      >
+        投稿已截止 Submission closed
       </b-button>
     </b-form>
   </div>
@@ -211,7 +225,7 @@ export default {
       isOnInit: true,
       backupTimer: null,
       // 投稿截止後，無任何版本者，不能在更新投稿了
-      isHaveAnyVersion:false
+      isHaveAnyVersion: false
     };
   },
   computed: {
@@ -278,8 +292,8 @@ export default {
       }
       let formPointer = null;
       // 投稿截止後，無任何版本者，不能在更新投稿了
-      if(data.versions.length !== 0){
-        this.isHaveAnyVersion = true
+      if (data.versions.length !== 0) {
+        this.isHaveAnyVersion = true;
       }
       if (data.draft && data.draft.title) {
         // use draft first
@@ -379,6 +393,11 @@ export default {
     ::v-deep > label {
       margin-bottom: 0;
     }
+  }
+
+  &__nosubmit.btn.disabled {
+    cursor: not-allowed;
+    opacity: 1;
   }
 
   &__lang {

@@ -16,9 +16,15 @@
               瀏覽投稿<br />Read Proposals
             </b-button>
           </router-link>
-          <!-- <b-button variant="danger mt2 mt0-l" size="lg" @click="goSummit">
-            我要投稿<br />Submit a Proposal
-          </b-button> -->
+          <a
+            href="https://discuss.summit2020.g0v.tw"
+            target="_blank"
+            rel="noopener nofollow"
+          >
+            <b-button variant="danger mt2 mt0-l" size="lg" @click="goSummit">
+              參與討論<br />Join Discussion
+            </b-button>
+          </a>
         </div>
       </div>
       <div class="image">

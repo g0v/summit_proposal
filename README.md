@@ -26,8 +26,8 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ## 更新討論區資料步驟
 
 ```bash
-node tools/downloadCommentCache.js
-mv commentCache.json src/assets/
+npm run cache:comment
+git add src/assets/commentCache.json
 git ci -m 'Update comment cache'
 git push
 ```
