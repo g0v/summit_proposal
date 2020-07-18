@@ -8,18 +8,14 @@ function joinCommentToProject(project, commentDictionary) {
     commentCount: 0,
     updatedAt: LONG_TIME_AGO.clone()
   };
-  if (project.versions && project.versions.length) {
+  const comment = commentDictionary[project._id];
+  if (comment) {
+    commentInfo.commentCount = comment.commentCount;
+    commentInfo.updatedAt = comment.updatedAt;
+    commentInfo.commentId = comment.id;
+  } else {
     const initVersion = project.versions[0];
-    // nodebb use "無標題" when title is empty
-    const title = initVersion.title || "無標題";
-    if (title in commentDictionary) {
-      const comment = commentDictionary[title];
-      commentInfo.commentCount = comment.commentCount;
-      commentInfo.updatedAt = comment.updatedAt;
-      commentInfo.commentId = comment.id;
-    } else {
-      console.warn(`Missing topic ${initVersion.title} (${project._id})`);
-    }
+    console.warn(`Missing topic ${initVersion.title} (${project._id})`);
   }
 
   return {
@@ -67,9 +63,7 @@ export default {
     commentDictionary(state) {
       const dictionary = {};
       state.commentList.forEach(comment => {
-        // assume there won't be title conflict
-        // as we can't get tid - proposal id mapping
-        dictionary[comment.title] = comment;
+        dictionary[comment.projectId] = comment;
       });
       return dictionary;
     },
