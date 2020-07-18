@@ -30,13 +30,19 @@ export default {
   },
   async listComments({ state, commit }) {
     if (state.commentList.length === 0) {
-      const defaultComments = commentCache.map(comment => {
-        return {
-          ...comment,
-          updatedAt: moment(comment.updatedAt)
-        };
-      });
-      commit("initCommentList", defaultComments);
+      const commentRows = Object.keys(commentCache)
+        .map(projectId => {
+          const comment = commentCache[projectId];
+          return {
+            projectId,
+            ...comment,
+            updatedAt: moment(comment.updatedAt)
+          };
+        })
+        .sort((l, r) => {
+          return r.updatedAt - l.updatedAt;
+        });
+      commit("initCommentList", commentRows);
     }
     const curUpdatedAt = Math.max(...state.commentList.map(c => c.updatedAt));
     for (let curPage = 1; ; curPage++) {
@@ -44,9 +50,6 @@ export default {
       if (resp.topics && resp.topics.length) {
         const comments = resp.topics.map(topic => {
           return {
-            title: topic.title,
-            // we actually don't know what's diff between title & titleRaw, store both of them just in case
-            titleRaw: topic.titleRaw,
             updatedAt: moment(topic.lastposttimeISO),
             id: topic.tid,
             // 1 post would be initial post for this topic

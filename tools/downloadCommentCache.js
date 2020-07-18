@@ -1,56 +1,48 @@
 const axios = require("axios");
 const fs = require("fs");
 const path = require("path");
+const _ = require("lodash");
 
 // handle only production for simplicity
-const endpoint = "https://discuss.summit2020.g0v.tw/api/recent?page=";
-// const endpoint = "https://discuss.summit2020.pre-stage.cc/api/recent?page=";
+const commentEndpoint = "https://discuss.summit2020.g0v.tw/comments/get";
+const topicEndpoint = "https://discuss.summit2020.g0v.tw/api/topic/tid";
+const apiEndpoint = "https://api.summit2020.g0v.tw/projects";
+
 const resultFilePath = path.join(__dirname, "../commentCache.json");
 
-async function downloadAllComments() {
-  const comments = [];
-  const titleDict = {};
-  for (let curPage = 1; ; curPage++) {
-    console.log(`Download page ${curPage}`);
-    const resp = await axios.get(`${endpoint}${curPage}`);
-    if (!resp.data.topics) {
-      break;
+async function genCache() {
+  const cacheContent = {};
+  const listResp = await axios.get(apiEndpoint);
+  const projectIds = listResp.data
+    .filter(project => project.enable)
+    .map(project => project._id);
+
+  const totalProject = projectIds.length;
+  console.log(`Total ${totalProject} projects to retrieve`);
+  for (let i = 0; i < totalProject; i++) {
+    const projectId = projectIds[i];
+    const seq = `${i + 1}`.padStart(3);
+    console.log(`  [${seq}/${totalProject}] Retrieve ${projectId}`);
+    const commentResp = await axios.get(`${commentEndpoint}/${projectId}/0`);
+    const commentData = commentResp.data;
+    const lastPost = _.first(commentData.posts) || {};
+    const comment = {
+      updatedAt: lastPost.timestampISO,
+      id: commentData.tid,
+      // exclude initial post
+      commentCount: commentData.postCount - 1
+    };
+
+    if (!comment.updatedAt) {
+      console.log("            No post, get topic raw data");
+      const topicResp = await axios.get(`${topicEndpoint}/${comment.id}`);
+      comment.updatedAt = topicResp.data.lastposttimeISO;
     }
-    const topics = resp.data.topics;
-    topics.forEach(topic => {
-      if (topic.tid === 197) {
-        // for some reason, this comment title is out of sync
-        topic.title = "生於亂世 有種責任: Civic tech when institutions fail";
-      }
-      const comment = {
-        title: topic.title,
-        titleRaw: topic.titleRaw,
-        updatedAt: topic.lastposttimeISO,
-        id: topic.tid,
-        commentCount: topic.postcount - 1
-      };
-      if (!titleDict[topic.title]) {
-        titleDict[topic.title] = comment;
-        comments.push(comment);
-      } else {
-        const oldComment = titleDict[comment.title];
-        console.warn(
-          `Duplicated title: ${comment.title} in [${comment.id}, ${oldComment.id}]`
-        );
-        if (comment.id > oldComment.id) {
-          // always prefer new project, as this handle all duplicated case
-          oldComment.id = comment.id;
-          oldComment.updatedAt = comment.updatedAt;
-          oldComment.commentCount = comment.commentCount;
-        }
-      }
-    });
-    if (topics <= 0) {
-      break;
-    }
+    cacheContent[projectId] = comment;
   }
-  fs.writeFileSync(resultFilePath, JSON.stringify(comments));
+
+  fs.writeFileSync(resultFilePath, JSON.stringify(cacheContent, null, "  "));
   console.log(`Check ${resultFilePath} for result file`);
 }
 
-downloadAllComments();
+genCache();
