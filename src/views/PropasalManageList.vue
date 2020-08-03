@@ -7,11 +7,11 @@
       @updateKeyword="keyword = $event"
       @updateCurrentPage="paginationData.currentPage = $event"
     />
-    <CardList
-      :list="listByPage"
-      routerName="ProposalEdit"
-      :displayDraftNotice="true"
-    />
+    <div class="propasal-list__warning mv3 pa3 center br3 bg-light-yellow">
+      編輯時限已到，無法再編修稿件。<br />
+      Unable to edit proposal due to exceed deadline.
+    </div>
+    <CardList :list="listByPage" routerName="ProposalDetail" />
     <ListPagination
       :perPage="paginationData.perPage"
       :currentPage="paginationData.currentPage"
@@ -95,5 +95,9 @@ export default {
 .propasal-list {
   padding: 45px 0;
   min-height: calc(100vh - 80px);
+
+  &__warning {
+    max-width: 1280px;
+  }
 }
 </style>
