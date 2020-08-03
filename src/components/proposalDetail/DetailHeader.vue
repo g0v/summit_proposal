@@ -27,10 +27,12 @@
         v-if="this.projectDetail.owner"
       >
         <draft-notifier class="mr2" :proposal="projectDetail" />
+        <!--
         <b-button variant="danger" @click="goEdit">
           編輯提案 <br />
           Edit Proposal
         </b-button>
+        -->
       </div>
     </div>
   </div>
@@ -56,14 +58,14 @@ export default {
         this.projectDetail.versions.length - 1
       ];
     }
-  },
-  methods: {
-    goEdit() {
-      this.$router.push({
-        name: "ProposalEdit",
-        params: { id: this.projectDetail._id }
-      });
-    }
+    // },
+    // methods: {
+    //   goEdit() {
+    //     this.$router.push({
+    //       name: "ProposalEdit",
+    //       params: { id: this.projectDetail._id }
+    //     });
+    //   }
   }
 };
 </script>
