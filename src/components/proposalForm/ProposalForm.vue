@@ -2,6 +2,11 @@
   <div class="proposal form-container" v-if="!isOnInit">
     <b-form @submit="onSubmit">
       <h2 class="h2">稿件資訊 Proposal Information</h2>
+      <div class="mv3 pa3 center br3 bg-light-yellow">
+        注意：在提交編輯後，仍須經審核確認，才會完成更新，以確保相關工作的完整性。<br />
+        Notice: All futher modification will be reviewed by g0v Summit before
+        published, so to ensure all related people get informed.
+      </div>
       <form-field
         v-for="field in fieldDefinitions"
         :key="field.id"
@@ -18,6 +23,11 @@
           @change="updateSpeakers"
           @valid-change="handleValidChange"
         ></speaker-form>
+      </div>
+      <div class="mv3 pa3 center br3 bg-light-yellow">
+        注意：在提交編輯後，仍須經審核確認，才會完成更新，以確保相關工作的完整性。<br />
+        Notice: All futher modification will be reviewed by g0v Summit before
+        published, so to ensure all related people get informed.
       </div>
       <b-button
         type="submit"
@@ -286,7 +296,8 @@ export default {
         this.$store.dispatch("getDetailProject", this.id)
       );
       // 如果非講者本人不能進入此頁面
-      if (!data || !data.owner) {
+      // 2020-09-04 如果未錄取，就不能修改
+      if (!data || !data.owner || !data.selected) {
         this.$emit("access-denied");
         return;
       }
