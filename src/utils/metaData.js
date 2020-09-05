@@ -83,6 +83,10 @@ export default {
       }
     ]
   },
+  ProposalAdminList: {
+    title: "g0v 雙年會 2020 議程徵集-你看不到我",
+    propertyMeta: []
+  },
   Redirect: {
     title: "g0v 雙年會 2020 議程徵集",
     description:

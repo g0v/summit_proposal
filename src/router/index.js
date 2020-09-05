@@ -36,6 +36,11 @@ const routes = [
   //   component: () => import("@/views/ProposalCreate.vue")
   // },
   {
+    path: "/proposal-admin",
+    name: "ProposalAdminList",
+    component: () => import("@/views/ProposalAdminList.vue")
+  },
+  {
     path: "/redirect",
     name: "Redirect",
     component: () => import("@/views/Redirect.vue")
