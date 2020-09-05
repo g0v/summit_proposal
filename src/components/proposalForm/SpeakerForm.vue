@@ -46,18 +46,9 @@
 </template>
 <script>
 import _ from "lodash";
+import { SPEAKER_FIELD_DEFINITIONS } from "@/utils/projectFields";
 import FormField from "./FormField";
 let lastId = 0;
-const PRIVATE_DESP =
-  "此欄位不會公開顯示 This field is only visible to organizer";
-
-const GENDER_OPTIONS = [
-  "女 female",
-  "男 male",
-  "非二元性別 non-binary",
-  "其它認同 other gender identity",
-  "不希望透漏 prefer not to disclose"
-];
 
 const DEFAULT_SPAKER = {
   id: lastId,
@@ -77,132 +68,6 @@ const DEFAULT_SPAKER = {
   bio: "",
   bio_en: ""
 };
-
-const TIPS_WE_WILL_TRANSLATE =
-  "若無提供，主辦單位將代為翻譯 or we will help you translate it";
-
-const FIELD_DEFINITIONS = [
-  {
-    label: "顯示於網頁的講者名稱 Speaker’s display name",
-    id: "display_name",
-    type: "text",
-    maxCount: 60,
-    required: true
-  },
-  {
-    label: "組織或社群名稱",
-    labelEn: "Speaker’s organization or community affiliation",
-    id: "organization",
-    maxCount: 60,
-    type: "text",
-    required: true
-  },
-  {
-    label: "講者頭像 Speaker’s avatar",
-    id: "avatar_url",
-    type: "image",
-    uploadLabel: "上傳照片 Upload photo",
-    changeLabel: "更改照片 Change photo",
-    height: "8rem",
-    required: true
-  },
-  {
-    label: "講者所在城市 Speaker’s location (city)",
-    id: "city",
-    type: "text",
-    maxCount: 60,
-    required: true
-  },
-  {
-    label: "講者資訊連結 Speaker info URL ",
-    id: "info_url",
-    type: "text",
-    textType: "url"
-  },
-  {
-    label: "講者簡介 Short bio",
-    id: "bio",
-    description: "最多 150 字 Max 150 words",
-    maxCount: 150,
-    type: "textarea",
-    required: true
-  },
-  {
-    label: "講者英語簡介 Speaker’s bio in English",
-    id: "bio_en",
-    description: `最多 100 字 Max 100 words ${TIPS_WE_WILL_TRANSLATE}`,
-    maxCount: 100,
-    type: "textarea"
-  },
-  {
-    label: "姓名 Name",
-    id: "private_name",
-    description: PRIVATE_DESP,
-    maxCount: 60,
-    type: "text",
-    required: true
-  },
-  {
-    label: "性別 Gender",
-    id: "private_gender",
-    description: PRIVATE_DESP,
-    type: "select",
-    options: GENDER_OPTIONS
-  },
-  {
-    label: "電子信箱 Email",
-    id: "private_email",
-    description: PRIVATE_DESP,
-    type: "text",
-    textType: "email",
-    required: true
-  },
-  {
-    label: "聯絡電話 Phone number",
-    id: "private_phone_number",
-    maxCount: 20,
-    description: PRIVATE_DESP,
-    type: "text"
-  },
-  {
-    label:
-      "因應 COVID-19 全球疫情，如果稿件入選，且相關旅行限制允許，你願意前往台灣參與 g0v Summit 2020 嗎？",
-    labelEn:
-      "Due to uncertainties of the COVID-19 pandemic, if your proposal is selected and you are allowed to travel, would you be willing to travel to Taiwan to attend g0v Summit 2020?",
-    id: "private_accept_travel",
-    description: PRIVATE_DESP,
-    type: "boolean",
-    required: true
-  },
-  {
-    label: "你是如何知道 g0v 雙年會的？",
-    labelEn: "How did you learn about the g0v Summit 2020?",
-    id: "private_channel",
-    description: PRIVATE_DESP,
-    type: "select-with-other",
-    required: true,
-    maxCount: 60,
-    otherOption: "其它（請描述）Other (please specify)",
-    otherId: "private_channel_other",
-    options: [
-      "社交媒體 Social media (Facebook, Twitter, Instagram)",
-      "g0v 黑客松 g0v hackathon",
-      "其它開源或公民科技社群 Open source and civic tech communities",
-      "揪松電子報 Jothon’s newsletter",
-      "親朋好友 Families and friends",
-      // TODO: please specify
-      "其它（請描述）Other (please specify)"
-    ]
-  },
-  {
-    label: "其他個人需求，或其他想說的話",
-    labelEn: "Other personal needs or anything you want to let us know",
-    id: "private_misc",
-    description: PRIVATE_DESP,
-    maxCount: 150,
-    type: "textarea"
-  }
-];
 
 export default {
   components: {
@@ -236,7 +101,7 @@ export default {
       private_channel: "",
       private_misc: "",
 
-      fieldDefinitions: FIELD_DEFINITIONS
+      fieldDefinitions: SPEAKER_FIELD_DEFINITIONS
     };
   },
   computed: {

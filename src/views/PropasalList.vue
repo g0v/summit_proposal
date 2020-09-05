@@ -27,7 +27,7 @@
       :list="listByPage"
       routerName="ProposalDetail"
     />
-    <CardList v-else :list="listByPage" routerName="ProposalDetail" />
+    <CardList v-else :list="listByPage" />
     <ListPagination
       v-if="listByFilter.length"
       :perPage="perPage"

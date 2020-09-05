@@ -25,16 +25,21 @@ const routes = [
     name: "ProposalDetail",
     component: () => import("@/views/ProposalDetail.vue")
   },
-  // {
-  //   path: "/proposal-edit/:id",
-  //   name: "ProposalEdit",
-  //   component: () => import("@/views/ProposalEdit.vue")
-  // },
+  {
+    path: "/proposal-edit/:id",
+    name: "ProposalEdit",
+    component: () => import("@/views/ProposalEdit.vue")
+  },
   // {
   //   path: "/proposal-create",
   //   name: "ProposalCreate",
   //   component: () => import("@/views/ProposalCreate.vue")
   // },
+  {
+    path: "/proposal-admin",
+    name: "ProposalAdminList",
+    component: () => import("@/views/ProposalAdminList.vue")
+  },
   {
     path: "/redirect",
     name: "Redirect",
