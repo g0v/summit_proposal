@@ -1,5 +1,5 @@
 <template>
-  <div class="comparator" v-if="toBeVerified && hasBeenVerified">
+  <div class="comparator" v-if="toBeVerified || hasBeenVerified">
     <div
       class="mv2 f6"
       v-for="field in fieldList"
@@ -9,11 +9,11 @@
       <div class="br2 br--top bg-light-silver white dib f7 pv1 ph2">
         {{ labelPrefix }}{{ field.label }}
       </div>
-      <div class="flex-l bt bl br b--moon-gray bg-white">
-        <div class="flex-auto bb-l b--moon-gray pa2">
-          {{ hasBeenVerified[field.id] }}
+      <div class="flex-l ba b--moon-gray bg-white br2 br--bottom">
+        <div class="comparator__col pa2">
+          {{ val(hasBeenVerified, field) }}
         </div>
-        <div class="bb-l b--moon-gray flex items-center justify-center">
+        <div class="flex items-center justify-center">
           <div class="dn db-l">
             <b-icon icon="arrow-right-circle-fill" />
           </div>
@@ -21,14 +21,16 @@
             <b-icon icon="arrow-down-circle-fill" />
           </div>
         </div>
-        <div class="flex-auto bb b--moon-gray pa2">
-          {{ toBeVerified[field.id] }}
+        <div class="comparator__col pa2">
+          {{ val(toBeVerified, field) }}
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
+import _ from "lodash";
+
 export default {
   props: {
     fieldList: {
@@ -57,15 +59,30 @@ export default {
     }
   },
   methods: {
+    val(obj, field) {
+      return _.get(obj, field.id, "N/A");
+    },
     hasContentToShow(field, toBe, hasBeen) {
-      if (!toBe[field.id] || !hasBeen[field.id]) {
+      if (!toBe && !hasBeen) {
+        return false;
+      }
+      const valToBe = _.get(toBe, field.id);
+      const valHasBeen = _.get(hasBeen, field.id);
+      if (valToBe === undefined && valHasBeen === undefined) {
         return false;
       }
       if (this.onlyShowDiff) {
-        return toBe[field.id] !== hasBeen[field.id];
+        return valToBe !== valHasBeen;
       }
       return true;
     }
   }
 };
 </script>
+<style lang="scss" scoped>
+.comparator {
+  &__col {
+    flex-basis: 50%;
+  }
+}
+</style>

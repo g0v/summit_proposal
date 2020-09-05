@@ -4,7 +4,7 @@
       審核更新
     </h2>
     <div class="mv3" v-if="projectsToBeReviews.length">
-      <h3 class="mv3 f4">待審核的稿件 ({{ projectsToBeReviews.length }})</h3>
+      <h3 class="mv3 f4">待審核的稿件 x {{ projectsToBeReviews.length }}</h3>
       <project-reviewer
         v-for="project in projectsToBeReviews"
         :key="project._id"
