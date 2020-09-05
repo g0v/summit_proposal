@@ -55,6 +55,10 @@
           >管理投稿<br />
           Manage Proposals
         </b-nav-item>
+        <b-nav-item v-if="isAdmin" :to="{ name: 'ProposalAdminList' }">
+          審核更新<br />
+          Review New Edit
+        </b-nav-item>
         <b-nav-item v-if="!isLoggedIn" @click="isLoginLightboxOpen = true"
           >登入<br />
           Sign In
@@ -89,6 +93,9 @@ export default {
     };
   },
   computed: {
+    isAdmin() {
+      return this.$store.getters.isAdmin;
+    },
     isLoggedIn() {
       return this.$store.getters.isLoggedIn;
     }

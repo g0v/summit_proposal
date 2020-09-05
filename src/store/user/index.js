@@ -39,6 +39,9 @@ export default {
     },
     isLoggedIn({ token }) {
       return !!token;
+    },
+    isAdmin({ userInfo }) {
+      return userInfo.isAdmin;
     }
   }
 };

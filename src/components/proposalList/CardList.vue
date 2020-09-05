@@ -8,9 +8,19 @@
         v-for="item in list"
         :key="item._id"
         class="item"
-        :to="{ name: routerName, params: { id: item._id } }"
+        :class="{ 'item--accepted': canShowAccepted(item) }"
+        :to="{ name: routerName(item), params: { id: item._id } }"
       >
-        <div class="item-container">
+        <div class="item-container" :class="{ 'o-50': isForbidEdit(item) }">
+          <div class="item-banner tc" v-if="canShowAccepted(item)">
+            <template v-if="isOnReview(item)">
+              新版本審核中 New edition is under review
+            </template>
+            <template v-else>
+              已錄取！ Accepted!
+            </template>
+          </div>
+
           <!-- 正常有版本的 -->
           <template v-if="item.versions[item.versions.length - 1]">
             <div class="cover">
@@ -68,6 +78,7 @@
 </template>
 
 <script>
+import _ from "lodash";
 import DraftNotifier from "@/components/DraftNotifier";
 
 export default {
@@ -80,12 +91,34 @@ export default {
       type: Array,
       default: () => []
     },
-    routerName: {
-      type: String
-    },
     displayDraftNotice: {
       type: Boolean,
       default: false
+    },
+    isEditable: {
+      type: Boolean,
+      default: false
+    }
+  },
+  methods: {
+    routerName(item) {
+      if (this.isEditable && item.selected && item.owner) {
+        return "ProposalEdit";
+      }
+      return "ProposalDetail";
+    },
+    isForbidEdit(item) {
+      if (!this.isEditable) {
+        return false;
+      }
+      return !(item.selected && item.owner);
+    },
+    canShowAccepted(item) {
+      return this.isEditable && !this.isForbidEdit(item);
+    },
+    isOnReview(item) {
+      const lastVer = _.last(item.versions) || {};
+      return !lastVer.verified;
     }
   }
 };
@@ -124,6 +157,28 @@ export default {
     @include mediaquery_large_devices {
       width: 25%;
     }
+
+    &--accepted {
+      .item-container {
+        padding-top: 48px;
+        box-shadow: 0px 0px 2px 0px #00000052, 0px 0px 2px 2px #fbf1a9;
+
+        &:hover {
+          box-shadow: 1px 2px 2px 0px #00000052, 1px 2px 2px 2px #fbf1a9;
+        }
+      }
+    }
+  }
+  .item-banner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2rem;
+    background: #fbf1a9;
+    color: #555;
+    font-size: 0.875rem;
+    line-height: 2rem;
   }
   .item-container {
     display: flex;
@@ -131,6 +186,7 @@ export default {
     align-items: center;
     text-align: left;
     padding: 40px 20px;
+    position: relative;
     box-shadow: 0px 0px 2px 0px #00000052, 0px 12px 8px -12px #000;
     border-radius: 5px;
     background-color: #ffffff94;

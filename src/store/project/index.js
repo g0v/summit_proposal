@@ -14,7 +14,7 @@ function joinCommentToProject(project, commentDictionary) {
     commentInfo.updatedAt = comment.updatedAt;
     commentInfo.commentId = comment.id;
   } else {
-    const initVersion = project.versions[0];
+    const initVersion = project.versions;
     console.warn(`Missing topic ${initVersion.title} (${project._id})`);
   }
 

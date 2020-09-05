@@ -50,13 +50,27 @@ export default {
     projectDetail: {
       type: Object,
       required: true
+    },
+    showVerified: {
+      type: Boolean,
+      default: true
     }
   },
   computed: {
     latestVersion() {
-      return this.projectDetail.versions[
-        this.projectDetail.versions.length - 1
-      ];
+      if (!this.showVerified) {
+        return this.projectDetail.versions[
+          this.projectDetail.versions.length - 1
+        ];
+      } else {
+        for (let i = this.projectDetail.versions.length - 1; i >= 0; i--) {
+          const ver = this.projectDetail.versions[i];
+          if (ver.verified) {
+            return ver;
+          }
+        }
+      }
+      return {};
     }
     // },
     // methods: {

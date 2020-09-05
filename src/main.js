@@ -30,6 +30,7 @@ import {
   NavbarPlugin,
   LayoutPlugin,
   ButtonPlugin,
+  BadgePlugin,
   CardPlugin,
   IconsPlugin,
   FormInputPlugin,
@@ -47,6 +48,7 @@ Vue.use(TablePlugin);
 Vue.use(NavbarPlugin);
 Vue.use(LayoutPlugin);
 Vue.use(ButtonPlugin);
+Vue.use(BadgePlugin);
 Vue.use(CardPlugin);
 Vue.use(IconsPlugin);
 Vue.use(FormInputPlugin);
@@ -61,6 +63,9 @@ Vue.use(FormCheckboxPlugin);
 
 import VBodyScrollLock from "v-body-scroll-lock";
 Vue.use(VBodyScrollLock);
+
+import VueClipboard from "vue-clipboard2";
+Vue.use(VueClipboard)
 
 const existingAuthToken = API.GET_EXISTING_AUTH_TOKEN();
 if (existingAuthToken) {
