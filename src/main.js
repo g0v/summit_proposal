@@ -65,7 +65,7 @@ import VBodyScrollLock from "v-body-scroll-lock";
 Vue.use(VBodyScrollLock);
 
 import VueClipboard from "vue-clipboard2";
-Vue.use(VueClipboard)
+Vue.use(VueClipboard);
 
 const existingAuthToken = API.GET_EXISTING_AUTH_TOKEN();
 if (existingAuthToken) {
