@@ -67,11 +67,10 @@ export default {
     },
     shouldShowUnverified() {
       if (!this.isProjectReady) {
-        return false
+        return false;
       }
       const detail = this.$store.getters.projectDetail;
-      console.warn('??', detail.owner, detail.selected)
-      return detail.owner && detail.selected
+      return detail.owner && detail.selected;
     }
   },
   methods: {
