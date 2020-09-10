@@ -12,9 +12,7 @@
                 class="pointer"
                 @click="$emit('openVersionDetailLightboxOpen', index)"
               >
-                <span>
-                  version {{ index + 1 }}
-                </span>
+                <span> version {{ index + 1 }} </span>
                 <span
                   v-if="index === lastVerifiedVersionIndex && !onlyShowVerified"
                   class="ml2 f7 ph2 lh-solid br4 bg-green white"
@@ -26,10 +24,15 @@
           </div>
         </div>
         <main>
-          <div class="item" v-if="'is_present_online' in latestVersion && !onlyShowVerified">
+          <div
+            class="item"
+            v-if="'is_present_online' in latestVersion && !onlyShowVerified"
+          >
             <h3>
               是否使用線上連線報告？<br />
-              <span class="f5">Whether to present this proposal online in g0v Summit 2020</span>
+              <span class="f5">
+                Whether to present this proposal online in g0v Summit 2020
+              </span>
             </h3>
             <p>
               <template v-if="latestVersion.is_present_online">是 Yes</template>
@@ -178,12 +181,15 @@ export default {
   computed: {
     versions() {
       if (this.onlyShowVerified) {
-        return this.projectDetail.versions.slice(0, this.lastVerifiedVersionIndex)
+        return this.projectDetail.versions.slice(
+          0,
+          this.lastVerifiedVersionIndex
+        );
       }
-      return this.projectDetail.versions
+      return this.projectDetail.versions;
     },
     lastVerifiedVersionIndex() {
-      return _.findLastIndex(this.projectDetail.versions, ver => ver.verified )
+      return _.findLastIndex(this.projectDetail.versions, ver => ver.verified);
     },
     latestVersion() {
       if (!this.onlyShowVerified) {
