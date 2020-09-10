@@ -6,16 +6,36 @@
           <div class="item">
             <h4>修訂紀錄</h4>
             <div class="content">
-              <span
-                v-for="(version, index) in projectDetail.versions"
+              <div
+                v-for="(version, index) in versions"
                 :key="index"
+                class="pointer"
                 @click="$emit('openVersionDetailLightboxOpen', index)"
-                >version {{ index + 1 }}</span
               >
+                <span>
+                  version {{ index + 1 }}
+                </span>
+                <span
+                  v-if="index === lastVerifiedVersionIndex && !onlyShowVerified"
+                  class="ml2 f7 ph2 lh-solid br4 bg-green white"
+                >
+                  已審核 Verified
+                </span>
+              </div>
             </div>
           </div>
         </div>
         <main>
+          <div class="item" v-if="'is_present_online' in latestVersion && !onlyShowVerified">
+            <h3>
+              是否使用線上連線報告？<br />
+              <span class="f5">Whether to present this proposal online in g0v Summit 2020</span>
+            </h3>
+            <p>
+              <template v-if="latestVersion.is_present_online">是 Yes</template>
+              <template v-else>否 No </template>
+            </p>
+          </div>
           <div class="item">
             <h3>摘要 Summary</h3>
             <rich-multiline :text="latestVersion.summary" />
@@ -133,6 +153,7 @@
 </template>
 
 <script>
+import _ from "lodash";
 import RichMultiline from "./RichMultiline";
 
 const MAX_URL_LEN = 40;
@@ -149,14 +170,23 @@ export default {
       type: Object,
       required: true
     },
-    showVerified: {
+    onlyShowVerified: {
       type: Boolean,
       default: true
     }
   },
   computed: {
+    versions() {
+      if (this.onlyShowVerified) {
+        return this.projectDetail.versions.slice(0, this.lastVerifiedVersionIndex)
+      }
+      return this.projectDetail.versions
+    },
+    lastVerifiedVersionIndex() {
+      return _.findLastIndex(this.projectDetail.versions, ver => ver.verified )
+    },
     latestVersion() {
-      if (!this.showVerified) {
+      if (!this.onlyShowVerified) {
         return this.projectDetail.versions[
           this.projectDetail.versions.length - 1
         ];
@@ -274,9 +304,7 @@ export default {
           font-weight: 600;
         }
         .content {
-          span {
-            display: block;
-            cursor: pointer;
+          > div {
             &:hover {
               color: $main-color;
             }

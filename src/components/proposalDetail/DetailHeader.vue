@@ -26,13 +26,17 @@
         class="mv3 flex justify-end items-center w-100"
         v-if="this.projectDetail.owner"
       >
-        <draft-notifier class="mr2" :proposal="projectDetail" />
-        <!--
-        <b-button variant="danger" @click="goEdit">
-          編輯提案 <br />
-          Edit Proposal
-        </b-button>
-        -->
+        <template v-if="!onlyShowVerified">
+          <div class="mw6 mr2 pv2 ph3 br3 bg-light-yellow" v-if="shouldShowUnderReviewWarning">
+            注意：新的修改正在審核中，其他人只會看到之前的版本。<br />
+            Notice: Other people will only see previous version as new modification is under review.
+          </div>
+          <draft-notifier class="mr2" :proposal="projectDetail" />
+          <b-button variant="danger" @click="goEdit">
+            編輯提案 <br />
+            Edit Proposal
+          </b-button>
+        </template>
       </div>
     </div>
   </div>
@@ -51,14 +55,17 @@ export default {
       type: Object,
       required: true
     },
-    showVerified: {
+    onlyShowVerified: {
       type: Boolean,
       default: true
     }
   },
   computed: {
+    shouldShowUnderReviewWarning() {
+      return !this.onlyShowVerified && !this.latestVersion.verified
+    },
     latestVersion() {
-      if (!this.showVerified) {
+      if (!this.onlyShowVerified) {
         return this.projectDetail.versions[
           this.projectDetail.versions.length - 1
         ];
