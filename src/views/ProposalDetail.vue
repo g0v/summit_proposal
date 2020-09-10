@@ -8,9 +8,13 @@
       </div>
     </div>
     <template v-else>
-      <DetailHeader :projectDetail="$store.getters.projectDetail" />
+      <DetailHeader
+        :projectDetail="$store.getters.projectDetail"
+        :onlyShowVerified="!shouldShowUnverified"
+      />
       <DetailContent
         :projectDetail="$store.getters.projectDetail"
+        :onlyShowVerified="!shouldShowUnverified"
         @openVersionDetailLightboxOpen="openVersionDetailLightboxOpen"
       />
     </template>
@@ -60,6 +64,13 @@ export default {
     isProjectReady() {
       const detail = this.$store.getters.projectDetail;
       return detail && detail._id && detail.versions.length > 0;
+    },
+    shouldShowUnverified() {
+      if (!this.isProjectReady) {
+        return false;
+      }
+      const detail = this.$store.getters.projectDetail;
+      return detail.owner && detail.selected;
     }
   },
   methods: {
