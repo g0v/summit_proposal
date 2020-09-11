@@ -27,9 +27,13 @@
         v-if="this.projectDetail.owner"
       >
         <template v-if="!onlyShowVerified">
-          <div class="mw6 mr2 pv2 ph3 br3 bg-light-yellow" v-if="shouldShowUnderReviewWarning">
+          <div
+            class="mw6 mr2 pv2 ph3 br3 bg-light-yellow"
+            v-if="shouldShowUnderReviewWarning"
+          >
             注意：新的修改正在審核中，其他人只會看到之前的版本。<br />
-            Notice: Other people will only see previous version as new modification is under review.
+            Notice: Other people will only see previous version as new
+            modification is under review.
           </div>
           <draft-notifier class="mr2" :proposal="projectDetail" />
           <b-button variant="danger" @click="goEdit">
@@ -62,7 +66,7 @@ export default {
   },
   computed: {
     shouldShowUnderReviewWarning() {
-      return !this.onlyShowVerified && !this.latestVersion.verified
+      return !this.onlyShowVerified && !this.latestVersion.verified;
     },
     latestVersion() {
       if (!this.onlyShowVerified) {
@@ -79,14 +83,14 @@ export default {
       }
       return {};
     }
-    // },
-    // methods: {
-    //   goEdit() {
-    //     this.$router.push({
-    //       name: "ProposalEdit",
-    //       params: { id: this.projectDetail._id }
-    //     });
-    //   }
+  },
+  methods: {
+    goEdit() {
+      this.$router.push({
+        name: "ProposalEdit",
+        params: { id: this.projectDetail._id }
+      });
+    }
   }
 };
 </script>

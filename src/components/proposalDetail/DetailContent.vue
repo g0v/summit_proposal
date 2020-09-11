@@ -26,17 +26,14 @@
         <main>
           <div
             class="item"
-            v-if="'is_present_online' in latestVersion && !onlyShowVerified"
+            v-if="'presentation_method' in latestVersion && !onlyShowVerified"
           >
             <h3>
-              是否使用線上連線報告？<br />
-              <span class="f5">
-                Whether to present this proposal online in g0v Summit 2020
-              </span>
+              現場報告或遠端連線 Whether to present this proposal on-site or
+              online
             </h3>
             <p>
-              <template v-if="latestVersion.is_present_online">是 Yes</template>
-              <template v-else>否 No </template>
+              {{ latestVersion.presentation_method }}
             </p>
           </div>
           <div class="item">
