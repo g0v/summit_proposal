@@ -41,13 +41,14 @@ const CONTENT_FIELD_DEFINITIONS = [
       "g0v Summit 2020 要求所有投稿的稿件內容，皆以 CC BY 4.0 授權釋出，拒絕者，將無法投稿。此要求僅限稿件內容，關於會議時的紀錄與投影片授權，請見下方相關欄位。 We require all content of proposal submitted to g0v Summit 2020 to be licensed under CC BY 4.0. Proposal that doesn’t follow this requirement would not be able to submit. This requirement is only applied to content of proposal. For license about slides or presentation record, please see related question below."
   },
   {
-    id: "is_present_online",
-    label: "是否使用線上連線報告？",
-    labelEn: "Whether to present this proposal online in g0v Summit 2020",
-    type: "boolean",
+    id: "presentation_method",
+    label:
+      "現場報告或遠端連線 Whether to present this proposal on-site or online",
     required: true,
+    type: "select",
+    options: ["現場報告 on-site", "遠端連線 online"],
     description:
-      "若選擇線上連線報告，主辦單位會再聯繫交待相關技術需求。 g0v Summit programming task force will contact you for technical detail if you choose to present online."
+      "若選擇遠端連線報告，主辦單位會再聯繫交待相關技術需求。 g0v Summit programming task force will contact you for technical detail if you choose to present online."
   },
   {
     label: "稿件標題 Proposal Title",
