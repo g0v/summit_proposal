@@ -86,7 +86,7 @@ export default {
         summary: "",
         summary_en: "",
         oral_language: "",
-        oral_languate_other: "",
+        oral_language_other: "",
         format: "",
         topic: "",
         three_keywords: "",

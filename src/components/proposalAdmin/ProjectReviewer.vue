@@ -111,6 +111,22 @@ import FieldViewer from "./FieldViewer";
 // author may change format, so use static max speaker
 const MAX_SPEAKER = 4;
 
+function expandFields(fields) {
+  const allFields = [];
+  fields.forEach(field => {
+    allFields.push(field);
+    if (field.otherId) {
+      console.warn(`kerker ${field.label} ${field.otherId}`);
+      allFields.push({
+        label: `${field.label} - 其他`,
+        type: "text",
+        id: field.otherId
+      });
+    }
+  });
+  return allFields;
+}
+
 export default {
   mixins: [handleApiError],
   props: {
@@ -130,8 +146,8 @@ export default {
       isOpened: this.openOnInit,
       onlyShowDiff: true,
 
-      contentFields: CONTENT_FIELD_DEFINITIONS,
-      speakerFields: SPEAKER_FIELD_DEFINITIONS
+      contentFields: expandFields(CONTENT_FIELD_DEFINITIONS),
+      speakerFields: expandFields(SPEAKER_FIELD_DEFINITIONS)
     };
   },
   computed: {
