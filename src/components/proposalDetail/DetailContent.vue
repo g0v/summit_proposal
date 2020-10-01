@@ -48,9 +48,9 @@
             <h3>使用語言 Language</h3>
             <p>
               {{
-                latestVersion.oral_languate_other === ""
+                latestVersion.oral_language_other === ""
                   ? latestVersion.oral_language
-                  : latestVersion.oral_languate_other
+                  : latestVersion.oral_language_other
               }}
             </p>
           </div>
