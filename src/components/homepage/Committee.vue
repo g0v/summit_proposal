@@ -29,38 +29,6 @@
             <small>網頁前端工程師<br />Web Frontend Engineer</small>
           </template>
         </b-card>
-
-        <b-card
-          title="Hsinyi"
-          img-src="@/assets/images/pics/Hsinyi.jpg"
-          img-alt="Hsinyi"
-          img-top
-        >
-          <b-card-text>
-            目前正職的工作是台灣廢除死刑推動聯盟執行長。2003年參與廢死聯盟的成立、2007年成為廢死聯盟第一位全職工作人員至今，人生大部分的經驗及投入的工作就是廢死。
-            關心各式的人權議題，但能投入的有限，目前也是人權公約施行監督聯盟和西藏台灣人權連線的理事。
-            希望能活著見到台灣獨立以及廢除死刑。
-            對於g0v只有遠遠的仰望及少少的接觸，但覺得這群人正在做很酷的事，很榮幸今年可以參與g0v-summit
-            2020及學習。<br />Currently working as the executive director for
-            Taiwan Alliance to End Death Penalty (TAEDP). Helped with the
-            establishment of TAEDP in 2003 then became the first full-time staff
-            in 2006 and worked there even since. Most of the career and time
-            have been devoted to abolishing death penalty. Care about lots of
-            human rights issues but has limited time and energy to devote. Also
-            serve as a Senior Director for Covenants Watch and Human Rights
-            Network for Tibet and Taiwan. Would like to see the day that Taiwan
-            abolishes death penalty before I die. Have been admiring g0v from a
-            far with a few encounters, but I know this group of people is doing
-            something really cool. I am honored to be able to participate the
-            g0v-summit 2020 and learn from this experience.
-          </b-card-text>
-          <template v-slot:header>
-            <small
-              >台灣廢除死刑推動聯盟執行長<br />Taiwan Alliance to End the Death
-              Penalty Executive Director</small
-            >
-          </template>
-        </b-card>
         <b-card
           title="ly"
           img-src="@/assets/images/pics/ly.jpg"
