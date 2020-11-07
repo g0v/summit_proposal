@@ -170,12 +170,25 @@ const SPEAKER_FIELD_DEFINITIONS = [
     required: true
   },
   {
+    label: "顯示於網頁的講者英語名稱 Speaker’s display name in English",
+    id: "display_name_en",
+    type: "text",
+    maxCount: 10
+  },
+  {
     label: "組織或社群名稱",
     labelEn: "Speaker’s organization or community affiliation",
     id: "organization",
     maxCount: 60,
     type: "text",
     required: true
+  },
+  {
+    label: "組織或社群英語名稱",
+    labelEn: "Speaker’s organization or community affiliation in English",
+    id: "organization_en",
+    maxCount: 10,
+    type: "text"
   },
   {
     label: "講者頭像 Speaker’s avatar",
@@ -192,6 +205,12 @@ const SPEAKER_FIELD_DEFINITIONS = [
     type: "text",
     maxCount: 60,
     required: true
+  },
+  {
+    label: "講者所在城市的英語 Speaker’s location (city) in English",
+    id: "city_en",
+    type: "text",
+    maxCount: 10
   },
   {
     label: "講者資訊連結 Speaker info URL ",

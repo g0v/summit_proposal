@@ -121,12 +121,20 @@
           <div class="open-info">
             <h4>講者名稱 Speaker’s display name</h4>
             <p>{{ speaker.display_name }}</p>
+            <h4>Speaker’s display name in English</h4>
+            <p>{{ speaker.display_name_en }}</p>
             <h4>
               組織或社群名稱 Speaker’s organization or community affiliation
             </h4>
             <p>{{ speaker.organization }}</p>
+            <h4>
+              Speaker’s organization or community affiliation in English
+            </h4>
+            <p>{{ speaker.organization_en }}</p>
             <h4>講者所在城市 Speaker’s location (city)</h4>
             <p>{{ speaker.city }}</p>
+            <h4>Speaker’s location (city) in English</h4>
+            <p>{{ speaker.city_en }}</p>
             <template v-if="speaker.info_url">
               <h4>講者資訊連結 Speaker info URL</h4>
               <p>
