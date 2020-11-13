@@ -105,7 +105,8 @@ export default {
     //   );
     // },
     hasEditableItem() {
-      return this.projects.some(item => item.selected);
+      // Disable any editting permission on Nov 13, 2020
+      return this.projects.some(item => item.selected) && false;
     }
   },
   watch: {

@@ -36,10 +36,12 @@
             modification is under review.
           </div>
           <draft-notifier class="mr2" :proposal="projectDetail" />
+          <!-- Disable any editting permission on Nov 13, 2020
           <b-button variant="danger" @click="goEdit">
             編輯提案 <br />
             Edit Proposal
           </b-button>
+          -->
         </template>
       </div>
     </div>
