@@ -102,8 +102,10 @@ export default {
   },
   methods: {
     routerName(item) {
+      // Disable any editting permission on Nov 13, 2020
       if (this.isEditable && item.selected && item.owner) {
-        return "ProposalEdit";
+        return "ProposalDetail";
+        // return "ProposalEdit";
       }
       return "ProposalDetail";
     },
