@@ -11,7 +11,7 @@
   "dependencies": {
     "@sentry/browser": "^5.18.1",
     "@sentry/integrations": "^5.18.1",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bootstrap-vue": "^2.15.0",
     "core-js": "^3.6.4",
     "js-cookie": "^2.2.1",
